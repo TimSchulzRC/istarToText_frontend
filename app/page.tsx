@@ -1,95 +1,70 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import ActorCard from "@/components/ActorCard";
+import ElevatedCard from "@/components/ElevatedCard";
+import GoalCard from "@/components/GoalCard";
+import ListCard from "@/components/ListCard";
+import { ActorType } from "@/types/actorType";
+import {
+  ConnectionType,
+  IntentionalElementType,
+} from "@/types/intentionalElementType";
+import { Card, CardContent, Container, Typography } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+    <main>
+      <Container maxWidth="xl" sx={{ padding: 3 }}>
+        <Grid container spacing={4}>
+          <Grid xs={12} md={3}>
+            <ListCard title="Actors">
+              <ActorCard actorType={ActorType.ROLE}></ActorCard>
+            </ListCard>
+          </Grid>
+          <Grid xs={12} md={9}>
+            <Grid container columns={2} spacing={2}>
+              <Grid xs={2}>
+                <Card variant="outlined">
+                  <CardContent>
+                    <Typography variant="h2">Student</Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid xs={1}>
+                <ListCard title="Goals">
+                  <ElevatedCard>
+                    <CardContent>
+                      <Typography variant="h6">
+                        &quot;Student&quot; has 1 general goal:
+                      </Typography>
+                    </CardContent>
+                  </ElevatedCard>
+                  <GoalCard
+                    intentionalElementType={IntentionalElementType.GOAL}
+                    connectionType={ConnectionType.AND}
+                  ></GoalCard>
+                  <ElevatedCard>
+                    <CardContent>
+                      <Typography variant="h6">
+                        &quot;Student&quot; has 8 other goals:
+                      </Typography>
+                    </CardContent>
+                  </ElevatedCard>
+                  <GoalCard
+                    intentionalElementType={IntentionalElementType.GOAL}
+                    connectionType={ConnectionType.OR}
+                  ></GoalCard>
+                </ListCard>
+              </Grid>
+              <Grid xs={1}>
+                <ListCard title="Tasks">
+                  <ActorCard actorType={ActorType.ROLE}></ActorCard>
+                </ListCard>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Container>
     </main>
-  )
+  );
 }
