@@ -10,11 +10,11 @@ import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
 import { ActorType, getActorTypeDescription } from "@/types/actorType";
 import ElevatedCard from "./ElevatedCard";
 
-export default function ActorCard({ actorType }: propTypes) {
+export default function ActorCard({ name, actorType }: propTypes) {
   return (
     <ElevatedCard>
       <CardHeader
-        title="Student"
+        title={name}
         subheader={actorType}
         action={
           <Tooltip title={getActorTypeDescription(actorType)}>
@@ -47,7 +47,7 @@ export default function ActorCard({ actorType }: propTypes) {
         </Typography>
         <Typography variant="body2">
           <Typography variant="h6" component="span">
-            8{" "}
+            5{" "}
           </Typography>
           general goal(s)
         </Typography>
@@ -56,4 +56,4 @@ export default function ActorCard({ actorType }: propTypes) {
   );
 }
 
-type propTypes = { actorType: ActorType };
+type propTypes = { name: string; actorType: ActorType };

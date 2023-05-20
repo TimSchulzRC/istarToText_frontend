@@ -1,7 +1,6 @@
 "use client";
 import ActorCard from "@/components/cards/ActorCard";
 import DependencyCard from "@/components/cards/DependencyCard";
-import ElevatedCard from "@/components/cards/ElevatedCard";
 import IntentionalElementCard from "@/components/cards/IntentionalElementCard";
 import ListCard from "@/components/cards/ListCard";
 import Actor from "@/types/Actor";
@@ -93,7 +92,7 @@ export default function Home() {
         <Grid container spacing={4}>
           <Grid xs={12} md={3}>
             <ListCard title="Actors">
-              <ActorCard actorType={ActorType.ROLE}></ActorCard>
+              <ActorCard name="Student" actorType={ActorType.ROLE}></ActorCard>
             </ListCard>
           </Grid>
           <Grid xs={12} md={9}>
@@ -120,7 +119,7 @@ export default function Home() {
                       )
                   )}
                   <Typography variant="h6" sx={{ pt: 4 }}>
-                    &quot;Student&quot; has 8 other goals:
+                    &quot;Student&quot; has 5 other goals / tasks:
                   </Typography>
 
                   {intentionalElements.map(
