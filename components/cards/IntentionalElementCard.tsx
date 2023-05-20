@@ -2,28 +2,15 @@ import {
   ConnectionType,
   IntentionalElementType,
 } from "@/types/intentionalElementType";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import {
-  Avatar,
-  Box,
-  CardContent,
-  CardHeader,
-  Chip,
-  Collapse,
-  List,
-  Tooltip,
-  Typography,
-} from "@mui/material";
-import { green, red } from "@mui/material/colors";
+import { Box, Chip, List, Typography } from "@mui/material";
 import React from "react";
-
-import ConnectionTypeText from "../ConnectionTypeText";
-import ElevatedCard from "./ElevatedCard";
-import ExpandMoreButton from "../ExpandMoreButton";
-import IntentionalElementListItem from "../IntentionalElementListItem";
+2;
 import IntentionalElement from "@/types/IntentionalElement";
 import { v4 as uuidv4 } from "uuid";
+import ConnectionTypeText from "../ConnectionTypeText";
+import IntentionalElementListItem from "../IntentionalElementListItem";
 import QualitiesText from "../QualitiesText";
+import CollapsibleCard from "./CollapsibleCard";
 
 export default function IntentionalElementCard({
   element: {
@@ -33,6 +20,7 @@ export default function IntentionalElementCard({
     name,
     childrenConnectionType,
     qualities,
+    dependencies,
   },
 }: propTypes) {
   const [expanded, setExpanded] = React.useState(false);
@@ -42,92 +30,75 @@ export default function IntentionalElementCard({
   };
 
   return (
-    <ElevatedCard>
-      <CardHeader
-        // avatar={
-        //   <Tooltip title="Goal: a state of affairs that the actor wants to achieve and that has clear-cut criteria of achievement.">
-        //     <Avatar
-        //       sx={{
-        //         bgcolor:
-        //           type === IntentionalElementType.GOAL ? red[400] : green[400],
-        //       }}
-        //       aria-label="recipe"
-        //     >
-        //       {type === IntentionalElementType.GOAL ? "G" : "T"}
-        //     </Avatar>
-        //   </Tooltip>
-        // }
-        title={name}
-        subheader={type}
-        action={
-          <ExpandMoreButton
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </ExpandMoreButton>
-        }
-      />
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          {parentConnection && (
-            <Box sx={{ mb: 4 }}>
-              <Typography variant="body1" component="span">
-                This{" "}
-                {parentConnection.type === ConnectionType.AND ? (
-                  <>
-                    {parentConnection.parent.type.toLowerCase()} is{" "}
-                    <Typography variant="h6" component="span">
-                      necessary
-                    </Typography>
-                  </>
-                ) : (
-                  <>
-                    {parentConnection.parent.type} is{" "}
-                    <Typography variant="h6" component="span">
-                      one option
-                    </Typography>
-                  </>
-                )}{" "}
-                to{" "}
-                {type === IntentionalElementType.GOAL ? "achieve" : "complete"}{" "}
-                the {type.toLowerCase()}
-              </Typography>{" "}
-              <Chip label={parentConnection.parent.name} onClick={() => {}} />
-            </Box>
-          )}
-          {children.length > 0 && childrenConnectionType && (
-            <>
-              <ConnectionTypeText
-                ieType={type}
-                connectionType={childrenConnectionType}
-              />
-              <List>
-                {children.map((child) => (
-                  <IntentionalElementListItem
-                    key={uuidv4()}
-                    intentionalElementType={IntentionalElementType.GOAL}
-                  >
-                    {child.name}
-                  </IntentionalElementListItem>
-                ))}
-              </List>
-            </>
-          )}
-          {qualities.map(({ quality, relation }) => (
-            <QualitiesText
-              key={uuidv4()}
-              parentIeType={type}
-              qualityType={relation}
-            >
-              {quality.name}
-            </QualitiesText>
-          ))}
-        </CardContent>
-      </Collapse>
-    </ElevatedCard>
+    <CollapsibleCard title={name} subheader={type}>
+      {parentConnection && (
+        <Box sx={{ mb: 4 }}>
+          <Typography variant="body1" component="span">
+            This{" "}
+            {parentConnection.type === ConnectionType.AND ? (
+              <>
+                {parentConnection.parent.type.toLowerCase()} is{" "}
+                <Typography variant="h6" component="span">
+                  necessary
+                </Typography>
+              </>
+            ) : (
+              <>
+                {parentConnection.parent.type} is{" "}
+                <Typography variant="h6" component="span">
+                  one option
+                </Typography>
+              </>
+            )}{" "}
+            to {type === IntentionalElementType.GOAL ? "achieve" : "complete"}{" "}
+            the {type.toLowerCase()}
+          </Typography>{" "}
+          <Chip label={parentConnection.parent.name} onClick={() => {}} />
+        </Box>
+      )}
+      {children.length > 0 && childrenConnectionType && (
+        <>
+          <ConnectionTypeText
+            ieType={type}
+            connectionType={childrenConnectionType}
+          />
+          <List>
+            {children.map((child) => (
+              <IntentionalElementListItem
+                key={uuidv4()}
+                intentionalElementType={IntentionalElementType.GOAL}
+              >
+                {child.name}
+              </IntentionalElementListItem>
+            ))}
+          </List>
+        </>
+      )}
+      {qualities.map(({ quality, relation }) => (
+        <QualitiesText
+          key={uuidv4()}
+          parentIeType={type}
+          qualityType={relation}
+        >
+          {quality.name}
+        </QualitiesText>
+      ))}
+      {dependencies.length > 0 && (
+        <>
+          <Typography>This {type.toLowerCase()} depends on: </Typography>
+          <List>
+            {dependencies.map((dependency) => (
+              <IntentionalElementListItem
+                key={dependency.id}
+                intentionalElementType={dependency.type}
+              >
+                {dependency.name}
+              </IntentionalElementListItem>
+            ))}
+          </List>
+        </>
+      )}
+    </CollapsibleCard>
   );
 }
 

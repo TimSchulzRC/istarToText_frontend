@@ -1,3 +1,4 @@
+import Dependency from "./Dependency";
 import ModelElement from "./ModelElement";
 import Quality from "./Quality";
 import {
@@ -11,10 +12,14 @@ export default class IntentionalElement extends ModelElement {
   private _childrenConnectionType?: ConnectionType;
   private _children: IntentionalElement[] = [];
   private _qualities: { quality: Quality; relation: QualityType }[] = [];
-  private _dependencies?: IntentionalElement[];
+  private _dependencies: Dependency[] = [];
   private _resources?: any[];
 
-  constructor(id: string, name: string, private _type: IntentionalElementType) {
+  constructor(
+    id: string,
+    name: string,
+    private _type: IntentionalElementType.TASK | IntentionalElementType.GOAL
+  ) {
     super(id, name);
   }
 
@@ -66,6 +71,16 @@ export default class IntentionalElement extends ModelElement {
     ...qualities: { quality: Quality; relation: QualityType }[]
   ) {
     this._qualities.push(...qualities);
+  }
+
+  get dependencies() {
+    return this._dependencies;
+  }
+  public addDependency(dependency: Dependency) {
+    this._dependencies?.push(dependency);
+  }
+  public addDependencies(...dependencies: Dependency[]) {
+    this._dependencies?.push(...dependencies);
   }
 }
 

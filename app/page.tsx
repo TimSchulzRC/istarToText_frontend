@@ -1,8 +1,11 @@
 "use client";
 import ActorCard from "@/components/cards/ActorCard";
+import DependencyCard from "@/components/cards/DependencyCard";
 import ElevatedCard from "@/components/cards/ElevatedCard";
 import IntentionalElementCard from "@/components/cards/IntentionalElementCard";
 import ListCard from "@/components/cards/ListCard";
+import Actor from "@/types/Actor";
+import Dependency from "@/types/Dependency";
 import IntentionalElement from "@/types/IntentionalElement";
 import Quality from "@/types/Quality";
 import { ActorType } from "@/types/actorType";
@@ -11,7 +14,7 @@ import {
   IntentionalElementType,
 } from "@/types/intentionalElementType";
 import { QualityType } from "@/types/qualityType";
-import { Card, CardContent, Container, Typography } from "@mui/material";
+import { Card, CardContent, Chip, Container, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
 const e1 = new IntentionalElement(
@@ -51,11 +54,37 @@ const t1 = new IntentionalElement(
   IntentionalElementType.TASK
 );
 t1.parentConnection = { parent: e4, type: ConnectionType.OR };
-
 e4.addChild(t1);
 const q1 = new Quality("1", "No Errors");
 t1.addQualityRelation(q1, QualityType.HURT);
-const intentionalElements: IntentionalElement[] = [e1, e2, e3, e4, t1];
+
+const t2 = new IntentionalElement(
+  "t2 ",
+  "Fill in online form",
+  IntentionalElementType.TASK
+);
+t2.parentConnection = { parent: e4, type: ConnectionType.OR };
+e4.addChild(t2);
+
+const e5 = new IntentionalElement(
+  "e5",
+  "Process form",
+  IntentionalElementType.TASK
+);
+
+const intentionalElements: IntentionalElement[] = [e1, e2, e3, e4, t1, t2];
+
+const travelAgency = new Actor("1", "Univ. trip mgmt IS");
+const d1 = new Dependency(
+  "1",
+  "Online form processed",
+  IntentionalElementType.GOAL,
+  "outgoing",
+  travelAgency,
+  e5,
+  t2
+);
+t2.addDependency(d1);
 
 export default function Home() {
   return (
@@ -106,7 +135,14 @@ export default function Home() {
                 </ListCard>
               </Grid>
               <Grid xs={1}>
-                <ListCard title="Dependencies"></ListCard>
+                <ListCard title="Dependencies">
+                  <Typography variant="body1">
+                    &quot;Student&quot; depends on 2 other actors:{" "}
+                    <Chip label="Travel Agency" /> and{" "}
+                    <Chip label="Univ. trip mgmt IS" />
+                  </Typography>
+                  <DependencyCard dependency={d1} />
+                </ListCard>
               </Grid>
             </Grid>
           </Grid>

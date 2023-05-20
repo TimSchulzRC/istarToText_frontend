@@ -1,6 +1,8 @@
 export enum IntentionalElementType {
   GOAL = "Goal",
   TASK = "Task",
+  RESOURCE = "Resource",
+  QUALITY = "Quality",
 }
 export enum ConnectionType {
   AND = "and",

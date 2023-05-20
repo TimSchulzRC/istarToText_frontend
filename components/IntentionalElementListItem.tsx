@@ -7,6 +7,8 @@ import {
 } from "@mui/material";
 import OutlinedFlagRoundedIcon from "@mui/icons-material/OutlinedFlagRounded";
 import TaskAltRoundedIcon from "@mui/icons-material/TaskAltRounded";
+import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
+import GppGoodOutlinedIcon from "@mui/icons-material/GppGoodOutlined";
 import React from "react";
 import { IntentionalElementType } from "@/types/intentionalElementType";
 
@@ -17,10 +19,17 @@ export default function IntentionalElementListItem({
   return (
     <ListItem>
       <ListItemIcon>
-        {intentionalElementType === IntentionalElementType.GOAL ? (
+        {intentionalElementType === IntentionalElementType.GOAL && (
           <OutlinedFlagRoundedIcon />
-        ) : (
+        )}
+        {intentionalElementType === IntentionalElementType.TASK && (
           <TaskAltRoundedIcon />
+        )}
+        {intentionalElementType === IntentionalElementType.RESOURCE && (
+          <Inventory2OutlinedIcon />
+        )}
+        {intentionalElementType === IntentionalElementType.QUALITY && (
+          <GppGoodOutlinedIcon />
         )}
       </ListItemIcon>
       <ListItemText>
