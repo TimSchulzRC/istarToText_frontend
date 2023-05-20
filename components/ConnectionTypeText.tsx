@@ -1,30 +1,52 @@
-import { ConnectionType } from "@/types/intentionalElementType";
+import {
+  ConnectionType,
+  IntentionalElementType,
+} from "@/types/intentionalElementType";
 import { Typography } from "@mui/material";
 
 export default function connectionTypeAnd({
   connectionType,
-}: {
-  connectionType: ConnectionType;
-}) {
+  ieType,
+}: propTypes) {
+  const firstTextParagraph = (
+    <>
+      To {isTask() ? "complete" : "achieve"} this {ieType.toLowerCase()},
+      &quot;Student&quot; must have{" "}
+    </>
+  );
+
+  const lastTextParagraph = (
+    <> of the following goals achieved and tasks completed:</>
+  );
+
   if (connectionType === ConnectionType.AND)
     return (
       <Typography variant="body1">
-        To achieve this goal, &quot;Student&quot; must have{" "}
+        {firstTextParagraph}
         <Typography variant="h6" component="span">
           all
         </Typography>{" "}
-        of the following goals achieved and tasks completed:
+        {lastTextParagraph}
       </Typography>
     );
   if (connectionType === ConnectionType.OR)
     return (
       <Typography variant="body1">
-        To achieve this goal, &quot;Student&quot; must have achieve{" "}
+        {firstTextParagraph}
         <Typography variant="h6" component="span">
           at least one
         </Typography>{" "}
-        of the following goals achieved and tasks completed:
+        {lastTextParagraph}
       </Typography>
     );
   return <></>;
+
+  function isTask() {
+    return ieType === IntentionalElementType.TASK;
+  }
 }
+
+type propTypes = {
+  connectionType: ConnectionType;
+  ieType: IntentionalElementType;
+};

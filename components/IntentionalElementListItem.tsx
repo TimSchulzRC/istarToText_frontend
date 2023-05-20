@@ -1,11 +1,16 @@
-import { ListItem, ListItemIcon, ListItemText } from "@mui/material";
-import FlagRoundedIcon from "@mui/icons-material/FlagRounded";
+import {
+  Chip,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Typography,
+} from "@mui/material";
+import OutlinedFlagRoundedIcon from "@mui/icons-material/OutlinedFlagRounded";
 import TaskAltRoundedIcon from "@mui/icons-material/TaskAltRounded";
 import React from "react";
 import { IntentionalElementType } from "@/types/intentionalElementType";
-import { type } from "os";
 
-export default function GoalListItem({
+export default function IntentionalElementListItem({
   children,
   intentionalElementType,
 }: propTypes) {
@@ -13,13 +18,20 @@ export default function GoalListItem({
     <ListItem>
       <ListItemIcon>
         {intentionalElementType === IntentionalElementType.GOAL ? (
-          <FlagRoundedIcon />
+          <OutlinedFlagRoundedIcon />
         ) : (
           <TaskAltRoundedIcon />
         )}
       </ListItemIcon>
       <ListItemText>
-        {intentionalElementType}: {children}
+        <Chip
+          label={
+            <Typography variant="h6" component="span">
+              {children}
+            </Typography>
+          }
+          onClick={() => {}}
+        />
       </ListItemText>
     </ListItem>
   );

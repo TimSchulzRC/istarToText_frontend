@@ -1,10 +1,6 @@
-import { Typography } from "@mui/material";
-
 export enum IntentionalElementType {
   GOAL = "Goal",
-  QUALITY = "Quality",
   TASK = "Task",
-  RESSOURCE = "Ressource",
 }
 export enum ConnectionType {
   AND = "and",

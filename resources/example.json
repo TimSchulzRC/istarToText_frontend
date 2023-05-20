@@ -1,0 +1,149 @@
+{
+    "actors": [
+        {
+            "id": "bc1a72e4-f8fe-4afa-bd90-a83f8bd36c24",
+            "text": "College",
+            "type": "istar.Actor",
+            "x": 564,
+            "y": 131,
+            "customProperties": {
+                "Description": ""
+            },
+            "nodes": [
+                {
+                    "id": "fc89afcc-98e2-4247-a1e5-1b69f6115c09",
+                    "text": "Register students",
+                    "type": "istar.Task",
+                    "x": 645,
+                    "y": 163,
+                    "customProperties": {
+                        "Description": ""
+                    }
+                },
+                {
+                    "id": "1d6936a5-cf97-4ffd-8c3a-ebc7daea3b4a",
+                    "text": "Collect payment ",
+                    "type": "istar.Task",
+                    "x": 648,
+                    "y": 287,
+                    "customProperties": {
+                        "Description": ""
+                    }
+                },
+                {
+                    "id": "e71202d4-583f-4f56-bf2c-22f21e2f5234",
+                    "text": "Manage students' registration ",
+                    "type": "istar.Task",
+                    "x": 788,
+                    "y": 200,
+                    "customProperties": {
+                        "Description": ""
+                    }
+                }
+            ]
+        },
+        {
+            "id": "c95e9aa5-71cd-4948-a53b-007f67fec3f7",
+            "text": "Student",
+            "type": "istar.Actor",
+            "x": 43,
+            "y": 170,
+            "customProperties": {
+                "Description": ""
+            },
+            "nodes": []
+        }
+    ],
+    "orphans": [],
+    "dependencies": [
+        {
+            "id": "cac4dc16-2241-48e7-a984-32178e84057a",
+            "text": "Register in a program",
+            "type": "istar.Task",
+            "x": 286,
+            "y": 206,
+            "customProperties": {
+                "Description": ""
+            },
+            "source": "c95e9aa5-71cd-4948-a53b-007f67fec3f7",
+            "target": "fc89afcc-98e2-4247-a1e5-1b69f6115c09"
+        },
+        {
+            "id": "2f7819a9-df89-4bcf-a892-7fb25c0f7427",
+            "text": "Tuition and fees",
+            "type": "istar.Resource",
+            "x": 269,
+            "y": 300,
+            "customProperties": {
+                "Description": ""
+            },
+            "source": "c95e9aa5-71cd-4948-a53b-007f67fec3f7",
+            "target": "1d6936a5-cf97-4ffd-8c3a-ebc7daea3b4a"
+        }
+    ],
+    "links": [
+        {
+            "id": "369b60ec-56e4-4e2f-bdb8-df3ee4583d2d",
+            "type": "istar.AndRefinementLink",
+            "source": "fc89afcc-98e2-4247-a1e5-1b69f6115c09",
+            "target": "e71202d4-583f-4f56-bf2c-22f21e2f5234"
+        },
+        {
+            "id": "c47ef57c-93f6-4478-8f51-284bf740f694",
+            "type": "istar.AndRefinementLink",
+            "source": "1d6936a5-cf97-4ffd-8c3a-ebc7daea3b4a",
+            "target": "e71202d4-583f-4f56-bf2c-22f21e2f5234"
+        },
+        {
+            "id": "1b9a3311-21b8-4b66-8bd9-af1be502559e",
+            "type": "istar.DependencyLink",
+            "source": "c95e9aa5-71cd-4948-a53b-007f67fec3f7",
+            "target": "cac4dc16-2241-48e7-a984-32178e84057a"
+        },
+        {
+            "id": "9e454daa-a891-4cf7-a394-ae3d131ffc6d",
+            "type": "istar.DependencyLink",
+            "source": "cac4dc16-2241-48e7-a984-32178e84057a",
+            "target": "fc89afcc-98e2-4247-a1e5-1b69f6115c09"
+        },
+        {
+            "id": "713fb6e3-f365-4c42-8697-81c62ce02c51",
+            "type": "istar.DependencyLink",
+            "source": "c95e9aa5-71cd-4948-a53b-007f67fec3f7",
+            "target": "2f7819a9-df89-4bcf-a892-7fb25c0f7427"
+        },
+        {
+            "id": "8bfe480f-9ddd-41e6-93e9-1351eabc9403",
+            "type": "istar.DependencyLink",
+            "source": "2f7819a9-df89-4bcf-a892-7fb25c0f7427",
+            "target": "1d6936a5-cf97-4ffd-8c3a-ebc7daea3b4a"
+        }
+    ],
+    "display": {
+        "fc89afcc-98e2-4247-a1e5-1b69f6115c09": {
+            "width": 108.125,
+            "height": 59.2265625
+        },
+        "1d6936a5-cf97-4ffd-8c3a-ebc7daea3b4a": {
+            "width": 103.625,
+            "height": 60.2265625
+        },
+        "e71202d4-583f-4f56-bf2c-22f21e2f5234": {
+            "width": 123.625,
+            "height": 47.2265625
+        },
+        "c95e9aa5-71cd-4948-a53b-007f67fec3f7": {
+            "collapsed": true
+        }
+    },
+    "tool": "pistar.2.0.0a",
+    "istar": "2.0",
+    "saveDate": "Mon, 17 Apr 2023 21:04:25 GMT",
+    "diagram": {
+        "width": 2000,
+        "height": 1300,
+        "customProperties": {
+            "Description": ""
+        }
+    }
+}
