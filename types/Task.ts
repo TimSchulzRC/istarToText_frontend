@@ -1,3 +1,3 @@
 import IntentionalElement from "./IntentionalElement";
 
-export default class Task extends IntentionalElement {}
+export default interface Task extends IntentionalElement {}

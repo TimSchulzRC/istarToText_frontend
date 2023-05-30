@@ -1,0 +1,156 @@
+{
+    "actors": [
+        {
+            "id": "1",
+            "name": "Student",
+            "type": "role",
+            "linksTo": [],
+            "elements": [
+                {
+                    "id": "e11",
+                    "name": "Travel organized",
+                    "type": "goal",
+                    "childrenLinkType": "and",
+                    "children": [
+                        "e12",
+                        "e13"
+                    ]
+                },
+                {
+                    "id": "e12",
+                    "name": "Authorization obtained",
+                    "type": "goal",
+                    "childrenLinkType": "and",
+                    "children": [
+                        "e14",
+                        "e15"
+                    ]
+                },
+                {
+                    "id": "e13",
+                    "name": "Trip booked",
+                    "type": "goal"
+                },
+                {
+                    "id": "e14",
+                    "name": "Request prepared",
+                    "type": "goal"
+                },
+                {
+                    "id": "e15",
+                    "name": "Authorization signed",
+                    "type": "goal"
+                },
+                {
+                    "id": "e16",
+                    "name": "Fill in paper form",
+                    "type": "task"
+                },
+                {
+                    "id": "e17",
+                    "name": "Fill in online form",
+                    "type": "task",
+                    "childrenLinkType": null,
+                    "children": [],
+                    "dependencies": [
+                        "d1"
+                    ]
+                }
+            ],
+            "dependencies": [
+                "2"
+            ]
+        },
+        {
+            "id": "2",
+            "name": "PhDStudent",
+            "type": "role",
+            "linksTo": [
+                {
+                    "id": "1",
+                    "type": "isA"
+                }
+            ],
+            "elements": [],
+            "dependencies": []
+        },
+        {
+            "id": "3",
+            "name": "Mike White",
+            "type": "agent",
+            "linksTo": [
+                {
+                    "id": "1",
+                    "type": "participatesIn"
+                }
+            ],
+            "elements": [],
+            "dependencies": []
+        },
+        {
+            "id": "4",
+            "name": "Univ. trip mgmnt IS",
+            "type": "agent",
+            "linksTo": [],
+            "elements": [
+                {
+                    "id": "e41",
+                    "name": "Process Form",
+                    "type": "task",
+                    "childrenLinkType": "and",
+                    "children": [],
+                    "dependencies": []
+                },
+                {
+                    "id": "e42",
+                    "name": "Details validated",
+                    "type": "goal",
+                    "parentLink": null,
+                    "children": [],
+                    "dependencies": []
+                },
+                {
+                    "id": "e43",
+                    "name": "Request authorization",
+                    "type": "task",
+                    "parentLink": null,
+                    "children": [],
+                    "dependencies": []
+                },
+                {
+                    "id": "e44",
+                    "name": "Notify applicant",
+                    "type": "task",
+                    "parentLink": null,
+                    "children": [],
+                    "dependencies": []
+                }
+            ],
+            "dependencies": []
+        },
+        {
+            "id": "5",
+            "name": "Univ. of Wonder-Land",
+            "type": "agent",
+            "linksTo": [
+                {
+                    "id": "4",
+                    "type": "participatesIn"
+                }
+            ],
+            "elements": [],
+            "dependencies": []
+        }
+    ],
+    "dependencies": [
+        {
+            "id": "d1",
+            "type": "goal",
+            "name": "Online form processed",
+            "depender": "1",
+            "dependerElement": "e17",
+            "dependee": "4",
+            "dependeeElement": "e41"
+        }
+    ]
+}
