@@ -45,7 +45,7 @@ export default function IeListTextPhrase({
       case "goal":
         return "warning";
       case "quality":
-        return "default";
+        return "success";
     }
   }
 

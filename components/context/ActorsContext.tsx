@@ -23,7 +23,7 @@ export default function ActorsProvider({
             id: actor.id,
             name: actor.name,
             type: actor.type as ActorType,
-            parentId: actor.parentId,
+            linksTo: actor.linksTo,
             elements: actor.elements as IntentionalElement[],
             dependencies: actor.dependencies as string[],
           },

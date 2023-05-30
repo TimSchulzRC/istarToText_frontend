@@ -5,6 +5,6 @@ import { ActorType } from "./actorType";
 export default interface Actor extends ModelElement {
   elements: IntentionalElement[];
   type: ActorType;
-  parentId: string | null;
+  linksTo: { id: string; type: string }[];
   dependencies: string[];
 }
