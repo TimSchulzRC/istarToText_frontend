@@ -1,8 +1,14 @@
 import ModelElement from "./ModelElement";
-import { IntentionalElementType } from "./intentionalElementType";
+import { IntentionType } from "./intentionType";
 
 export default interface IntentionalElement extends ModelElement {
-  type: IntentionalElementType;
-  childrenLinkType: "and" | "or";
-  children: string[];
+  type: IntentionType;
+  parent: string | null;
+  childrenLinkType: "and" | "or" | null;
+  children: IntentionalElement[];
+  qualities: {
+    id: string,
+    type: string,
+  }[];
+  dependencies: string[];
 }

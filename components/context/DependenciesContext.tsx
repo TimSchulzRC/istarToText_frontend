@@ -1,38 +1,28 @@
 import React, { createContext, useEffect } from "react";
-import test from "@/resources/test.json";
+import data from "@/resources/trustcomputingSR.json";
 import Dependency from "@/types/Dependency";
-import { IntentionalElementType } from "@/types/intentionalElementType";
 
-export const DependenciesContext = createContext<Dependency[]>([]);
+export const DependenciesContext = createContext<Map<string, Dependency>>(
+  new Map<string, Dependency>()
+);
 
 export default function DependenciesProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [dependencies, setDependencies] = React.useState<Dependency[]>([]);
-  const effectRan = React.useRef(false);
+  const [dependencies, setDependencies] = React.useState<
+    Map<string, Dependency>
+  >(new Map<string, Dependency>());
+
   useEffect(() => {
-    if (!effectRan.current) {
-      test.dependencies.forEach((dependency) => {
-        setDependencies((prev) => [
-          ...prev,
-          {
-            id: dependency.id,
-            name: dependency.name,
-            type: dependency.type as IntentionalElementType,
-            depender: dependency.depender,
-            dependeeElement: dependency.dependeeElement,
-            dependerElement: dependency.dependerElement,
-            dependee: dependency.dependee,
-          },
-        ]);
-      });
-      return () => {
-        effectRan.current = true;
-      };
-    }
+    const dependenciesMap = new Map<string, Dependency>();
+    data.dependencies.forEach((dependency) =>
+      dependenciesMap.set(dependency.id, dependency as Dependency)
+    );
+    setDependencies(dependenciesMap);
   }, []);
+
   return (
     <DependenciesContext.Provider value={dependencies}>
       {children}

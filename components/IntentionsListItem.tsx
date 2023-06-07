@@ -10,25 +10,25 @@ import TaskAltRoundedIcon from "@mui/icons-material/TaskAltRounded";
 import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 import GppGoodOutlinedIcon from "@mui/icons-material/GppGoodOutlined";
 import React from "react";
-import { IntentionalElementType } from "@/types/intentionalElementType";
+import { IntentionType } from "@/types/intentionType";
 
-export default function IntentionalElementListItem({
+export default function IntentionsListItem({
   children,
   intentionalElementType,
 }: propTypes) {
   return (
     <ListItem>
       <ListItemIcon>
-        {intentionalElementType === IntentionalElementType.GOAL && (
+        {intentionalElementType === IntentionType.GOAL && (
           <OutlinedFlagRoundedIcon />
         )}
-        {intentionalElementType === IntentionalElementType.TASK && (
+        {intentionalElementType === IntentionType.TASK && (
           <TaskAltRoundedIcon />
         )}
-        {intentionalElementType === IntentionalElementType.RESOURCE && (
+        {intentionalElementType === IntentionType.RESOURCE && (
           <Inventory2OutlinedIcon />
         )}
-        {intentionalElementType === IntentionalElementType.QUALITY && (
+        {intentionalElementType === IntentionType.QUALITY && (
           <GppGoodOutlinedIcon />
         )}
       </ListItemIcon>
@@ -48,5 +48,5 @@ export default function IntentionalElementListItem({
 
 type propTypes = {
   children: string;
-  intentionalElementType: IntentionalElementType;
+  intentionalElementType: IntentionType;
 };

@@ -1,0 +1,178 @@
+{
+  "actors": [
+    {
+      "id": "a-1",
+      "name": "PC Product Provider",
+      "type": "role",
+      "description": null,
+      "linksTo": [],
+      "dependencies": [
+        "d-1",
+        "d-2",
+        "d-3",
+        "d-4",
+        "d-5",
+        "d-6",
+        "d-7",
+        "d-8",
+        "d-9"
+      ],
+      "elements": []
+    },
+    {
+      "id": "a-2",
+      "name": "PC User",
+      "type": "role",
+      "description": null,
+      "linksTo": [],
+      "dependencies": [
+        "d-4",
+        "d-5",
+        "d-6",
+        "d-7",
+        "d-8",
+        "d-9"
+      ],
+      "elements": []
+    },
+    {
+      "id": "a-3",
+      "name": "License / Copyright Holder",
+      "type": "role",
+      "description": null,
+      "linksTo": [],
+      "dependencies": [
+        "d-1",
+        "d-2",
+        "d-3",
+        "d-10",
+        "d-11",
+        "d-12"
+      ],
+      "elements": []
+    },
+    {
+      "id": "a-4",
+      "name": "Content User",
+      "type": "role",
+      "description": null,
+      "linksTo": [],
+      "dependencies": [
+        "d-10",
+        "d-11",
+        "d-12"
+      ],
+      "elements": []
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "d-1",
+      "type": "resource",
+      "name": "Payment",
+      "depender": "a-1",
+      "dependerElement": null,
+      "dependee": "a-3",
+      "dependeeElement": null
+    },
+    {
+      "id": "d-2",
+      "type": "resource",
+      "name": "Online Sales Channel for Licensed/ Copyrighted Content",
+      "depender": "a-3",
+      "dependerElement": null,
+      "dependee": "a-1",
+      "dependeeElement": null
+    },
+    {
+      "id": "d-3",
+      "type": "quality",
+      "name": "Destribute to License/ Copyright Holders [PC Products]",
+      "depender": "a-3",
+      "dependerElement": null,
+      "dependee": "a-1",
+      "dependeeElement": null
+    },
+    {
+      "id": "d-4",
+      "type": "quality",
+      "name": "Security [PC]",
+      "depender": "a-2",
+      "dependerElement": null,
+      "dependee": "a-1",
+      "dependeeElement": null
+    },
+    {
+      "id": "d-5",
+      "type": "quality",
+      "name": "Compatability [with Existing PC Products]",
+      "depender": "a-2",
+      "dependerElement": null,
+      "dependee": "a-1",
+      "dependeeElement": null
+    },
+    {
+      "id": "d-6",
+      "type": "quality",
+      "name": "Freedom [Use of PC Products]",
+      "depender": "a-2",
+      "dependerElement": null,
+      "dependee": "a-1",
+      "dependeeElement": null
+    },
+    {
+      "id": "d-7",
+      "type": "resource",
+      "name": "PC Products",
+      "depender": "a-2",
+      "dependerElement": null,
+      "dependee": "a-1",
+      "dependeeElement": null
+    },
+    {
+      "id": "d-8",
+      "type": "resource",
+      "name": "Payment",
+      "depender": "a-1",
+      "dependerElement": null,
+      "dependee": "a-2",
+      "dependeeElement": null
+    },
+    {
+      "id": "d-9",
+      "type": "resource",
+      "name": "PC Users Abide by [Licensing Regulations]",
+      "depender": "a-1",
+      "dependerElement": null,
+      "dependee": "a-2",
+      "dependeeElement": null
+    },
+    {
+      "id": "d-10",
+      "type": "quality",
+      "name": "Legality",
+      "depender": "a-3",
+      "dependerElement": null,
+      "dependee": "a-4",
+      "dependeeElement": null
+    },
+    {
+      "id": "d-11",
+      "type": "resource",
+      "name": "Payment",
+      "depender": "a-3",
+      "dependerElement": null,
+      "dependee": "a-4",
+      "dependeeElement": null
+    },
+    {
+      "id": "d-12",
+      "type": "resource",
+      "name": "Licensed / Copyrighted Content",
+      "depender": "a-4",
+      "dependerElement": null,
+      "dependee": "a-3",
+      "dependeeElement": null
+    }
+  ]
+}

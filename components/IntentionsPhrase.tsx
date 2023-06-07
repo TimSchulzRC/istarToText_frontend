@@ -3,7 +3,7 @@ import IeListTextPhrase from "./IeListTextPhrase";
 import { v4 as uuidv4 } from "uuid";
 import Actor from "@/types/Actor";
 import { numberToText } from "@/util/StringUtil";
-import { IntentionalElementType } from "@/types/intentionalElementType";
+import { IntentionType } from "@/types/intentionType";
 
 export default function IntentionsPhrase({ actor }: { actor: Actor }) {
   const { goalElements, taskElements, resourceElements, qualityElements } =
@@ -19,7 +19,7 @@ export default function IntentionsPhrase({ actor }: { actor: Actor }) {
       {goalCount > 0 && (
         <IeListTextPhrase
           elements={goalElements}
-          type={IntentionalElementType.GOAL}
+          type={IntentionType.GOAL}
           typePlural="Goals"
         />
       )}
@@ -28,30 +28,19 @@ export default function IntentionsPhrase({ actor }: { actor: Actor }) {
           {goalCount > 0 && " and "}
           <IeListTextPhrase
             elements={taskElements}
-            type={IntentionalElementType.TASK}
+            type={IntentionType.TASK}
             typePlural="Tasks"
           />
         </>
       )}
       {"."}
-      {qualityCount > 0 && (
-        <>
-          <br />
-          {actor.name} also wants to ensure the{" "}
-          <IeListTextPhrase
-            elements={qualityElements}
-            type={IntentionalElementType.QUALITY}
-            typePlural="Qualities"
-          />
-        </>
-      )}
       {resourceCount > 0 && (
         <>
           <br />
           {actor.name} needs the{" "}
           <IeListTextPhrase
             elements={resourceElements}
-            type={IntentionalElementType.RESOURCE}
+            type={IntentionType.RESOURCE}
             typePlural="Resources"
           />
         </>
@@ -61,13 +50,17 @@ export default function IntentionsPhrase({ actor }: { actor: Actor }) {
 }
 
 function splitElementsByType(elements: any[]) {
-  const goalElements = elements.filter((element) => element.type === "goal");
-  const taskElements = elements.filter((element) => element.type === "task");
+  const goalElements = elements.filter(
+    (element) => element.type === IntentionType.GOAL
+  );
+  const taskElements = elements.filter(
+    (element) => element.type === IntentionType.TASK
+  );
   const resourceElements = elements.filter(
-    (element) => element.type === "resource"
+    (element) => element.type === IntentionType.RESOURCE
   );
   const qualityElements = elements.filter(
-    (element) => element.type === "quality"
+    (element) => element.type === IntentionType.QUALITY
   );
   return {
     goalElements,

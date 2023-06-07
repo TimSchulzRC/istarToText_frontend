@@ -8,9 +8,9 @@ export default function ActorsList() {
   const actors = React.useContext(ActorsContext);
   return (
     <ListCard title="Actors">
-      {actors.map((actor) => (
-        <ActorListItem key={uuidv4()} actor={actor} />
-      ))}
+      {Array.from(actors).map(([id, actor]) => {
+        return <ActorListItem key={id} actor={actor} />;
+      })}
     </ListCard>
   );
 }

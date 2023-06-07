@@ -1,7 +1,4 @@
-import {
-  ConnectionType,
-  IntentionalElementType,
-} from "@/types/intentionalElementType";
+import { ConnectionType, IntentionType } from "@/types/intentionType";
 import { Typography } from "@mui/material";
 
 export default function connectionTypeAnd({
@@ -42,11 +39,11 @@ export default function connectionTypeAnd({
   return <></>;
 
   function isTask() {
-    return ieType === IntentionalElementType.TASK;
+    return ieType === IntentionType.TASK;
   }
 }
 
 type propTypes = {
   connectionType: ConnectionType;
-  ieType: IntentionalElementType;
+  ieType: IntentionType;
 };

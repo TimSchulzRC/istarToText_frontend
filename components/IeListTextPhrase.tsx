@@ -1,9 +1,12 @@
 import IntentionalElement from "@/types/IntentionalElement";
 import ModelElement from "@/types/ModelElement";
-import { IntentionalElementType } from "@/types/intentionalElementType";
+import { IntentionType } from "@/types/intentionType";
 import { capitalizeFirstLetter, numberToText } from "@/util/StringUtil";
-import { Chip } from "@mui/material";
-import React from "react";
+import { Box, Chip } from "@mui/material";
+import React, { useContext } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { SelectedIntentionalElementDispatchContext } from "./context/SelectedIntentionalElementContext";
+import { SelectedActorContext } from "./context/SelectedActorContext";
 
 export default function IeListTextPhrase({
   elements,
@@ -11,27 +14,33 @@ export default function IeListTextPhrase({
   typePlural,
 }: {
   elements: IntentionalElement[];
-  type: IntentionalElementType;
+  type: IntentionType;
   typePlural: string;
 }) {
+  const setSelectedIntentionalElement = useContext(
+    SelectedIntentionalElementDispatchContext
+  );
+  const selectedActor = useContext(SelectedActorContext);
   const elementsCount = elements.length;
   return (
     <>
-      <strong>{elementsCount !== 0 && numberToText(elementsCount)}</strong>{" "}
-      {elementsCount === 1 ? capitalizeFirstLetter(type) : typePlural}
+      <strong>
+        {elementsCount !== 0 && numberToText(elementsCount)}{" "}
+        {elementsCount === 1 ? capitalizeFirstLetter(type) : typePlural}
+      </strong>
       {": "}
       {elements.map((element, index) => (
-        <>
+        <span key={uuidv4()}>
           {elementIsLast(index) && !elementIsFirst(index) && " and "}
           <Chip
-            onClick={() => {}}
+            onClick={() => updateSelectedIntention(element.id)}
             component="span"
             label={element.name}
             size="small"
             color={getElementColor()}
           />
           {elementIsNotFirstOrLast(index) && ", "}
-        </>
+        </span>
       ))}
     </>
   );
@@ -59,5 +68,13 @@ export default function IeListTextPhrase({
 
   function elementIsFirst(index: number) {
     return index === 0;
+  }
+
+  function updateSelectedIntention(intentionId: string) {
+    setSelectedIntentionalElement(
+      selectedActor.elements.find(
+        (e) => e.id === intentionId
+      ) as IntentionalElement
+    );
   }
 }

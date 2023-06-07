@@ -70,6 +70,12 @@
                     "children": [],
                     "dependencies": [
                         "d1"
+                    ],
+                    "qualities": [
+                        {
+                            "id": "e18",
+                            "type": "hurt"
+                        }
                     ]
                 },
                 {
@@ -104,7 +110,7 @@
             "type": "agent",
             "linksTo": [
                 {
-                    "id": "1",
+                    "id": "2",
                     "type": "participates in"
                 }
             ],

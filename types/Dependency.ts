@@ -1,9 +1,9 @@
-import { IntentionalElementType } from "./intentionalElementType";
+import { IntentionType } from "./intentionType";
 
 export default interface Dependency {
   id: string;
   name: string;
-  type: IntentionalElementType;
+  type: IntentionType;
   depender: string;
   dependerElement: string;
   dependee: string;

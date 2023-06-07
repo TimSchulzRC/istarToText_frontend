@@ -1,7 +1,7 @@
 "use client";
 import ActorsList from "@/components/ActorsList";
 import DetailsScreen from "@/components/DetailsScreen";
-import IntentionalElementsList from "@/components/IntentionalElementsList";
+import IntentionsList from "@/components/IntentionsList";
 import ActorsProvider from "@/components/context/ActorsContext";
 import DependenciesProvider from "@/components/context/DependenciesContext";
 import SelectedIntentionalElementProvider from "@/components/context/SelectedIntentionalElementContext";
@@ -20,7 +20,7 @@ export default function Home() {
                   <ActorsList />
                 </Grid>
                 <Grid xs={12} md={3}>
-                  <IntentionalElementsList />
+                  <IntentionsList />
                 </Grid>
                 <Grid xs={12} md={6}>
                   <DetailsScreen />

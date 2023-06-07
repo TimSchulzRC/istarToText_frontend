@@ -1,7 +1,7 @@
 export enum ActorType {
-  ACTOR = "Actor",
-  ROLE = "Role",
-  AGENT = "Agent",
+  ACTOR = "actor",
+  ROLE = "role",
+  AGENT = "agent",
 }
 
 const actorTypeDescriptions = {
