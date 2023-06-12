@@ -5,7 +5,7 @@ export default interface IntentionalElement extends ModelElement {
   type: IntentionType;
   parent: string | null;
   childrenLinkType: "and" | "or" | null;
-  children: IntentionalElement[];
+  children: string[];
   qualities: {
     id: string,
     type: string,

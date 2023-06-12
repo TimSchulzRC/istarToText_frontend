@@ -26,60 +26,15 @@
           "qualities": [
             {
               "id": "e-1-3",
-              "type": "qualifies"
+              "type": "qualifies",
+              "direction": "both"
             }
           ],
           "dependencies": [],
           "childrenLinkType": "and",
           "children": [
-            {
-              "id": "e-1-2",
-              "name": "Sell PC Products",
-              "type": "goal",
-              "parent": "e-1-1",
-              "qualities": [],
-              "dependencies": [
-                "d-1",
-                "d-8"
-              ],
-              "childrenLinkType": null,
-              "children": []
-            },
-            {
-              "id": "e-1-4",
-              "name": "Product PC Products",
-              "type": "task",
-              "parent": "e-1-1",
-              "qualities": [
-                {
-                  "id": "e-1-6",
-                  "type": "qualifies"
-                }
-              ],
-              "dependencies": [
-                "d-7"
-              ],
-              "childrenLinkType": "and",
-              "children": [
-                {
-                  "id": "e-1-5",
-                  "name": "Open Online Sales Channel for Licensed/ Copyrighted Content",
-                  "type": "task",
-                  "parent": "e-1-4",
-                  "qualities": [
-                    {
-                      "id": "e-1-9",
-                      "type": "make"
-                    }
-                  ],
-                  "dependencies": [
-                    "d-2"
-                  ],
-                  "childrenLinkType": null,
-                  "children": []
-                }
-              ]
-            }
+            "e-1-2",
+            "e-1-4"
           ]
         },
         {
@@ -96,6 +51,27 @@
           "children": []
         },
         {
+          "id": "e-1-3",
+          "name": "Profit",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
+            {
+              "id": "e-1-1",
+              "type": "qualifies",
+              "direction": "both"
+            },
+            {
+              "id": "e-1-7",
+              "type": "make",
+              "direction": "incoming"
+            }
+          ],
+          "dependencies": [],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
           "id": "e-1-4",
           "name": "Product PC Products",
           "type": "task",
@@ -103,7 +79,8 @@
           "qualities": [
             {
               "id": "e-1-6",
-              "type": "qualifies"
+              "type": "qualifies",
+              "direction": "both"
             }
           ],
           "dependencies": [
@@ -111,23 +88,7 @@
           ],
           "childrenLinkType": "and",
           "children": [
-            {
-              "id": "e-1-5",
-              "name": "Open Online Sales Channel for Licensed/ Copyrighted Content",
-              "type": "task",
-              "parent": "e-1-4",
-              "qualities": [
-                {
-                  "id": "e-1-9",
-                  "type": "make"
-                }
-              ],
-              "dependencies": [
-                "d-2"
-              ],
-              "childrenLinkType": null,
-              "children": []
-            }
+            "e-1-5"
           ]
         },
         {
@@ -138,27 +99,13 @@
           "qualities": [
             {
               "id": "e-1-9",
-              "type": "make"
+              "type": "make",
+              "direction": "outgoing"
             }
           ],
           "dependencies": [
             "d-2"
           ],
-          "childrenLinkType": null,
-          "children": []
-        },
-        {
-          "id": "e-1-3",
-          "name": "Profit",
-          "type": "quality",
-          "parent": null,
-          "qualities": [
-            {
-              "id": "e-1-1",
-              "type": "qualifies"
-            }
-          ],
-          "dependencies": [],
           "childrenLinkType": null,
           "children": []
         },
@@ -170,11 +117,13 @@
           "qualities": [
             {
               "id": "e-1-4",
-              "type": "qualifies"
+              "type": "qualifies",
+              "direction": "both"
             },
             {
               "id": "e-1-10",
-              "type": "help"
+              "type": "help",
+              "direction": "outgoing"
             }
           ],
           "dependencies": [
@@ -191,7 +140,28 @@
           "qualities": [
             {
               "id": "e-1-3",
-              "type": "make"
+              "type": "make",
+              "direction": "outgoing"
+            },
+            {
+              "id": "e-1-8",
+              "type": "help",
+              "direction": "incoming"
+            },
+            {
+              "id": "e-1-9",
+              "type": "help",
+              "direction": "incoming"
+            },
+            {
+              "id": "e-1-10",
+              "type": "help",
+              "direction": "incoming"
+            },
+            {
+              "id": "e-1-1",
+              "type": "help",
+              "direction": "incoming"
             }
           ],
           "dependencies": [],
@@ -206,7 +176,8 @@
           "qualities": [
             {
               "id": "e-1-7",
-              "type": "help"
+              "type": "help",
+              "direction": "outgoing"
             }
           ],
           "dependencies": [
@@ -223,7 +194,13 @@
           "qualities": [
             {
               "id": "e-1-7",
-              "type": "help"
+              "type": "help",
+              "direction": "outgoing"
+            },
+            {
+              "id": "e-1-5",
+              "type": "make",
+              "direction": "incoming"
             }
           ],
           "dependencies": [
@@ -240,7 +217,23 @@
           "qualities": [
             {
               "id": "e-1-7",
-              "type": "help"
+              "type": "help",
+              "direction": "outgoing"
+            },
+            {
+              "id": "e-1-6",
+              "type": "help",
+              "direction": "incoming"
+            },
+            {
+              "id": "e-1-12",
+              "type": "help",
+              "direction": "incoming"
+            },
+            {
+              "id": "e-1-13",
+              "type": "make",
+              "direction": "incoming"
             }
           ],
           "dependencies": [],
@@ -255,7 +248,8 @@
           "qualities": [
             {
               "id": "e-1-7",
-              "type": "help"
+              "type": "help",
+              "direction": "outgoing"
             }
           ],
           "dependencies": [],
@@ -270,7 +264,8 @@
           "qualities": [
             {
               "id": "e-1-10",
-              "type": "help"
+              "type": "help",
+              "direction": "outgoing"
             }
           ],
           "dependencies": [
@@ -287,7 +282,8 @@
           "qualities": [
             {
               "id": "e-1-10",
-              "type": "make"
+              "type": "make",
+              "direction": "outgoing"
             }
           ],
           "dependencies": [
@@ -303,7 +299,12 @@
       "name": "PC User",
       "type": "role",
       "description": null,
-      "linksTo": [],
+      "linksTo": [
+        {
+          "id": "a-5",
+          "type": "is a"
+        }
+      ],
       "dependencies": [
         "d-4",
         "d-5",
@@ -318,34 +319,15 @@
           "name": "Affordable [PC Products]",
           "type": "quality",
           "parent": null,
-          "qualities": [],
-          "dependencies": [],
-          "childrenLinkType": null,
-          "children": []
-        },
-        {
-          "id": "e-2-3",
-          "name": "Purchase PC Products",
-          "type": "task",
-          "parent": "",
           "qualities": [
+            
             {
-              "id": "e-2-1",
-              "type": "hurt"
-            },
-            {
-              "id": "e-2-4",
-              "type": "make"
-            },
-            {
-              "id": "e-2-6",
-              "type": "qualifies"
+              "id": "e-2-3",
+              "type": "hurt",
+              "direction": "incoming"
             }
           ],
-          "dependencies": [
-            "d-7",
-            "d-8"
-          ],
+          "dependencies": [],
           "childrenLinkType": null,
           "children": []
         },
@@ -358,40 +340,49 @@
           "dependencies": [],
           "childrenLinkType": "and",
           "children": [
-            {
-              "id": "e-2-3",
-              "name": "Purchase PC Products",
-              "type": "task",
-              "parent": "",
-              "qualities": [
-                {
-                  "id": "e-2-1",
-                  "type": "hurt"
-                },
-                {
-                  "id": "e-2-4",
-                  "type": "make"
-                },
-                {
-                  "id": "e-2-6",
-                  "type": "qualifies"
-                }
-              ],
-              "dependencies": [
-                "d-7",
-                "d-8"
-              ],
-              "childrenLinkType": null,
-              "children": []
-            }
+            "e-2-3"
           ]
+        },
+        {
+          "id": "e-2-3",
+          "name": "Purchase PC Products",
+          "type": "task",
+          "parent": "",
+          "qualities": [
+            {
+              "id": "e-2-1",
+              "type": "hurt",
+              "direction": "outgoing"
+            },
+            {
+              "id": "e-2-4",
+              "type": "make",
+              "direction": "outgoing"
+            },
+            {
+              "id": "e-2-6",
+              "type": "qualifies",
+              "direction": "both"
+            }
+          ],
+          "dependencies": [
+            "d-7",
+            "d-8"
+          ],
+          "childrenLinkType": null,
+          "children": []
         },
         {
           "id": "e-2-4",
           "name": "Abide by [Licensing Regulations]",
           "type": "quality",
           "parent": null,
-          "qualities": [],
+          "qualities": [
+          {
+            "id": "e-2-3",
+            "type": "make",
+            "direction": "incoming"
+          }],
           "dependencies": [
             "d-9"
           ],
@@ -406,7 +397,8 @@
           "qualities": [
             {
               "id": "e-2-6",
-              "type": "help"
+              "type": "help",
+              "direction": "outgoing"
             }
           ],
           "dependencies": [
@@ -424,6 +416,21 @@
             {
               "id": "e-2-3",
               "type": "qualifies"
+            },
+            {
+              "id": "e-2-5",
+              "type": "help",
+              "direction": "incoming"
+            },
+            {
+              "id": "e-2-7",
+              "type": "help",
+              "direction": "incoming"
+            },
+            {
+              "id": "e-2-8",
+              "type": "help",
+              "direction": "incoming"
             }
           ],
           "dependencies": [],
@@ -438,7 +445,8 @@
           "qualities": [
             {
               "id": "e-2-6",
-              "type": "help"
+              "type": "help",
+              "direction": "outgoing"
             }
           ],
           "dependencies": [
@@ -455,7 +463,8 @@
           "qualities": [
             {
               "id": "e-2-6",
-              "type": "help"
+              "type": "help",
+              "direction": "outgoing"
             }
           ],
           "dependencies": [
@@ -489,86 +498,26 @@
           "qualities": [
             {
               "id": "e-3-3",
-              "type": "qualifies"
+              "type": "qualifies",
+              "direction": "both"
             }
           ],
           "dependencies": [],
           "childrenLinkType": "and",
           "children": [
-            {
-              "id": "e-3-2",
-              "name": "Licensed / Copyrighted Content Be Produced",
-              "type": "goal",
-              "parent": "e-3-1",
-              "qualities": [],
-              "dependencies": [],
-              "childrenLinkType": null,
-              "children": []
-            },
-            {
-              "id": "e-3-4",
-              "name": "Licensed / Copyrighted Content Be Sold",
-              "type": "goal",
-              "parent": "e-3-1",
-              "qualities": [],
-              "dependencies": [
-                "d-12"
-              ],
-              "childrenLinkType": "and",
-              "children": [
-                {
-                  "id": "e-3-6",
-                  "name": "Sell Licensed / Copyrighted Content Offline",
-                  "type": "task",
-                  "parent": "e-3-4",
-                  "qualities": [
-                    {
-                      "id": "e-3-3",
-                      "type": "help"
-                    },
-                    {
-                      "id": "e-3-4",
-                      "type": "help"
-                    }
-                  ],
-                  "dependencies": [
-                    "d-11"
-                  ],
-                  "childrenLinkType": null,
-                  "children": []
-                },
-                {
-                  "id": "e-3-7",
-                  "name": "Sell Licensed / Copyrighted Content Online",
-                  "type": "task",
-                  "parent": "e-3-4",
-                  "qualities": [
-                    {
-                      "id": "e-3-3",
-                      "type": "help"
-                    }
-                  ],
-                  "dependencies": [],
-                  "childrenLinkType": "and",
-                  "children": [
-                    {
-                      "id": "e-3-9",
-                      "name": "Online Sales Channel for Licensed/ Copyrighted Content Be Opened",
-                      "type": "goal",
-                      "parent": "e-3-7",
-                      "qualities": [],
-                      "dependencies": [
-                        "d-1",
-                        "d-2"
-                      ],
-                      "childrenLinkType": null,
-                      "children": []
-                    }
-                  ]
-                }
-              ]
-            }
+            "e-3-2",
+            "e-3-4"
           ]
+        },
+        {
+          "id": "e-3-2",
+          "name": "Licensed / Copyrighted Content Be Produced",
+          "type": "goal",
+          "parent": "e-3-1",
+          "qualities": [],
+          "dependencies": [],
+          "childrenLinkType": null,
+          "children": []
         },
         {
           "id": "e-3-3",
@@ -578,12 +527,48 @@
           "qualities": [
             {
               "id": "e-3-1",
-              "type": "qualifies"
+              "type": "qualifies",
+              "direction": "both"
+            },
+            {
+              "id": "e-3-5",
+              "type": "help",
+              "direction": "incoming"
+            },
+            {
+              "id": "e-3-6",
+              "type": "help",
+              "direction": "incoming"
+            },
+            {
+              "id": "e-3-7",
+              "type": "help",
+              "direction": "incoming"
+            },
+            {
+              "id": "e-3-8",
+              "type": "help",
+              "direction": "incoming"
             }
           ],
           "dependencies": [],
           "childrenLinkType": null,
           "children": []
+        },
+        {
+          "id": "e-3-4",
+          "name": "Licensed / Copyrighted Content Be Sold",
+          "type": "goal",
+          "parent": "e-3-1",
+          "qualities": [],
+          "dependencies": [
+            "d-12"
+          ],
+          "childrenLinkType": "and",
+          "children": [
+            "e-3-6",
+            "e-3-7"
+          ]
         },
         {
           "id": "e-3-5",
@@ -593,7 +578,8 @@
           "qualities": [
             {
               "id": "e-3-3",
-              "type": "help"
+              "type": "help",
+              "direction": "outgoing"
             }
           ],
           "dependencies": [
@@ -603,6 +589,47 @@
           "children": []
         },
         {
+          "id": "e-3-6",
+          "name": "Sell Licensed / Copyrighted Content Offline",
+          "type": "task",
+          "parent": "e-3-4",
+          "qualities": [
+            {
+              "id": "e-3-3",
+              "type": "help",
+              "direction": "outgoing"
+            },
+            {
+              "id": "e-3-4",
+              "type": "help",
+              "direction": "outgoing"
+            }
+          ],
+          "dependencies": [
+            "d-11"
+          ],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-3-7",
+          "name": "Sell Licensed / Copyrighted Content Online",
+          "type": "task",
+          "parent": "e-3-4",
+          "qualities": [
+            {
+              "id": "e-3-3",
+              "type": "help",
+              "direction": "outgoing"
+            }
+          ],
+          "dependencies": [],
+          "childrenLinkType": "and",
+          "children": [
+            "e-3-9"
+          ]
+        },
+        {
           "id": "e-3-8",
           "name": "Protection [Licensed/ Copyrighted Content]",
           "type": "quality",
@@ -610,11 +637,25 @@
           "qualities": [
             {
               "id": "e-3-3",
-              "type": "help"
+              "type": "help",
+              "direction": "outgoing"
             }
           ],
           "dependencies": [
             "d-3"
+          ],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-3-9",
+          "name": "Online Sales Channel for Licensed/ Copyrighted Content Be Opened",
+          "type": "goal",
+          "parent": "e-3-7",
+          "qualities": [],
+          "dependencies": [
+            "d-1",
+            "d-2"
           ],
           "childrenLinkType": null,
           "children": []
@@ -626,7 +667,12 @@
       "name": "Content User",
       "type": "role",
       "description": null,
-      "linksTo": [],
+      "linksTo": [
+        {
+          "id": "a-5",
+          "type": "is a"
+        }
+      ],
       "dependencies": [
         "d-10",
         "d-11",
@@ -642,28 +688,7 @@
           "dependencies": [],
           "childrenLinkType": "and",
           "children": [
-            {
-              "id": "e-4-4",
-              "name": "Purchase Licensed/ Copyrighted Content from License/ Copyright Holder",
-              "type": "task",
-              "parent": "e-4-1",
-              "qualities": [
-                {
-                  "id": "e-4-2",
-                  "type": "make"
-                },
-                {
-                  "id": "e-4-3",
-                  "type": "hurt"
-                }
-              ],
-              "dependencies": [
-                "d-11",
-                "d-12"
-              ],
-              "childrenLinkType": null,
-              "children": []
-            }
+            "e-4-4"
           ]
         },
         {
@@ -671,7 +696,13 @@
           "name": "Legality",
           "type": "quality",
           "parent": null,
-          "qualities": [],
+          "qualities": [
+            {
+              "id": "e-4-4",
+              "type": "make",
+              "direction": "incoming"
+            }
+          ],
           "dependencies": [
             "d-10"
           ],
@@ -683,14 +714,68 @@
           "name": "Affordable [Licensed/ Copyrighted Content]",
           "type": "quality",
           "parent": null,
-          "qualities": [],
+          "qualities": [
+            {
+              "id": "e-4-4",
+              "type": "hurt",
+              "direction": "incoming"
+            }
+          ],
           "dependencies": [],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-4-4",
+          "name": "Purchase Licensed/ Copyrighted Content from License/ Copyright Holder",
+          "type": "task",
+          "parent": "e-4-1",
+          "qualities": [
+            {
+              "id": "e-4-2",
+              "type": "make",
+              "direction": "outgoing"
+            },
+            {
+              "id": "e-4-3",
+              "type": "hurt",
+              "direction": "outgoing"
+            }
+          ],
+          "dependencies": [
+            "d-11",
+            "d-12"
+          ],
           "childrenLinkType": null,
           "children": []
         }
       ]
-    }
-  ],
+    },
+    {
+      "id": "a-5",
+      "name": "User",
+      "type": "role",
+      "description": null,
+      "linksTo": [],
+      "dependencies": [
+      ],
+      "elements": []
+    },
+    {
+      "id": "a-6",
+      "name": "Benjamin Johnson",
+      "type": "role",
+      "description": null,
+      "linksTo": [
+        {
+          "id": "a-2",
+          "type": "participates in"
+        }
+      ],
+      "dependencies": [
+      ],
+      "elements": []
+    }],
   "dependencies": [
     {
       "id": "d-1",
@@ -766,7 +851,7 @@
     },
     {
       "id": "d-9",
-      "type": "quality",
+      "type": "resource",
       "name": "PC Users Abide by [Licensing Regulations]",
       "depender": "a-1",
       "dependerElement": "e-1-8",

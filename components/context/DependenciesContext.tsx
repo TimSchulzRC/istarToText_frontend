@@ -1,5 +1,5 @@
 import React, { createContext, useEffect } from "react";
-import data from "@/resources/trustcomputingSR.json";
+import data from "@/resources/trustcomputingSR-2.json";
 import Dependency from "@/types/Dependency";
 
 export const DependenciesContext = createContext<Map<string, Dependency>>(

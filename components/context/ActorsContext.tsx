@@ -1,4 +1,4 @@
-import data from "@/resources/trustcomputingSR.json";
+import data from "@/resources/trustcomputingSR-2.json";
 import Actor from "@/types/Actor";
 import React, { useEffect } from "react";
 import SelectedActorProvider from "./SelectedActorContext";
