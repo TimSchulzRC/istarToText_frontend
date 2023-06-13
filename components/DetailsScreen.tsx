@@ -1,18 +1,20 @@
 import Actor from "@/types/Actor";
-import Dependency from "@/types/Dependency";
+import Intention from "@/types/Intention";
+import { Card, CardContent, CardHeader, Typography } from "@mui/material";
 import { useContext } from "react";
 import ActorDetails from "./ActorDetails";
-import { ActorsContext } from "./context/ActorsContext";
-import { DependenciesContext } from "./context/DependenciesContext";
-import { SelectedActorContext } from "./context/SelectedActorContext";
-import { SelectedIntentionContext } from "./context/SelectedIntentionalElementContext";
-import IntentionDetails from "./IntentionDetails";
-import { Card, CardContent, CardHeader, Typography } from "@mui/material";
 import ChipDescription from "./ChipDescription";
+import IntentionDetails from "./IntentionDetails";
+import { SelectedActorContext } from "./context/SelectedActorContext";
+import { SelectedIntentionContext } from "./context/SelectedIntentionContext";
 
-export default function DetailsScreen() {
-  const dependencies = useContext(DependenciesContext);
-  const actors = useContext(ActorsContext);
+export default function DetailsScreen({
+  actor,
+  intention,
+}: {
+  actor?: Actor;
+  intention?: Intention;
+}) {
   const selectedActor = useContext(SelectedActorContext);
   const selectedIntention = useContext(SelectedIntentionContext);
 
@@ -21,16 +23,22 @@ export default function DetailsScreen() {
       <CardHeader
         title={
           <Typography variant="h2">
-            {selectedIntention?.name || selectedActor.name}
+            {intention?.name ||
+              actor?.name ||
+              selectedIntention?.name ||
+              selectedActor.name}
           </Typography>
         }
       />
       <CardContent>
         <ChipDescription />
-        {selectedIntention ? (
+        {selectedIntention && !intention && (
           <IntentionDetails intention={selectedIntention} />
-        ) : (
-          <ActorDetails />
+        )}
+        {intention && <IntentionDetails intention={intention} />}
+
+        {!selectedIntention && !intention && (
+          <ActorDetails actor={actor || selectedActor} />
         )}
       </CardContent>
     </Card>

@@ -6,7 +6,7 @@ import {
   SelectedActorDispatchContext,
 } from "./context/SelectedActorContext";
 import Actor from "@/types/Actor";
-import { SelectedIntentionDispatchContext } from "./context/SelectedIntentionalElementContext";
+import { SelectedIntentionDispatchContext } from "./context/SelectedIntentionContext";
 
 export default function ActorListItem({ actor }: propTypes) {
   const selectedActor = React.useContext(SelectedActorContext);

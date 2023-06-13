@@ -10,32 +10,28 @@ import {
   SelectedActorDispatchContext,
 } from "./context/SelectedActorContext";
 import Actor from "@/types/Actor";
+import LinkHoverChip from "./LinkHoverChip";
 
-export default function ActorDetails() {
+export default function ActorDetails({ actor }: { actor: Actor }) {
   const actors = useContext(ActorsContext);
-  const selectedActor = useContext(SelectedActorContext);
-  const setSelectedActor = useContext(SelectedActorDispatchContext);
 
-  const ieCount = selectedActor.elements.length;
+  const ieCount = actor.elements.length;
 
   return (
     <>
-      <Typography>{selectedActor.description}</Typography>
+      <Typography>{actor.description}</Typography>
       <Typography>
-        <strong>{selectedActor.name} </strong>is{" "}
-        {getActorTypeDescription(selectedActor.type)}
+        <strong>{actor.name} </strong>is {getActorTypeDescription(actor.type)}
         <br />
         <br />
-        {selectedActor.linksTo.length > 0 && (
+        {actor.linksTo.length > 0 && (
           <>
-            {selectedActor.linksTo.map((e, i) => (
+            {actor.linksTo.map((e, i) => (
               <span key={uuidv4()}>
-                {selectedActor.name} {e.type}{" "}
-                <Chip
-                  component={"span"}
+                {actor.name} {e.type}{" "}
+                <LinkHoverChip
                   label={actors.get(e.id)?.name}
-                  size="small"
-                  onClick={() => setSelectedActor(actors.get(e.id) as Actor)}
+                  element={actors.get(e.id)}
                 />
                 .
               </span>
@@ -44,10 +40,10 @@ export default function ActorDetails() {
             <br />
           </>
         )}
-        {ieCount > 0 && <IntentionsPhrase actor={selectedActor} />}
+        {ieCount > 0 && <IntentionsPhrase actor={actor} />}
         <DependenciesPhrase
-          dependencyIDs={selectedActor.dependencies}
-          elementName={selectedActor.name}
+          dependencyIDs={actor.dependencies}
+          elementName={actor.name}
         />
       </Typography>
     </>

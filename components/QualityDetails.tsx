@@ -8,7 +8,8 @@ import QualitiesPhrase from "./QualitiesPhrase";
 import {
   SelectedIntentionContext,
   SelectedIntentionDispatchContext,
-} from "./context/SelectedIntentionalElementContext";
+} from "./context/SelectedIntentionContext";
+import LinkHoverChip from "./LinkHoverChip";
 
 export default function QualityDetails({
   qualities,
@@ -66,15 +67,7 @@ export default function QualityDetails({
             <>
               {qualitiesQualifies.map((e, i) => (
                 <span key={uuidv4()}>
-                  <Chip
-                    component="span"
-                    label={e.name}
-                    color="success"
-                    size="small"
-                    onClick={() => {
-                      setSelectedIntentionalElement(e);
-                    }}
-                  />{" "}
+                  <LinkHoverChip label={e.name} color="success" element={e} />{" "}
                   {elementIsNotFirstOrLast(i, qualitiesQualifies.length) &&
                     ", "}
                 </span>

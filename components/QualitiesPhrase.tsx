@@ -6,7 +6,8 @@ import { elementIsNotFirstOrLast } from "@/util/ElementListUtil";
 import { Chip } from "@mui/material";
 import { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { SelectedIntentionDispatchContext } from "./context/SelectedIntentionalElementContext";
+import { SelectedIntentionDispatchContext } from "./context/SelectedIntentionContext";
+import LinkHoverChip from "./LinkHoverChip";
 
 export default function QualitiesPhrase({
   selectedIntention,
@@ -38,15 +39,7 @@ export default function QualitiesPhrase({
       )}
       {qualities.map((e, i) => (
         <span key={uuidv4()}>
-          <Chip
-            component="span"
-            size="small"
-            label={e.name}
-            color={getColor(e)}
-            onClick={() => {
-              setSelectedIntentionalElement(e);
-            }}
-          />
+          <LinkHoverChip label={e.name} color={getColor(e)} element={e} />
           {elementIsNotFirstOrLast(i, qualities.length) && ", "}
           {elementIsNotFirstOrLast(i, qualities.length) &&
             i === qualities.length - 2 &&

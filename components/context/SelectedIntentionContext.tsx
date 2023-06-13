@@ -9,19 +9,17 @@ export const SelectedIntentionDispatchContext = React.createContext<
   Dispatch<SetStateAction<Intention | null>>
 >(() => {});
 
-export default function SelectedIntentionalElementProvider({
+export default function SelectedIntentionProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const selectedActor = React.useContext(SelectedActorContext);
-  const [selectedIntentionalElement, setSelectedIntentionalElement] =
+  const [selectedIntention, setSelectedIntention] =
     React.useState<Intention | null>(null);
   return (
-    <SelectedIntentionContext.Provider value={selectedIntentionalElement}>
-      <SelectedIntentionDispatchContext.Provider
-        value={setSelectedIntentionalElement}
-      >
+    <SelectedIntentionContext.Provider value={selectedIntention}>
+      <SelectedIntentionDispatchContext.Provider value={setSelectedIntention}>
         {children}
       </SelectedIntentionDispatchContext.Provider>
     </SelectedIntentionContext.Provider>

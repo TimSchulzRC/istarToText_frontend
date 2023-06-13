@@ -4,7 +4,7 @@ import DetailsScreen from "@/components/DetailsScreen";
 import IntentionsList from "@/components/IntentionsList";
 import ActorsProvider from "@/components/context/ActorsContext";
 import DependenciesProvider from "@/components/context/DependenciesContext";
-import SelectedIntentionalElementProvider from "@/components/context/SelectedIntentionalElementContext";
+import SelectedIntentionProvider from "@/components/context/SelectedIntentionContext";
 import { Container } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
@@ -13,7 +13,7 @@ export default function Home() {
     <main>
       <DependenciesProvider>
         <ActorsProvider>
-          <SelectedIntentionalElementProvider>
+          <SelectedIntentionProvider>
             <Container maxWidth="xl" sx={{ height: "100vh" }}>
               <Grid container sx={{ height: "100vh" }}>
                 <Grid xs={12} md={3}>
@@ -27,7 +27,7 @@ export default function Home() {
                 </Grid>
               </Grid>
             </Container>
-          </SelectedIntentionalElementProvider>
+          </SelectedIntentionProvider>
         </ActorsProvider>
       </DependenciesProvider>
     </main>

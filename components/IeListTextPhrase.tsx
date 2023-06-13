@@ -5,8 +5,10 @@ import { capitalizeFirstLetter, numberToText } from "@/util/StringUtil";
 import { Box, Chip } from "@mui/material";
 import React, { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { SelectedIntentionDispatchContext } from "./context/SelectedIntentionalElementContext";
+import { SelectedIntentionDispatchContext } from "./context/SelectedIntentionContext";
 import { SelectedActorContext } from "./context/SelectedActorContext";
+import Link from "next/link";
+import LinkHoverChip from "./LinkHoverChip";
 
 export default function IeListTextPhrase({
   elements,
@@ -32,13 +34,12 @@ export default function IeListTextPhrase({
       {elements.map((element, index) => (
         <span key={uuidv4()}>
           {elementIsLast(index) && !elementIsFirst(index) && " and "}
-          <Chip
-            onClick={() => updateSelectedIntention(element.id)}
-            component="span"
+          <LinkHoverChip
             label={element.name}
-            size="small"
+            element={element}
             color={getElementColor()}
           />
+
           {elementIsNotFirstOrLast(index) && ", "}
         </span>
       ))}

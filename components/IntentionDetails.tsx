@@ -13,6 +13,7 @@ import QualityDetails from "./QualityDetails";
 import { ActorsContext } from "./context/ActorsContext";
 import { DependenciesContext } from "./context/DependenciesContext";
 import { SelectedActorContext } from "./context/SelectedActorContext";
+import LinkHoverChip from "./LinkHoverChip";
 
 export default function IntentionDetails({
   intention: selectedIntention,
@@ -68,14 +69,7 @@ export default function IntentionDetails({
                       ", "}{" "}
                     {elementIsLast(i, selectedElementSubGoalsCount) &&
                       selectedIntention.childrenLinkType}{" "}
-                    <Chip
-                      key={uuidv4()}
-                      size="small"
-                      color="warning"
-                      component={"span"}
-                      onClick={() => {}}
-                      label={e.name}
-                    />
+                    <LinkHoverChip label={e.name} element={e} color="warning" />
                     {!elementIsLast(i, selectedElementSubGoalsCount) &&
                       selectedElementSubGoalsCount > 1 &&
                       selectedIntention.childrenLinkType}
@@ -95,13 +89,10 @@ export default function IntentionDetails({
                     {elementIsLast(i, selectedElementTasksCount) &&
                       selectedElementTasksCount > 1 &&
                       selectedIntention.childrenLinkType}{" "}
-                    <Chip
-                      key={uuidv4()}
-                      size="small"
-                      color="secondary"
-                      component={"span"}
-                      onClick={() => {}}
+                    <LinkHoverChip
                       label={e.name}
+                      element={e}
+                      color="secondary"
                     />
                     {!elementIsLast(i, selectedElementSubGoalsCount) &&
                       selectedElementSubGoalsCount > 1 &&

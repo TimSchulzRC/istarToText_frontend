@@ -15,6 +15,7 @@ import {
 } from "./context/SelectedActorContext";
 import Actor from "@/types/Actor";
 import { v4 as uuidv4 } from "uuid";
+import LinkHoverChip from "./LinkHoverChip";
 
 export default function DependenciesPhrase({
   dependencyIDs,
@@ -68,12 +69,7 @@ export default function DependenciesPhrase({
               ) && ", on "}
               {elementIsLast(i, combinedRequiredDependencies.length) &&
                 " and on "}
-              <Chip
-                component="span"
-                size="small"
-                label={da.actorName}
-                onClick={() => updateSelectedActor(da.id)}
-              />{" "}
+              <LinkHoverChip label={da.actorName} element={actors.get(da.id)} />{" "}
               to
               {da.dependencies.map((d, i) => (
                 <span key={uuidv4()}>
@@ -101,15 +97,10 @@ export default function DependenciesPhrase({
               {elementIsNotFirstOrLast(
                 i,
                 combinedRequiringDependencies.length
-              ) && ", on "}
+              ) && ", by "}
               {elementIsLast(i, combinedRequiringDependencies.length) &&
-                " and on "}
-              <Chip
-                component="span"
-                size="small"
-                label={da.actorName}
-                onClick={() => updateSelectedActor(da.id)}
-              />{" "}
+                " and by "}
+              <LinkHoverChip label={da.actorName} element={actors.get(da.id)} />{" "}
               to
               {da.dependencies.map((d, i) => (
                 <span key={uuidv4()}>

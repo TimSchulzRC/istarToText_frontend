@@ -23,7 +23,7 @@ import { SelectedActorContext } from "./context/SelectedActorContext";
 import {
   SelectedIntentionContext,
   SelectedIntentionDispatchContext,
-} from "./context/SelectedIntentionalElementContext";
+} from "./context/SelectedIntentionContext";
 
 export default function IntentionsList() {
   const selectedActor = React.useContext(SelectedActorContext);
