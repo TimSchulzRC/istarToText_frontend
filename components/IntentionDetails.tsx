@@ -49,9 +49,9 @@ export default function IntentionDetails({
       <Typography>
         {selectedIntention.name}{" "}
         {getIntentionTypeDescription(selectedIntention.type)}
+        <br />
         {selectedIntention.children.length > 0 && (
           <>
-            <br />
             <br />
             To
             {selectedIntention.type === IntentionType.GOAL && " achieve "}
