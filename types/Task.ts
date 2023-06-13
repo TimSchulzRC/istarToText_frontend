@@ -1,3 +1,3 @@
-import IntentionalElement from "./IntentionalElement";
+import Intention from "./Intention";
 
-export default interface Task extends IntentionalElement {}
+export default interface Task extends Intention {}

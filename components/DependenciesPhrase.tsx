@@ -47,7 +47,6 @@ export default function DependenciesPhrase({
     actors
   );
 
-  const ieCount = selectedActor.elements.length;
   const requiredCount = requiredDependencies.length;
   const requiringCount = requiringDependencies.length;
 
@@ -55,7 +54,6 @@ export default function DependenciesPhrase({
     <>
       {requiredCount > 0 && (
         <>
-          <br />
           <br />
           <strong>{elementName}</strong> has{" "}
           <strong>{numberText(requiredCount)}</strong> required{" "}
@@ -86,14 +84,14 @@ export default function DependenciesPhrase({
               ))}
             </span>
           ))}
+          <br />
         </>
       )}
       {requiringCount > 0 && (
         <>
-          .
           <br />
-          <br />
-          There are <strong>{numberText(requiringCount)}</strong>{" "}
+          There {requiringCount > 1 ? "are" : "is"}{" "}
+          <strong>{numberText(requiringCount)}</strong>{" "}
           {requiringCount === 1 ? "dependency" : "dependencies"} where other
           actors depend on <strong>{elementName}</strong>.
           <br />
@@ -122,6 +120,7 @@ export default function DependenciesPhrase({
               ))}
             </span>
           ))}
+          <br />
         </>
       )}
     </>

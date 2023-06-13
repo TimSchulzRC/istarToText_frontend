@@ -6,13 +6,13 @@ import {
   SelectedActorDispatchContext,
 } from "./context/SelectedActorContext";
 import Actor from "@/types/Actor";
-import { SelectedIntentionalElementDispatchContext } from "./context/SelectedIntentionalElementContext";
+import { SelectedIntentionDispatchContext } from "./context/SelectedIntentionalElementContext";
 
 export default function ActorListItem({ actor }: propTypes) {
   const selectedActor = React.useContext(SelectedActorContext);
   const setSelectedActor = React.useContext(SelectedActorDispatchContext);
   const setSelectedIntentionalElement = React.useContext(
-    SelectedIntentionalElementDispatchContext
+    SelectedIntentionDispatchContext
   );
   const clickHandler = () => {
     setSelectedActor(actor);

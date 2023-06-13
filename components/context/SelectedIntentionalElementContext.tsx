@@ -1,11 +1,12 @@
-import IntentionalElement from "@/types/IntentionalElement";
+import Intention from "@/types/Intention";
 import React, { Dispatch, SetStateAction } from "react";
 import { SelectedActorContext } from "./SelectedActorContext";
 
-export const SelectedIntentionalElementContext =
-  React.createContext<IntentionalElement | null>(null);
-export const SelectedIntentionalElementDispatchContext = React.createContext<
-  Dispatch<SetStateAction<IntentionalElement | null>>
+export const SelectedIntentionContext = React.createContext<Intention | null>(
+  null
+);
+export const SelectedIntentionDispatchContext = React.createContext<
+  Dispatch<SetStateAction<Intention | null>>
 >(() => {});
 
 export default function SelectedIntentionalElementProvider({
@@ -15,16 +16,14 @@ export default function SelectedIntentionalElementProvider({
 }) {
   const selectedActor = React.useContext(SelectedActorContext);
   const [selectedIntentionalElement, setSelectedIntentionalElement] =
-    React.useState<IntentionalElement | null>(null);
+    React.useState<Intention | null>(null);
   return (
-    <SelectedIntentionalElementContext.Provider
-      value={selectedIntentionalElement}
-    >
-      <SelectedIntentionalElementDispatchContext.Provider
+    <SelectedIntentionContext.Provider value={selectedIntentionalElement}>
+      <SelectedIntentionDispatchContext.Provider
         value={setSelectedIntentionalElement}
       >
         {children}
-      </SelectedIntentionalElementDispatchContext.Provider>
-    </SelectedIntentionalElementContext.Provider>
+      </SelectedIntentionDispatchContext.Provider>
+    </SelectedIntentionContext.Provider>
   );
 }

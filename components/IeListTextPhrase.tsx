@@ -1,11 +1,11 @@
-import IntentionalElement from "@/types/IntentionalElement";
+import Intention from "@/types/Intention";
 import ModelElement from "@/types/ModelElement";
 import { IntentionType } from "@/types/intentionType";
 import { capitalizeFirstLetter, numberToText } from "@/util/StringUtil";
 import { Box, Chip } from "@mui/material";
 import React, { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { SelectedIntentionalElementDispatchContext } from "./context/SelectedIntentionalElementContext";
+import { SelectedIntentionDispatchContext } from "./context/SelectedIntentionalElementContext";
 import { SelectedActorContext } from "./context/SelectedActorContext";
 
 export default function IeListTextPhrase({
@@ -13,12 +13,12 @@ export default function IeListTextPhrase({
   type,
   typePlural,
 }: {
-  elements: IntentionalElement[];
+  elements: Intention[];
   type: IntentionType;
   typePlural: string;
 }) {
   const setSelectedIntentionalElement = useContext(
-    SelectedIntentionalElementDispatchContext
+    SelectedIntentionDispatchContext
   );
   const selectedActor = useContext(SelectedActorContext);
   const elementsCount = elements.length;
@@ -72,9 +72,7 @@ export default function IeListTextPhrase({
 
   function updateSelectedIntention(intentionId: string) {
     setSelectedIntentionalElement(
-      selectedActor.elements.find(
-        (e) => e.id === intentionId
-      ) as IntentionalElement
+      selectedActor.elements.find((e) => e.id === intentionId) as Intention
     );
   }
 }

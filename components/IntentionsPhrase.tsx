@@ -15,7 +15,8 @@ export default function IntentionsPhrase({ actor }: { actor: Actor }) {
 
   return (
     <>
-      {actor.name} has the{" "}
+      <br />
+      <strong>{actor.name}</strong> has the{" "}
       {goalCount > 0 && (
         <IeListTextPhrase
           elements={goalElements}
@@ -37,7 +38,7 @@ export default function IntentionsPhrase({ actor }: { actor: Actor }) {
       {resourceCount > 0 && (
         <>
           <br />
-          {actor.name} needs the{" "}
+          <strong>{actor.name}</strong> needs the{" "}
           <IeListTextPhrase
             elements={resourceElements}
             type={IntentionType.RESOURCE}
@@ -45,6 +46,19 @@ export default function IntentionsPhrase({ actor }: { actor: Actor }) {
           />
         </>
       )}
+      {qualityCount > 0 && (
+        <>
+          <br />
+          <br />
+          <strong>{actor.name}</strong> also wants to ensure{" "}
+          <IeListTextPhrase
+            elements={qualityElements}
+            type={IntentionType.QUALITY}
+            typePlural="Qualities"
+          />
+        </>
+      )}
+      <br />
     </>
   );
 }
