@@ -9,6 +9,6 @@ export function getChipColor(type: IntentionType) {
       case IntentionType.QUALITY:
         return "success";
       case IntentionType.RESOURCE:
-        return "primary";
+        return "default";
     }
   }

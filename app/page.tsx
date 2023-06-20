@@ -1,21 +1,29 @@
 "use client";
 import ActorsList from "@/components/ActorsList";
+import ChipDescription from "@/components/ChipDescription";
 import DetailsScreen from "@/components/DetailsScreen";
 import IntentionsList from "@/components/IntentionsList";
 import ActorsProvider from "@/components/context/ActorsContext";
 import DependenciesProvider from "@/components/context/DependenciesContext";
 import SelectedIntentionProvider from "@/components/context/SelectedIntentionContext";
-import { Container } from "@mui/material";
+import { AppBar, Container, Toolbar, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
 export default function Home() {
   return (
-    <main>
+    <main style={{ display: "flex" }}>
+      <AppBar color="default">
+        <Toolbar>
+          <Container maxWidth="xl">
+            <ChipDescription />
+          </Container>
+        </Toolbar>
+      </AppBar>
       <DependenciesProvider>
         <ActorsProvider>
           <SelectedIntentionProvider>
-            <Container maxWidth="xl" sx={{ height: "100vh" }}>
-              <Grid container sx={{ height: "100vh" }}>
+            <Container maxWidth="xl" sx={{ mt: 10 }}>
+              <Grid container>
                 <Grid xs={12} md={3}>
                   <ActorsList />
                 </Grid>

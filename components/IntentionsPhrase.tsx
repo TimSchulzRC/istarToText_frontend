@@ -34,7 +34,7 @@ export default function IntentionsPhrase({ actor }: { actor: Actor }) {
           />
         </>
       )}
-      {"."}
+      {/* {"."} */}
       {resourceCount > 0 && (
         <>
           <br />

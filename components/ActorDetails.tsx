@@ -1,6 +1,6 @@
 import Actor from "@/types/Actor";
 import { getActorTypeDescription } from "@/types/actorType";
-import { Typography } from "@mui/material";
+import { Chip, Typography } from "@mui/material";
 import { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import DependenciesPhrase from "./DependenciesPhrase";
@@ -17,8 +17,8 @@ export default function ActorDetails({ actor }: { actor: Actor }) {
     <>
       <Typography>{actor.description}</Typography>
       <Typography>
-        <strong>{actor.name} </strong>is {getActorTypeDescription(actor.type)}
-        <br />
+        <strong>{actor.name} </strong>is {actor.type === "actor" ? "an" : "a"}{" "}
+        <strong>{actor.type}</strong>. <br />
         {actor.linksTo.length > 0 && (
           <>
             <br />
@@ -26,6 +26,7 @@ export default function ActorDetails({ actor }: { actor: Actor }) {
               <span key={uuidv4()}>
                 {actor.name} {e.type}{" "}
                 <LinkHoverChip
+                  color="primary"
                   label={actors.get(e.id)?.name}
                   element={actors.get(e.id)}
                 />

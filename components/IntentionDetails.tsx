@@ -47,8 +47,8 @@ export default function IntentionDetails({
   return (
     <>
       <Typography>
-        {selectedIntention.name}{" "}
-        {getIntentionTypeDescription(selectedIntention.type)}
+        <strong>{selectedIntention.name}</strong> is a{" "}
+        <strong>{selectedIntention.type}</strong>.
         <br />
         {selectedIntention.children.length > 0 && (
           <>

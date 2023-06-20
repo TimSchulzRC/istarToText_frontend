@@ -7,8 +7,10 @@ import { v4 as uuidv4 } from "uuid";
 
 export default function DependencyText({
   dependency: { type, name },
+  showPrefix = false,
 }: {
   dependency: DependencyNameAndType;
+  showPrefix?: boolean;
 }) {
   function getPrefix(type: IntentionType) {
     switch (type) {
@@ -24,17 +26,18 @@ export default function DependencyText({
   }
 
   return (
-    <>
-      {" "}
-      {getPrefix(type)}{" "}
-      <Chip
-        size="small"
-        key={uuidv4()}
-        component="span"
-        label={name}
-        color={getChipColor(type)}
-      />
-    </>
+    <ul style={{ paddingLeft: 20 }}>
+      <li>
+        {showPrefix && getPrefix(type)}{" "}
+        <Chip
+          size="small"
+          key={uuidv4()}
+          component="span"
+          label={name}
+          color={getChipColor(type)}
+        />
+      </li>
+    </ul>
   );
 }
 

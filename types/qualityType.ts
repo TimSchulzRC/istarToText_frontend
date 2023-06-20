@@ -12,26 +12,26 @@ export function getQualityTypeDescription(qualityType: QualityType, isPlural: bo
   if(isPlural) return getQualityTypeDescriptionPlural(qualityType);
   if(direction === "incoming") return getQualityTypeDescriptionIncoming(qualityType);
   if (qualityType === QualityType.HELP)
-    return " provides weak positive evidence for the satisfaction of the quality";
+    return " somewhat supports achieving the quality";
   if (qualityType === QualityType.HURT)
-    return " provides weak evidence against the satisfaction of the quality";
+    return " somewhat goes against achieving the quality";
   if (qualityType === QualityType.MAKE)
-    return "provides sufficient positive evidence for the satisfaction of the quality";
+    return "strongly supports achieving the quality";
   if (qualityType === QualityType.BREAK)
-    return "provides sufficient  evidence against the satisfaction of the quality";
+    return "strongly goes against achieving the quality";
   if (qualityType === QualityType.QUALIFY)
     return "qualifies how the operation or function of this goal/task should be achieved";
 }
 
 function getQualityTypeDescriptionPlural(qualityType: QualityType) {
   if (qualityType === QualityType.HELP)
-    return " provides weak positive evidence for the satisfaction of the qualities";
+    return " somewhat supports achieving the qualities";
   if (qualityType === QualityType.HURT)
-    return " provides weak evidence against the satisfaction of the qualities";
+    return " somewhat goes against achieving the qualities";
   if (qualityType === QualityType.MAKE)
-    return "provides sufficient positive evidence for the satisfaction of the qualities";
+    return "strongly supports achieving the qualities";
   if (qualityType === QualityType.BREAK)
-    return "provides sufficient  evidence against the satisfaction of the qualities";
+    return "strongly goes against achieving the qualities";
   if (qualityType === QualityType.QUALIFY)
     return "qualify how the operation or function of this goal/task should be achieved";
 }

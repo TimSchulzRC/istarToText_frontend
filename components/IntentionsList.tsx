@@ -84,7 +84,7 @@ export default function IntentionsList() {
                 >
                   <ListItemText
                     primary={element.name}
-                    secondary={element.type}
+                    // secondary={element.type}
                   />
                 </ListItemButton>
               ))}

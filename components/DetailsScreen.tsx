@@ -19,7 +19,13 @@ export default function DetailsScreen({
   const selectedIntention = useContext(SelectedIntentionContext);
 
   return (
-    <Card variant="outlined" sx={{ height: "100%" }}>
+    <Card
+      variant="outlined"
+      sx={{
+        height: "calc(100vh - 100px)",
+        overflow: "auto",
+      }}
+    >
       <CardHeader
         title={
           <Typography variant="h2">
@@ -31,7 +37,6 @@ export default function DetailsScreen({
         }
       />
       <CardContent>
-        <ChipDescription />
         {selectedIntention && !intention && (
           <IntentionDetails intention={selectedIntention} />
         )}
@@ -40,6 +45,7 @@ export default function DetailsScreen({
         {!selectedIntention && !intention && (
           <ActorDetails actor={actor || selectedActor} />
         )}
+        {actor && <ActorDetails actor={actor} />}
       </CardContent>
     </Card>
   );

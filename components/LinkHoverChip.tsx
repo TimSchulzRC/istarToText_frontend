@@ -1,13 +1,12 @@
 import Actor from "@/types/Actor";
 import Intention from "@/types/Intention";
-import { Chip, Container, Paper, Popper } from "@mui/material";
-import React from "react";
-import { SelectedActorDispatchContext } from "./context/SelectedActorContext";
-import { SelectedIntentionDispatchContext } from "./context/SelectedIntentionContext";
 import { ActorType } from "@/types/actorType";
 import { IntentionType } from "@/types/intentionType";
-import Dependency from "@/types/Dependency";
+import { Chip, Paper, Popper } from "@mui/material";
+import React from "react";
 import DetailsScreen from "./DetailsScreen";
+import { SelectedActorDispatchContext } from "./context/SelectedActorContext";
+import { SelectedIntentionDispatchContext } from "./context/SelectedIntentionContext";
 
 export default function LinkHoverChip({
   label,
@@ -31,6 +30,9 @@ export default function LinkHoverChip({
   );
   const [showOverlay, setShowOverlay] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [delayHandler, setDelayHandler] = React.useState<null | NodeJS.Timeout>(
+    null
+  );
   return (
     <>
       <Chip
@@ -39,11 +41,18 @@ export default function LinkHoverChip({
         color={color}
         size="small"
         onMouseEnter={(event) => {
-          console.log("hovering started");
-          setAnchorEl(event.currentTarget);
-          setShowOverlay(true);
+          setDelayHandler(
+            setTimeout(() => {
+              console.log(element);
+
+              console.log("hovering started");
+              setAnchorEl(event.currentTarget);
+              setShowOverlay(true);
+            }, 500)
+          );
         }}
         onMouseLeave={(event) => {
+          clearTimeout(delayHandler as NodeJS.Timeout);
           console.log("hovering ended");
           setAnchorEl(null);
           setShowOverlay(false);
@@ -59,7 +68,7 @@ export default function LinkHoverChip({
         }}
       />
       <Popper
-        anchorEl={anchorEl}
+        sx={{ mt: 10, maxWidth: "50vw" }}
         open={showOverlay}
         onMouseEnter={(event) => {
           console.log("hovering started");

@@ -31,25 +31,25 @@ export default function IeListTextPhrase({
         {elementsCount === 1 ? capitalizeFirstLetter(type) : typePlural}
       </strong>
       {": "}
-      {elements.map((element, index) => (
-        <span key={uuidv4()}>
-          {elementIsLast(index) && !elementIsFirst(index) && " and "}
-          <LinkHoverChip
-            label={element.name}
-            element={element}
-            color={getElementColor()}
-          />
-
-          {elementIsNotFirstOrLast(index) && ", "}
-        </span>
-      ))}
+      <ul style={{ paddingLeft: 20 }}>
+        {elements.map((element, index) => (
+          <li key={uuidv4()}>
+            {/* {elementIsLast(index) && !elementIsFirst(index)} */}
+            <LinkHoverChip
+              label={element.name}
+              element={element}
+              color={getElementColor()}
+            />
+          </li>
+        ))}
+      </ul>
     </>
   );
 
   function getElementColor() {
     switch (type.toLowerCase()) {
       case "resource":
-        return "primary";
+        return "default";
       case "task":
         return "secondary";
       case "goal":

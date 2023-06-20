@@ -1,21 +1,21 @@
+import Actor from "@/types/Actor";
 import {
-  getRequiredDependencies,
   combineDependenciesByDependee,
-  getRequiringDependencies,
   combineDependenciesByDepender,
+  getRequiredDependencies,
+  getRequiringDependencies,
 } from "@/util/DependencyUtil";
-import { Chip } from "@mui/material";
-import React, { useContext } from "react";
+import { useContext } from "react";
+import { v4 as uuidv4 } from "uuid";
 import DependencyText from "./DependencyText";
+import LinkHoverChip from "./LinkHoverChip";
 import { ActorsContext } from "./context/ActorsContext";
 import { DependenciesContext } from "./context/DependenciesContext";
 import {
   SelectedActorContext,
   SelectedActorDispatchContext,
 } from "./context/SelectedActorContext";
-import Actor from "@/types/Actor";
-import { v4 as uuidv4 } from "uuid";
-import LinkHoverChip from "./LinkHoverChip";
+import { SelectedIntentionContext } from "./context/SelectedIntentionContext";
 
 export default function DependenciesPhrase({
   dependencyIDs,
@@ -28,6 +28,7 @@ export default function DependenciesPhrase({
   const actors = useContext(ActorsContext);
   const selectedActor = useContext(SelectedActorContext);
   const setSelectedActor = useContext(SelectedActorDispatchContext);
+  const selectedIntention = useContext(SelectedIntentionContext);
 
   const requiredDependencies = getRequiredDependencies(
     dependencyIDs,
@@ -57,7 +58,7 @@ export default function DependenciesPhrase({
         <>
           <br />
           <strong>{elementName}</strong> has{" "}
-          <strong>{numberText(requiredCount)}</strong> required{" "}
+          <strong>{numberText(requiredCount)}</strong>{" "}
           {requiredCount === 1 ? "dependency" : "dependencies"}.
           <br />
           <strong>{elementName}</strong> depends on{" "}
@@ -69,16 +70,28 @@ export default function DependenciesPhrase({
               ) && ", on "}
               {elementIsLast(i, combinedRequiredDependencies.length) &&
                 " and on "}
-              <LinkHoverChip label={da.actorName} element={actors.get(da.id)} />{" "}
-              to
+              <LinkHoverChip
+                label={da.actorName}
+                element={actors.get(da.id)}
+                color="primary"
+              />{" "}
+            </span>
+          ))}
+          . <br />
+          {combinedRequiredDependencies.map((da, i) => (
+            <>
+              <LinkHoverChip
+                label={da.actorName}
+                element={actors.get(da.id)}
+                color="primary"
+              />{" "}
+              has to:
               {da.dependencies.map((d, i) => (
                 <span key={uuidv4()}>
-                  {elementIsNotFirstOrLast(i, da.dependencies.length) && ", "}
-                  {elementIsLast(i, da.dependencies.length) && " and "}
-                  <DependencyText dependency={d} />
+                  <DependencyText dependency={d} showPrefix />
                 </span>
               ))}
-            </span>
+            </>
           ))}
           <br />
         </>
@@ -89,27 +102,26 @@ export default function DependenciesPhrase({
           There {requiringCount > 1 ? "are" : "is"}{" "}
           <strong>{numberText(requiringCount)}</strong>{" "}
           {requiringCount === 1 ? "dependency" : "dependencies"} where other
-          actors depend on <strong>{elementName}</strong>.
+          actors depend on <strong>{elementName}</strong> to achieve a goal,
+          complete a task, ensure a quality or provide a resource.
           <br />
-          <strong>{elementName}</strong> is depended on by{" "}
           {combinedRequiringDependencies.map((da, i) => (
-            <span key={uuidv4()}>
-              {elementIsNotFirstOrLast(
-                i,
-                combinedRequiringDependencies.length
-              ) && ", by "}
-              {elementIsLast(i, combinedRequiringDependencies.length) &&
-                " and by "}
-              <LinkHoverChip label={da.actorName} element={actors.get(da.id)} />{" "}
-              to
-              {da.dependencies.map((d, i) => (
-                <span key={uuidv4()}>
-                  {elementIsNotFirstOrLast(i, da.dependencies.length) && ", "}
-                  {elementIsLast(i, da.dependencies.length) && " and "}
-                  <DependencyText dependency={d} />
-                </span>
-              ))}
-            </span>
+            <>
+              <br />
+              <span key={uuidv4()}>
+                <LinkHoverChip
+                  label={da.actorName}
+                  element={actors.get(da.id)}
+                  color="primary"
+                />{" "}
+                depends on:
+                {da.dependencies.map((d, i) => (
+                  <span key={uuidv4()}>
+                    <DependencyText dependency={d} />
+                  </span>
+                ))}
+              </span>
+            </>
           ))}
           <br />
         </>
