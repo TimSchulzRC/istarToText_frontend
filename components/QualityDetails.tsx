@@ -62,9 +62,9 @@ export default function QualityDetails({
     <>
       {qualitiesCount > 0 && selectedIntention && (
         <>
-          <br />
           {qualitiesQualifies.length > 0 && (
             <>
+              <br />
               {qualitiesQualifies.map((e, i) => (
                 <span key={uuidv4()}>
                   <LinkHoverChip label={e.name} color="success" element={e} />{" "}
@@ -75,9 +75,9 @@ export default function QualityDetails({
               {qualitiesQualifies.length === 1 ? "qualifies" : "qualify"} how
               the operation or function of{" "}
               <strong>{selectedIntention.name}</strong> should be achieved.
+              <br />
             </>
           )}
-          <br />
           {qualitiesHelpOutgoing.length > 0 && (
             <QualitiesPhrase
               selectedIntention={selectedIntention}

@@ -7,8 +7,10 @@ import {
 } from "./context/SelectedActorContext";
 import Actor from "@/types/Actor";
 import { SelectedIntentionDispatchContext } from "./context/SelectedIntentionContext";
+import { ActorsContext } from "./context/ActorsContext";
 
 export default function ActorListItem({ actor }: propTypes) {
+  const actors = React.useContext(ActorsContext);
   const selectedActor = React.useContext(SelectedActorContext);
   const setSelectedActor = React.useContext(SelectedActorDispatchContext);
   const setSelectedIntentionalElement = React.useContext(
@@ -19,12 +21,23 @@ export default function ActorListItem({ actor }: propTypes) {
     setSelectedIntentionalElement(null);
   };
 
+  let linksTo;
+  if (actor.linksTo.length !== 0) {
+    linksTo = actor.linksTo
+      .map((e) => actors.get(e.id)?.name)
+      .reduce((acc, cur) => acc + ", " + cur);
+    console.log(linksTo);
+    linksTo = " (" + linksTo + ")";
+  }
+
+  const secondaryText = linksTo ? actor.type + linksTo : actor.type;
+
   return (
     <ListItemButton
       onClick={clickHandler}
       selected={actor.id === selectedActor.id}
     >
-      <ListItemText primary={actor.name} secondary={actor.type} />
+      <ListItemText primary={actor.name} secondary={secondaryText} />
     </ListItemButton>
   );
 }

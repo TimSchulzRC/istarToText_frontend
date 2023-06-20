@@ -46,7 +46,7 @@ export default function IntentionDetails({
 
   return (
     <>
-      <Typography>
+      <Typography component="div">
         <strong>{selectedIntention.name}</strong> is a{" "}
         <strong>{selectedIntention.type}</strong>.
         <br />
@@ -99,10 +99,10 @@ export default function IntentionDetails({
                       selectedIntention.childrenLinkType}
                   </span>
                 ))}{" "}
+                .
+                <br />
               </>
             )}
-            .
-            <br />
           </>
         )}
         <QualityDetails qualities={qualities} />

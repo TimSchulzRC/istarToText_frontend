@@ -16,7 +16,7 @@ export default function ActorDetails({ actor }: { actor: Actor }) {
   return (
     <>
       <Typography>{actor.description}</Typography>
-      <Typography>
+      <Typography component="div">
         <strong>{actor.name} </strong>is {actor.type === "actor" ? "an" : "a"}{" "}
         <strong>{actor.type}</strong>. <br />
         {actor.linksTo.length > 0 && (

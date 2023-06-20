@@ -49,7 +49,6 @@ export default function IntentionsPhrase({ actor }: { actor: Actor }) {
       {qualityCount > 0 && (
         <>
           <br />
-          <br />
           <strong>{actor.name}</strong> also wants to ensure{" "}
           <IeListTextPhrase
             elements={qualityElements}

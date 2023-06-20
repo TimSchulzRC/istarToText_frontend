@@ -15,7 +15,7 @@ import {
   SelectedActorContext,
   SelectedActorDispatchContext,
 } from "./context/SelectedActorContext";
-import { SelectedIntentionContext } from "./context/SelectedIntentionContext";
+import React from "react";
 
 export default function DependenciesPhrase({
   dependencyIDs,
@@ -28,7 +28,6 @@ export default function DependenciesPhrase({
   const actors = useContext(ActorsContext);
   const selectedActor = useContext(SelectedActorContext);
   const setSelectedActor = useContext(SelectedActorDispatchContext);
-  const selectedIntention = useContext(SelectedIntentionContext);
 
   const requiredDependencies = getRequiredDependencies(
     dependencyIDs,
@@ -79,7 +78,7 @@ export default function DependenciesPhrase({
           ))}
           . <br />
           {combinedRequiredDependencies.map((da, i) => (
-            <>
+            <React.Fragment key={uuidv4()}>
               <LinkHoverChip
                 label={da.actorName}
                 element={actors.get(da.id)}
@@ -91,7 +90,7 @@ export default function DependenciesPhrase({
                   <DependencyText dependency={d} showPrefix />
                 </span>
               ))}
-            </>
+            </React.Fragment>
           ))}
           <br />
         </>
@@ -106,7 +105,7 @@ export default function DependenciesPhrase({
           complete a task, ensure a quality or provide a resource.
           <br />
           {combinedRequiringDependencies.map((da, i) => (
-            <>
+            <React.Fragment key={uuidv4()}>
               <br />
               <span key={uuidv4()}>
                 <LinkHoverChip
@@ -121,7 +120,7 @@ export default function DependenciesPhrase({
                   </span>
                 ))}
               </span>
-            </>
+            </React.Fragment>
           ))}
           <br />
         </>
