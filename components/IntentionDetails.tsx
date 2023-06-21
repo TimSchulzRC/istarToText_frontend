@@ -1,19 +1,16 @@
 import Intention from "@/types/Intention";
 import Quality from "@/types/Quality";
-import {
-  IntentionType,
-  getIntentionTypeDescription,
-} from "@/types/intentionType";
+import { IntentionType } from "@/types/intentionType";
 import { elementIsLast, elementIsNotFirstOrLast } from "@/util/ElementListUtil";
-import { Chip, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import DependenciesPhrase from "./DependenciesPhrase";
+import LinkHoverChip from "./LinkHoverChip";
 import QualityDetails from "./QualityDetails";
 import { ActorsContext } from "./context/ActorsContext";
 import { DependenciesContext } from "./context/DependenciesContext";
 import { SelectedActorContext } from "./context/SelectedActorContext";
-import LinkHoverChip from "./LinkHoverChip";
 
 export default function IntentionDetails({
   intention: selectedIntention,

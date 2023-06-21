@@ -1,7 +1,7 @@
 import React from "react";
-import { ActorsContext } from "./context/ActorsContext";
 import ActorListItem from "./ActorListItem";
 import ListCard from "./cards/ListCard";
+import { ActorsContext } from "./context/ActorsContext";
 
 export default function ActorsList() {
   const actors = React.useContext(ActorsContext);

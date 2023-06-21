@@ -6,7 +6,7 @@ import IntentionsList from "@/components/IntentionsList";
 import ActorsProvider from "@/components/context/ActorsContext";
 import DependenciesProvider from "@/components/context/DependenciesContext";
 import SelectedIntentionProvider from "@/components/context/SelectedIntentionContext";
-import { AppBar, Container, Toolbar, Typography } from "@mui/material";
+import { AppBar, Container, Toolbar } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
 export default function Home() {

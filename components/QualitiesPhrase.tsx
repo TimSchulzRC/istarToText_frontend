@@ -3,11 +3,10 @@ import Quality, { QualityDirection } from "@/types/Quality";
 import { QualityType, getQualityTypeDescription } from "@/types/qualityType";
 import { getChipColor } from "@/util/DisplayUtil";
 import { elementIsNotFirstOrLast } from "@/util/ElementListUtil";
-import { Chip } from "@mui/material";
 import { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { SelectedIntentionDispatchContext } from "./context/SelectedIntentionContext";
 import LinkHoverChip from "./LinkHoverChip";
+import { SelectedIntentionDispatchContext } from "./context/SelectedIntentionContext";
 
 export default function QualitiesPhrase({
   selectedIntention,

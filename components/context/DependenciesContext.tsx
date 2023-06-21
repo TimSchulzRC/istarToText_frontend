@@ -1,5 +1,5 @@
-import React, { createContext, useEffect } from "react";
 import Dependency from "@/types/Dependency";
+import React, { createContext, useEffect } from "react";
 
 export const DependenciesContext = createContext<Map<string, Dependency>>(
   new Map<string, Dependency>()

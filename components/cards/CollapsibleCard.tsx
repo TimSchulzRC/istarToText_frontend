@@ -1,8 +1,8 @@
-import React from "react";
-import ElevatedCard from "./ElevatedCard";
-import { CardContent, CardHeader, Collapse } from "@mui/material";
-import ExpandMoreButton from "../ExpandMoreButton";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { CardContent, CardHeader, Collapse } from "@mui/material";
+import React from "react";
+import ExpandMoreButton from "../ExpandMoreButton";
+import ElevatedCard from "./ElevatedCard";
 
 export default function CollapsibleCard({
   title,

@@ -1,9 +1,6 @@
-import React from "react";
-import IeListTextPhrase from "./IeListTextPhrase";
-import { v4 as uuidv4 } from "uuid";
 import Actor from "@/types/Actor";
-import { numberToText } from "@/util/StringUtil";
 import { IntentionType } from "@/types/intentionType";
+import IeListTextPhrase from "./IeListTextPhrase";
 
 export default function IntentionsPhrase({ actor }: { actor: Actor }) {
   const { goalElements, taskElements, resourceElements, qualityElements } =

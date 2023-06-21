@@ -1,15 +1,14 @@
-import Quality, { QualityDirection } from "@/types/Quality";
+import Quality from "@/types/Quality";
 import { QualityType } from "@/types/qualityType";
 import { elementIsNotFirstOrLast } from "@/util/ElementListUtil";
-import { Chip } from "@mui/material";
 import { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
+import LinkHoverChip from "./LinkHoverChip";
 import QualitiesPhrase from "./QualitiesPhrase";
 import {
   SelectedIntentionContext,
   SelectedIntentionDispatchContext,
 } from "./context/SelectedIntentionContext";
-import LinkHoverChip from "./LinkHoverChip";
 
 export default function QualityDetails({
   qualities,

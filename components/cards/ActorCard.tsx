@@ -1,3 +1,5 @@
+import { ActorType, getActorTypeDescription } from "@/types/actorType";
+import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
 import {
   CardContent,
   CardHeader,
@@ -5,9 +7,6 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
-import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
-import { ActorType, getActorTypeDescription } from "@/types/actorType";
 import ElevatedCard from "./ElevatedCard";
 
 export default function ActorCard({ name, actorType }: propTypes) {

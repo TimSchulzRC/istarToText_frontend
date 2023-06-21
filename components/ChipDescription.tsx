@@ -1,4 +1,4 @@
-import { Stack, Chip, Typography, Popover, Divider } from "@mui/material";
+import { Chip, Divider, Popover, Stack, Typography } from "@mui/material";
 import React from "react";
 
 export default function ChipDescription() {

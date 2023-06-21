@@ -1,14 +1,11 @@
 import Intention from "@/types/Intention";
-import ModelElement from "@/types/ModelElement";
 import { IntentionType } from "@/types/intentionType";
 import { capitalizeFirstLetter, numberToText } from "@/util/StringUtil";
-import { Box, Chip } from "@mui/material";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { SelectedIntentionDispatchContext } from "./context/SelectedIntentionContext";
-import { SelectedActorContext } from "./context/SelectedActorContext";
-import Link from "next/link";
 import LinkHoverChip from "./LinkHoverChip";
+import { SelectedActorContext } from "./context/SelectedActorContext";
+import { SelectedIntentionDispatchContext } from "./context/SelectedIntentionContext";
 
 export default function IeListTextPhrase({
   elements,

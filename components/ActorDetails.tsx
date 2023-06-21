@@ -1,6 +1,5 @@
 import Actor from "@/types/Actor";
-import { getActorTypeDescription } from "@/types/actorType";
-import { Chip, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import DependenciesPhrase from "./DependenciesPhrase";

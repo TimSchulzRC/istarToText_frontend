@@ -1,8 +1,6 @@
-import Dependency from "@/types/Dependency";
 import { IntentionType } from "@/types/intentionType";
 import { getChipColor } from "@/util/DisplayUtil";
 import { Chip } from "@mui/material";
-import React from "react";
 import { v4 as uuidv4 } from "uuid";
 
 export default function DependencyText({

@@ -3,7 +3,6 @@ import Intention from "@/types/Intention";
 import { Card, CardContent, CardHeader, Typography } from "@mui/material";
 import { useContext } from "react";
 import ActorDetails from "./ActorDetails";
-import ChipDescription from "./ChipDescription";
 import IntentionDetails from "./IntentionDetails";
 import { SelectedActorContext } from "./context/SelectedActorContext";
 import { SelectedIntentionContext } from "./context/SelectedIntentionContext";

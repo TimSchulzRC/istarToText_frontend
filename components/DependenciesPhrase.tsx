@@ -5,7 +5,7 @@ import {
   getRequiredDependencies,
   getRequiringDependencies,
 } from "@/util/DependencyUtil";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import DependencyText from "./DependencyText";
 import LinkHoverChip from "./LinkHoverChip";
@@ -15,7 +15,6 @@ import {
   SelectedActorContext,
   SelectedActorDispatchContext,
 } from "./context/SelectedActorContext";
-import React from "react";
 
 export default function DependenciesPhrase({
   dependencyIDs,

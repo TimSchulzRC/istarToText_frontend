@@ -1,13 +1,12 @@
-import { ActorType } from "@/types/actorType";
+import Actor from "@/types/Actor";
 import { ListItemButton, ListItemText } from "@mui/material";
 import React from "react";
+import { ActorsContext } from "./context/ActorsContext";
 import {
   SelectedActorContext,
   SelectedActorDispatchContext,
 } from "./context/SelectedActorContext";
-import Actor from "@/types/Actor";
 import { SelectedIntentionDispatchContext } from "./context/SelectedIntentionContext";
-import { ActorsContext } from "./context/ActorsContext";
 
 export default function ActorListItem({ actor }: propTypes) {
   const actors = React.useContext(ActorsContext);
