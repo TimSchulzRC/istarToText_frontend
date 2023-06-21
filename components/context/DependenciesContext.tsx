@@ -1,5 +1,4 @@
 import React, { createContext, useEffect } from "react";
-import data from "@/resources/trustcomputingSR-2.json";
 import Dependency from "@/types/Dependency";
 
 export const DependenciesContext = createContext<Map<string, Dependency>>(
@@ -17,10 +16,20 @@ export default function DependenciesProvider({
 
   useEffect(() => {
     const dependenciesMap = new Map<string, Dependency>();
-    data.dependencies.forEach((dependency) =>
-      dependenciesMap.set(dependency.id, dependency as Dependency)
-    );
-    setDependencies(dependenciesMap);
+    fetch("data.json", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.actors);
+        data.dependencies.forEach((dependency: Dependency) =>
+          dependenciesMap.set(dependency.id, dependency as Dependency)
+        );
+        setDependencies(dependenciesMap);
+      });
   }, []);
 
   return (

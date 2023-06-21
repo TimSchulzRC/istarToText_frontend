@@ -17,19 +17,6 @@ export default function CollapsibleCard({
   return (
     <ElevatedCard>
       <CardHeader
-        // avatar={
-        //   <Tooltip title="Goal: a state of affairs that the actor wants to achieve and that has clear-cut criteria of achievement.">
-        //     <Avatar
-        //       sx={{
-        //         bgcolor:
-        //           type === IntentionalElementType.GOAL ? red[400] : green[400],
-        //       }}
-        //       aria-label="recipe"
-        //     >
-        //       {type === IntentionalElementType.GOAL ? "G" : "T"}
-        //     </Avatar>
-        //   </Tooltip>
-        // }
         title={title}
         subheader={subheader}
         action={

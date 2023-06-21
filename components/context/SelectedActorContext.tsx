@@ -1,6 +1,5 @@
 import Actor from "@/types/Actor";
-import React, { Dispatch, SetStateAction, useEffect } from "react";
-import { SelectedIntentionDispatchContext } from "./SelectedIntentionContext";
+import React, { Dispatch, SetStateAction } from "react";
 
 export const SelectedActorContext = React.createContext<Actor>({} as Actor);
 export const SelectedActorDispatchContext = React.createContext<

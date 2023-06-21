@@ -1,0 +1,889 @@
+{
+  "actors": [
+    {
+      "id": "a-1",
+      "name": "PC Product Provider",
+      "type": "role",
+      "description": null,
+      "linksTo": [],
+      "dependencies": [
+        "d-1",
+        "d-2",
+        "d-3",
+        "d-4",
+        "d-5",
+        "d-6",
+        "d-7",
+        "d-8",
+        "d-9"
+      ],
+      "elements": [
+        {
+          "id": "e-1-1",
+          "name": "Sell PC Products for Profit",
+          "type": "task",
+          "parent": null,
+          "qualities": [
+            {
+              "id": "e-1-3",
+              "type": "qualifies",
+              "direction": "both"
+            }
+          ],
+          "dependencies": [],
+          "childrenLinkType": "and",
+          "children": [
+            "e-1-2",
+            "e-1-4"
+          ]
+        },
+        {
+          "id": "e-1-2",
+          "name": "Sell PC Products",
+          "type": "goal",
+          "parent": "e-1-1",
+          "qualities": [],
+          "dependencies": [
+            "d-1",
+            "d-8"
+          ],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-1-3",
+          "name": "Profit",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
+            {
+              "id": "e-1-1",
+              "type": "qualifies",
+              "direction": "both"
+            },
+            {
+              "id": "e-1-7",
+              "type": "make",
+              "direction": "incoming"
+            }
+          ],
+          "dependencies": [],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-1-4",
+          "name": "Product PC Products",
+          "type": "task",
+          "parent": "e-1-1",
+          "qualities": [
+            {
+              "id": "e-1-6",
+              "type": "qualifies",
+              "direction": "both"
+            }
+          ],
+          "dependencies": [
+            "d-7"
+          ],
+          "childrenLinkType": "and",
+          "children": [
+            "e-1-5"
+          ]
+        },
+        {
+          "id": "e-1-5",
+          "name": "Open Online Sales Channel for Licensed/ Copyrighted Content",
+          "type": "task",
+          "parent": "e-1-4",
+          "qualities": [
+            {
+              "id": "e-1-9",
+              "type": "make",
+              "direction": "outgoing"
+            }
+          ],
+          "dependencies": [
+            "d-2"
+          ],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-1-6",
+          "name": "Compatability with Existing PC Products",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
+            {
+              "id": "e-1-4",
+              "type": "qualifies",
+              "direction": "both"
+            },
+            {
+              "id": "e-1-10",
+              "type": "help",
+              "direction": "outgoing"
+            }
+          ],
+          "dependencies": [
+            "d-5"
+          ],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-1-7",
+          "name": "High Sales [PC Products]",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
+            {
+              "id": "e-1-3",
+              "type": "make",
+              "direction": "outgoing"
+            },
+            {
+              "id": "e-1-8",
+              "type": "help",
+              "direction": "incoming"
+            },
+            {
+              "id": "e-1-9",
+              "type": "help",
+              "direction": "incoming"
+            },
+            {
+              "id": "e-1-10",
+              "type": "help",
+              "direction": "incoming"
+            },
+            {
+              "id": "e-1-1",
+              "type": "help",
+              "direction": "incoming"
+            }
+          ],
+          "dependencies": [],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-1-8",
+          "name": "PC Users Abide by [Licensing Regulations]",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
+            {
+              "id": "e-1-7",
+              "type": "help",
+              "direction": "outgoing"
+            }
+          ],
+          "dependencies": [
+            "d-9"
+          ],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-1-9",
+          "name": "Destribute to License/ Copyright Holders [PC Products]",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
+            {
+              "id": "e-1-7",
+              "type": "help",
+              "direction": "outgoing"
+            },
+            {
+              "id": "e-1-5",
+              "type": "make",
+              "direction": "incoming"
+            }
+          ],
+          "dependencies": [
+            "d-3"
+          ],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-1-10",
+          "name": "Desirable to PC Users [PC Products]",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
+            {
+              "id": "e-1-7",
+              "type": "help",
+              "direction": "outgoing"
+            },
+            {
+              "id": "e-1-6",
+              "type": "help",
+              "direction": "incoming"
+            },
+            {
+              "id": "e-1-12",
+              "type": "help",
+              "direction": "incoming"
+            },
+            {
+              "id": "e-1-13",
+              "type": "make",
+              "direction": "incoming"
+            }
+          ],
+          "dependencies": [],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-1-11",
+          "name": "Affordable [PC Products]",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
+            {
+              "id": "e-1-7",
+              "type": "help",
+              "direction": "outgoing"
+            }
+          ],
+          "dependencies": [],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-1-12",
+          "name": "Security [PC]",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
+            {
+              "id": "e-1-10",
+              "type": "help",
+              "direction": "outgoing"
+            }
+          ],
+          "dependencies": [
+            "d-4"
+          ],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-1-13",
+          "name": "Freedom [Use of PC Products by PC User]",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
+            {
+              "id": "e-1-10",
+              "type": "make",
+              "direction": "outgoing"
+            }
+          ],
+          "dependencies": [
+            "d-6"
+          ],
+          "childrenLinkType": null,
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "a-2",
+      "name": "PC User",
+      "type": "role",
+      "description": null,
+      "linksTo": [
+        {
+          "id": "a-5",
+          "type": "is a"
+        }
+      ],
+      "dependencies": [
+        "d-4",
+        "d-5",
+        "d-6",
+        "d-7",
+        "d-8",
+        "d-9"
+      ],
+      "elements": [
+        {
+          "id": "e-2-1",
+          "name": "Affordable [PC Products]",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
+            
+            {
+              "id": "e-2-3",
+              "type": "hurt",
+              "direction": "incoming"
+            }
+          ],
+          "dependencies": [],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-2-2",
+          "name": "PC Products Be Obtained",
+          "type": "goal",
+          "parent": null,
+          "qualities": [],
+          "dependencies": [],
+          "childrenLinkType": "and",
+          "children": [
+            "e-2-3"
+          ]
+        },
+        {
+          "id": "e-2-3",
+          "name": "Purchase PC Products",
+          "type": "task",
+          "parent": "",
+          "qualities": [
+            {
+              "id": "e-2-1",
+              "type": "hurt",
+              "direction": "outgoing"
+            },
+            {
+              "id": "e-2-4",
+              "type": "make",
+              "direction": "outgoing"
+            },
+            {
+              "id": "e-2-6",
+              "type": "qualifies",
+              "direction": "both"
+            }
+          ],
+          "dependencies": [
+            "d-7",
+            "d-8"
+          ],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-2-4",
+          "name": "Abide by [Licensing Regulations]",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
+          {
+            "id": "e-2-3",
+            "type": "make",
+            "direction": "incoming"
+          }],
+          "dependencies": [
+            "d-9"
+          ],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-2-5",
+          "name": "Freedom [Use of PC Products]",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
+            {
+              "id": "e-2-6",
+              "type": "help",
+              "direction": "outgoing"
+            }
+          ],
+          "dependencies": [
+            "d-6"
+          ],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-2-6",
+          "name": "Desirable [PC Products]",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
+            {
+              "id": "e-2-3",
+              "type": "qualifies"
+            },
+            {
+              "id": "e-2-5",
+              "type": "help",
+              "direction": "incoming"
+            },
+            {
+              "id": "e-2-7",
+              "type": "help",
+              "direction": "incoming"
+            },
+            {
+              "id": "e-2-8",
+              "type": "help",
+              "direction": "incoming"
+            }
+          ],
+          "dependencies": [],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-2-7",
+          "name": "Compatability [with Existing PC Products]",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
+            {
+              "id": "e-2-6",
+              "type": "help",
+              "direction": "outgoing"
+            }
+          ],
+          "dependencies": [
+            "d-5"
+          ],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-2-8",
+          "name": "Security [PC]",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
+            {
+              "id": "e-2-6",
+              "type": "help",
+              "direction": "outgoing"
+            }
+          ],
+          "dependencies": [
+            "d-4"
+          ],
+          "childrenLinkType": null,
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "a-3",
+      "name": "License / Copyright Holder",
+      "type": "role",
+      "description": null,
+      "linksTo": [],
+      "dependencies": [
+        "d-1",
+        "d-2",
+        "d-3",
+        "d-10",
+        "d-11",
+        "d-12"
+      ],
+      "elements": [
+        {
+          "id": "e-3-1",
+          "name": "Profit from Licensed/ Copyrighted Content",
+          "type": "task",
+          "parent": null,
+          "qualities": [
+            {
+              "id": "e-3-3",
+              "type": "qualifies",
+              "direction": "both"
+            }
+          ],
+          "dependencies": [],
+          "childrenLinkType": "and",
+          "children": [
+            "e-3-2",
+            "e-3-4"
+          ]
+        },
+        {
+          "id": "e-3-2",
+          "name": "Licensed / Copyrighted Content Be Produced",
+          "type": "goal",
+          "parent": "e-3-1",
+          "qualities": [],
+          "dependencies": [],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-3-3",
+          "name": "Profit",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
+            {
+              "id": "e-3-1",
+              "type": "qualifies",
+              "direction": "both"
+            },
+            {
+              "id": "e-3-5",
+              "type": "help",
+              "direction": "incoming"
+            },
+            {
+              "id": "e-3-6",
+              "type": "help",
+              "direction": "incoming"
+            },
+            {
+              "id": "e-3-7",
+              "type": "help",
+              "direction": "incoming"
+            },
+            {
+              "id": "e-3-8",
+              "type": "help",
+              "direction": "incoming"
+            }
+          ],
+          "dependencies": [],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-3-4",
+          "name": "Licensed / Copyrighted Content Be Sold",
+          "type": "goal",
+          "parent": "e-3-1",
+          "qualities": [],
+          "dependencies": [
+            "d-12"
+          ],
+          "childrenLinkType": "and",
+          "children": [
+            "e-3-6",
+            "e-3-7"
+          ]
+        },
+        {
+          "id": "e-3-5",
+          "name": "Legality",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
+            {
+              "id": "e-3-3",
+              "type": "help",
+              "direction": "outgoing"
+            }
+          ],
+          "dependencies": [
+            "d-10"
+          ],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-3-6",
+          "name": "Sell Licensed / Copyrighted Content Offline",
+          "type": "task",
+          "parent": "e-3-4",
+          "qualities": [
+            {
+              "id": "e-3-3",
+              "type": "help",
+              "direction": "outgoing"
+            },
+            {
+              "id": "e-3-4",
+              "type": "help",
+              "direction": "outgoing"
+            }
+          ],
+          "dependencies": [
+            "d-11"
+          ],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-3-7",
+          "name": "Sell Licensed / Copyrighted Content Online",
+          "type": "task",
+          "parent": "e-3-4",
+          "qualities": [
+            {
+              "id": "e-3-3",
+              "type": "help",
+              "direction": "outgoing"
+            }
+          ],
+          "dependencies": [],
+          "childrenLinkType": "and",
+          "children": [
+            "e-3-9"
+          ]
+        },
+        {
+          "id": "e-3-8",
+          "name": "Protection [Licensed/ Copyrighted Content]",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
+            {
+              "id": "e-3-3",
+              "type": "help",
+              "direction": "outgoing"
+            }
+          ],
+          "dependencies": [
+            "d-3"
+          ],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-3-9",
+          "name": "Online Sales Channel for Licensed/ Copyrighted Content Be Opened",
+          "type": "goal",
+          "parent": "e-3-7",
+          "qualities": [],
+          "dependencies": [
+            "d-1",
+            "d-2"
+          ],
+          "childrenLinkType": null,
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "a-4",
+      "name": "Content User",
+      "type": "role",
+      "description": null,
+      "linksTo": [
+        {
+          "id": "a-5",
+          "type": "is a"
+        }
+      ],
+      "dependencies": [
+        "d-10",
+        "d-11",
+        "d-12"
+      ],
+      "elements": [
+        {
+          "id": "e-4-1",
+          "name": "Obtain Licensed/ Copyrighted Content",
+          "type": "goal",
+          "parent": null,
+          "qualities": [],
+          "dependencies": [],
+          "childrenLinkType": "and",
+          "children": [
+            "e-4-4"
+          ]
+        },
+        {
+          "id": "e-4-2",
+          "name": "Legality",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
+            {
+              "id": "e-4-4",
+              "type": "make",
+              "direction": "incoming"
+            }
+          ],
+          "dependencies": [
+            "d-10"
+          ],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-4-3",
+          "name": "Affordable [Licensed/ Copyrighted Content]",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
+            {
+              "id": "e-4-4",
+              "type": "hurt",
+              "direction": "incoming"
+            }
+          ],
+          "dependencies": [],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "e-4-4",
+          "name": "Purchase Licensed/ Copyrighted Content from License/ Copyright Holder",
+          "type": "task",
+          "parent": "e-4-1",
+          "qualities": [
+            {
+              "id": "e-4-2",
+              "type": "make",
+              "direction": "outgoing"
+            },
+            {
+              "id": "e-4-3",
+              "type": "hurt",
+              "direction": "outgoing"
+            }
+          ],
+          "dependencies": [
+            "d-11",
+            "d-12"
+          ],
+          "childrenLinkType": null,
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "a-5",
+      "name": "User",
+      "type": "role",
+      "description": null,
+      "linksTo": [],
+      "dependencies": [
+      ],
+      "elements": []
+    },
+    {
+      "id": "a-6",
+      "name": "Benjamin Johnson",
+      "type": "role",
+      "description": null,
+      "linksTo": [
+        {
+          "id": "a-2",
+          "type": "participates in"
+        }
+      ],
+      "dependencies": [
+      ],
+      "elements": []
+    }],
+  "dependencies": [
+    {
+      "id": "d-1",
+      "type": "resource",
+      "name": "Payment",
+      "depender": "a-1",
+      "dependerElement": "e-1-2",
+      "dependee": "a-3",
+      "dependeeElement": "e-3-9"
+    },
+    {
+      "id": "d-2",
+      "type": "resource",
+      "name": "Online Sales Channel for Licensed/ Copyrighted Content",
+      "depender": "a-3",
+      "dependerElement": "e-3-9",
+      "dependee": "a-1",
+      "dependeeElement": "e-1-5"
+    },
+    {
+      "id": "d-3",
+      "type": "quality",
+      "name": "Destribute to License/ Copyright Holders [PC Products]",
+      "depender": "a-3",
+      "dependerElement": "e-3-8",
+      "dependee": "a-1",
+      "dependeeElement": "e-1-9"
+    },
+    {
+      "id": "d-4",
+      "type": "quality",
+      "name": "Security [PC]",
+      "depender": "a-2",
+      "dependerElement": "e-2-8",
+      "dependee": "a-1",
+      "dependeeElement": "e-1-12"
+    },
+    {
+      "id": "d-5",
+      "type": "quality",
+      "name": "Compatability [with Existing PC Products]",
+      "depender": "a-2",
+      "dependerElement": "e-2-7",
+      "dependee": "a-1",
+      "dependeeElement": "e-1-6"
+    },
+    {
+      "id": "d-6",
+      "type": "quality",
+      "name": "Freedom [Use of PC Products]",
+      "depender": "a-2",
+      "dependerElement": "e-2-5",
+      "dependee": "a-1",
+      "dependeeElement": "e-1-13"
+    },
+    {
+      "id": "d-7",
+      "type": "resource",
+      "name": "PC Products",
+      "depender": "a-2",
+      "dependerElement": "e-2-3",
+      "dependee": "a-1",
+      "dependeeElement": "e-1-4"
+    },
+    {
+      "id": "d-8",
+      "type": "resource",
+      "name": "Payment",
+      "depender": "a-1",
+      "dependerElement": "e-1-2",
+      "dependee": "a-2",
+      "dependeeElement": "e-2-3"
+    },
+    {
+      "id": "d-9",
+      "type": "resource",
+      "name": "PC Users Abide by [Licensing Regulations]",
+      "depender": "a-1",
+      "dependerElement": "e-1-8",
+      "dependee": "a-2",
+      "dependeeElement": "e-2-4"
+    },
+    {
+      "id": "d-10",
+      "type": "quality",
+      "name": "Legality",
+      "depender": "a-3",
+      "dependerElement": "e-3-5",
+      "dependee": "a-4",
+      "dependeeElement": "e-4-2"
+    },
+    {
+      "id": "d-11",
+      "type": "resource",
+      "name": "Payment",
+      "depender": "a-3",
+      "dependerElement": "e-3-6",
+      "dependee": "a-4",
+      "dependeeElement": "e-4-4"
+    },
+    {
+      "id": "d-12",
+      "type": "resource",
+      "name": "Licensed / Copyrighted Content",
+      "depender": "a-4",
+      "dependerElement": "e-4-3",
+      "dependee": "a-3",
+      "dependeeElement": "e-3-4"
+    }
+  ]
+}
