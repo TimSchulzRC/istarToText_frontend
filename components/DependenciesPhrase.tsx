@@ -16,6 +16,13 @@ import {
   SelectedActorDispatchContext,
 } from "./context/SelectedActorContext";
 
+/**
+ * A component that displays the dependencies of an intentional element (goal or task) and the dependencies on it by other actors. It uses the `DependenciesContext`, `ActorsContext`, and `SelectedActorContext` contexts to retrieve the dependencies and actors, and the `SelectedActorDispatchContext` context to update the selected actor. It also uses the `LinkHoverChip` and `DependencyText` components to display the dependencies and actors.
+ *
+ * @param dependencyIDs - The IDs of the dependencies of the intentional element.
+ * @param elementName - The name of the intentional element.
+ * @returns A JSX element that displays the dependencies of an intentional element (goal or task) and the dependencies on it by other actors.
+ */
 export default function DependenciesPhrase({
   dependencyIDs,
   elementName,
@@ -85,9 +92,7 @@ export default function DependenciesPhrase({
               />{" "}
               has to:
               {da.dependencies.map((d, i) => (
-                <span key={uuidv4()}>
-                  <DependencyText dependency={d} showPrefix />
-                </span>
+                <DependencyText dependency={d} showPrefix key={uuidv4()} />
               ))}
             </React.Fragment>
           ))}
@@ -114,9 +119,7 @@ export default function DependenciesPhrase({
                 />{" "}
                 depends on:
                 {da.dependencies.map((d, i) => (
-                  <span key={uuidv4()}>
-                    <DependencyText dependency={d} />
-                  </span>
+                  <DependencyText dependency={d} key={uuidv4()} />
                 ))}
               </span>
             </React.Fragment>
@@ -127,18 +130,43 @@ export default function DependenciesPhrase({
     </>
   );
 
+  /**
+   * A function that updates the selected actor in the `SelectedActorDispatchContext` context with the actor that has the specified ID.
+   *
+   * @param actorId - The ID of the actor to set as the selected actor.
+   */
   function updateSelectedActor(actorId: string) {
     setSelectedActor(actors.get(actorId) as Actor);
   }
 
+  /**
+   * A function that returns true if the element at the specified index is not the first or last element in a list of the specified count.
+   *
+   * @param index - The index of the element to check.
+   * @param count - The total number of elements in the list.
+   * @returns True if the element at the specified index is not the first or last element in a list of the specified count, false otherwise.
+   */
   function elementIsNotFirstOrLast(index: number, count: number) {
     return count > 1 && index > 0 && index < count - 2;
   }
 
+  /**
+   * A function that returns true if the element at the specified index is the last element in a list of the specified count.
+   *
+   * @param index - The index of the element to check.
+   * @param count - The total number of elements in the list.
+   * @returns True if the element at the specified index is the last element in a list of the specified count, false otherwise.
+   */
   function elementIsLast(index: number, count: number) {
     return index > 0 && index === count - 1;
   }
 
+  /**
+   * A function that returns the text representation of a number as a word, for numbers 1 to 3, or as the number itself for other numbers.
+   *
+   * @param n - The number to convert to text.
+   * @returns The text representation of the number as a word, for numbers 1 to 3, or as the number itself for other numbers.
+   */
   function numberText(n: number) {
     if (n === 1) return "one";
     if (n === 2) return "two";

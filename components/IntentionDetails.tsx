@@ -12,6 +12,12 @@ import { ActorsContext } from "./context/ActorsContext";
 import { DependenciesContext } from "./context/DependenciesContext";
 import { SelectedActorContext } from "./context/SelectedActorContext";
 
+/**
+ * A component that displays the details of an intentional element, including its name, type, sub-goals, tasks, qualities, and dependencies.
+ *
+ * @param intention - The intentional element to display details for.
+ * @returns A JSX element that displays the details of an intentional element, including its name, type, sub-goals, tasks, qualities, and dependencies.
+ */
 export default function IntentionDetails({
   intention: selectedIntention,
 }: {

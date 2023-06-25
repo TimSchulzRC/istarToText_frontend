@@ -7,6 +7,13 @@ import IntentionDetails from "./IntentionDetails";
 import { SelectedActorContext } from "./context/SelectedActorContext";
 import { SelectedIntentionContext } from "./context/SelectedIntentionContext";
 
+/**
+ * A component that displays the details of an actor or an intentional element, depending on the props passed to it.
+ *
+ * @param actor - The actor to display details for.
+ * @param intention - The intentional element to display details for.
+ * @returns A JSX element that displays the details of an actor or an intentional element, depending on the props passed to it.
+ */
 export default function DetailsScreen({
   actor,
   intention,

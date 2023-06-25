@@ -1,6 +1,11 @@
 import { Chip, Divider, Popover, Stack, Typography } from "@mui/material";
 import React from "react";
 
+/**
+ * A component that displays the details of an actor, including its name, type, description, links to other actors, intentions, and dependencies.
+ *
+ * @param actor - The actor object to display details for.
+ */
 export default function ChipDescription() {
   const [anchorEl, setAnchorEl] = React.useState<HTMLDivElement | null>(null);
   const [popoverContent, setPopoverContent] = React.useState<string>("");

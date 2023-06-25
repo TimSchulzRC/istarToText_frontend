@@ -5,20 +5,20 @@ import { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import LinkHoverChip from "./LinkHoverChip";
 import QualitiesPhrase from "./QualitiesPhrase";
-import {
-  SelectedIntentionContext,
-  SelectedIntentionDispatchContext,
-} from "./context/SelectedIntentionContext";
+import { SelectedIntentionContext } from "./context/SelectedIntentionContext";
 
+/**
+ * A component that displays the details of a list of qualities, including the type and direction of the qualities, and how they relate to a selected intentional element.
+ *
+ * @param qualities - The list of qualities to display.
+ * @returns A JSX element that displays the details of a list of qualities, including the type and direction of the qualities, and how they relate to a selected intentional element.
+ */
 export default function QualityDetails({
   qualities,
 }: {
   qualities: Quality[];
 }) {
   const selectedIntention = useContext(SelectedIntentionContext);
-  const setSelectedIntentionalElement = useContext(
-    SelectedIntentionDispatchContext
-  );
   const qualitiesCount = qualities.length;
   const qualitiesQualifies = qualities.filter(
     (e) => e.qualityType === QualityType.QUALIFY

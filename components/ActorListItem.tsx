@@ -8,6 +8,11 @@ import {
 } from "./context/SelectedActorContext";
 import { SelectedIntentionDispatchContext } from "./context/SelectedIntentionContext";
 
+/**
+ * A component that displays a single actor item in a list, including its name, type, and links to other actors.
+ *
+ * @param actor - The actor object to display in the list item.
+ */
 export default function ActorListItem({ actor }: propTypes) {
   const actors = React.useContext(ActorsContext);
   const selectedActor = React.useContext(SelectedActorContext);
@@ -15,6 +20,9 @@ export default function ActorListItem({ actor }: propTypes) {
   const setSelectedIntentionalElement = React.useContext(
     SelectedIntentionDispatchContext
   );
+  /**
+   * Handles the click event on the list item by setting the selected actor and clearing the selected intentional element.
+   */
   const clickHandler = () => {
     setSelectedActor(actor);
     setSelectedIntentionalElement(null);

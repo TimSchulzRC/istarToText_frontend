@@ -2,6 +2,12 @@ import Actor from "@/types/Actor";
 import { IntentionType } from "@/types/intentionType";
 import IeListTextPhrase from "./IeListTextPhrase";
 
+/**
+ * A component that displays a phrase summarizing the intentional elements of a specified actor, including goals, tasks, resources, and qualities.
+ *
+ * @param actor - The actor whose intentional elements to summarize.
+ * @returns A JSX element that displays a phrase summarizing the intentional elements of a specified actor, including goals, tasks, resources, and qualities.
+ */
 export default function IntentionsPhrase({ actor }: { actor: Actor }) {
   const { goalElements, taskElements, resourceElements, qualityElements } =
     splitElementsByType(actor.elements);
@@ -59,6 +65,12 @@ export default function IntentionsPhrase({ actor }: { actor: Actor }) {
   );
 }
 
+/**
+ * A function that splits an array of intentional elements into separate arrays by type.
+ *
+ * @param elements - The array of intentional elements to split.
+ * @returns An object containing separate arrays of intentional elements by type.
+ */
 function splitElementsByType(elements: any[]) {
   const goalElements = elements.filter(
     (element) => element.type === IntentionType.GOAL

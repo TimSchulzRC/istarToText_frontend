@@ -25,6 +25,11 @@ import {
   SelectedIntentionDispatchContext,
 } from "./context/SelectedIntentionContext";
 
+/**
+ * A component that displays a list of intentional elements for the selected actor, including goals, tasks, and resources.
+ *
+ * @returns A JSX element that displays a list of intentional elements for the selected actor, including goals, tasks, and resources.
+ */
 export default function IntentionsList() {
   const selectedActor = React.useContext(SelectedActorContext);
   const selectedIntentionalElement = React.useContext(SelectedIntentionContext);
@@ -100,12 +105,22 @@ export default function IntentionsList() {
     </ListCard>
   );
 
+  /**
+   * Returns an array of all the qualities for the selected actor.
+   *
+   * @returns An array of all the qualities for the selected actor.
+   */
   function getQualities() {
     return selectedActor.elements.filter(
       (element) => element.type.toLowerCase() === "quality"
     );
   }
 
+  /**
+   * Returns an array of all the intentional elements for the selected actor, except for qualities.
+   *
+   * @returns An array of all the intentional elements for the selected actor, except for qualities.
+   */
   function getAllButQualities() {
     return selectedActor.elements.filter(
       (element) => element.type.toLowerCase() !== "quality"

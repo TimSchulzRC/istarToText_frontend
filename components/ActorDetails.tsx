@@ -7,6 +7,11 @@ import IntentionsPhrase from "./IntentionsPhrase";
 import LinkHoverChip from "./LinkHoverChip";
 import { ActorsContext } from "./context/ActorsContext";
 
+/**
+ * A component that displays the details of an actor, including its name, type, description, links to other actors, intentions, and dependencies.
+ *
+ * @param actor - The actor object to display details for.
+ */
 export default function ActorDetails({ actor }: { actor: Actor }) {
   const actors = useContext(ActorsContext);
 

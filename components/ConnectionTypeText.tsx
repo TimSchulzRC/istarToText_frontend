@@ -1,6 +1,13 @@
 import { ConnectionType, IntentionType } from "@/types/intentionType";
 import { Typography } from "@mui/material";
 
+/**
+ * A function that returns a JSX element that displays the connection type between an intentional element and its goals/tasks as "AND" or "OR".
+ *
+ * @param connectionType - The connection type between the intentional element and its goals/tasks.
+ * @param ieType - The type of the intentional element ("GOAL" or "TASK").
+ * @returns A JSX element that displays the connection type between the intentional element and its goals/tasks as "AND" or "OR".
+ */
 export default function connectionTypeAnd({
   connectionType,
   ieType,

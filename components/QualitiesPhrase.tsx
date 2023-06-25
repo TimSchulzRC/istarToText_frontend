@@ -3,11 +3,18 @@ import Quality, { QualityDirection } from "@/types/Quality";
 import { QualityType, getQualityTypeDescription } from "@/types/qualityType";
 import { getChipColor } from "@/util/DisplayUtil";
 import { elementIsNotFirstOrLast } from "@/util/ElementListUtil";
-import { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import LinkHoverChip from "./LinkHoverChip";
-import { SelectedIntentionDispatchContext } from "./context/SelectedIntentionContext";
 
+/**
+ * A component that displays a phrase summarizing the qualities of a specified intentional element, including the type and direction of the qualities.
+ *
+ * @param selectedIntention - The intentional element whose qualities to summarize.
+ * @param qualities - The list of qualities to summarize.
+ * @param qualityType - The type of the qualities to summarize.
+ * @param qualityDirection - The direction of the qualities to summarize.
+ * @returns A JSX element that displays a phrase summarizing the qualities of a specified intentional element, including the type and direction of the qualities.
+ */
 export default function QualitiesPhrase({
   selectedIntention,
   qualities,
@@ -19,14 +26,6 @@ export default function QualitiesPhrase({
   qualityType: QualityType;
   qualityDirection: QualityDirection;
 }) {
-  const setSelectedIntentionalElement = useContext(
-    SelectedIntentionDispatchContext
-  );
-
-  function getColor(quality: Quality) {
-    return getChipColor(quality.type);
-  }
-
   return (
     <>
       <br />
@@ -38,7 +37,11 @@ export default function QualitiesPhrase({
       )}
       {qualities.map((e, i) => (
         <span key={uuidv4()}>
-          <LinkHoverChip label={e.name} color={getColor(e)} element={e} />
+          <LinkHoverChip
+            label={e.name}
+            color={getChipColor(e.type)}
+            element={e}
+          />
           {elementIsNotFirstOrLast(i, qualities.length) && ", "}
           {elementIsNotFirstOrLast(i, qualities.length) &&
             i === qualities.length - 2 &&
