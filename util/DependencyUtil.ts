@@ -94,7 +94,8 @@ export function combineDependenciesByDependee(
       dependencies: { name: string; type: IntentionType }[];
     }
   > = new Map();
-  dependencies.forEach((d) => {
+  dependencies?.forEach((d) => {
+    if (!d?.dependee) return;
     if (!combinedDependencies.get(d.dependee)) {
       combinedDependencies.set(d.dependee, {
         id: d.dependee,

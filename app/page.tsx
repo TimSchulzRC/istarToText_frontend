@@ -5,6 +5,7 @@ import DetailsScreen from "@/components/DetailsScreen";
 import IntentionsList from "@/components/IntentionsList";
 import ActorsProvider from "@/components/context/ActorsContext";
 import DependenciesProvider from "@/components/context/DependenciesContext";
+import HistoryProvider from "@/components/context/HistoryContext";
 import HoverDepthProvider from "@/components/context/HoverDepthContext";
 import SelectedIntentionProvider from "@/components/context/SelectedIntentionContext";
 import { AppBar, Container, Toolbar } from "@mui/material";
@@ -20,27 +21,29 @@ export default function Home() {
           </Container>
         </Toolbar>
       </AppBar>
-      <DependenciesProvider>
-        <ActorsProvider>
-          <SelectedIntentionProvider>
-            <Container maxWidth="xl" sx={{ mt: 10 }}>
-              <Grid container>
-                <Grid xs={12} md={3}>
-                  <ActorsList />
+      <HistoryProvider>
+        <DependenciesProvider>
+          <ActorsProvider>
+            <SelectedIntentionProvider>
+              <Container maxWidth="xl" sx={{ mt: 10 }}>
+                <Grid container>
+                  <Grid xs={12} md={3}>
+                    <ActorsList />
+                  </Grid>
+                  <Grid xs={12} md={3}>
+                    <IntentionsList />
+                  </Grid>
+                  <Grid xs={12} md={6}>
+                    <HoverDepthProvider>
+                      <DetailsScreen />
+                    </HoverDepthProvider>
+                  </Grid>
                 </Grid>
-                <Grid xs={12} md={3}>
-                  <IntentionsList />
-                </Grid>
-                <Grid xs={12} md={6}>
-                  <HoverDepthProvider>
-                    <DetailsScreen />
-                  </HoverDepthProvider>
-                </Grid>
-              </Grid>
-            </Container>
-          </SelectedIntentionProvider>
-        </ActorsProvider>
-      </DependenciesProvider>
+              </Container>
+            </SelectedIntentionProvider>
+          </ActorsProvider>
+        </DependenciesProvider>
+      </HistoryProvider>
     </main>
   );
 }

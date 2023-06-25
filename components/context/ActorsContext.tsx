@@ -1,5 +1,6 @@
 import Actor from "@/types/Actor";
 import React, { useEffect } from "react";
+import { AddHistoryItemContext } from "./HistoryContext";
 import SelectedActorProvider from "./SelectedActorContext";
 
 /**
@@ -25,6 +26,7 @@ export default function ActorsProvider({
     new Map<string, Actor>()
   );
   const [defaultActor, setDefaultActor] = React.useState<Actor>({} as Actor);
+  const addHistoryItem = React.useContext(AddHistoryItemContext);
 
   useEffect(() => {
     const actorsMap = new Map<string, Actor>();
@@ -42,6 +44,7 @@ export default function ActorsProvider({
         );
         setDefaultActor(data.actors[0] as Actor);
         setActors(actorsMap);
+        addHistoryItem(data.actors[0] as Actor);
       });
   }, []);
 
