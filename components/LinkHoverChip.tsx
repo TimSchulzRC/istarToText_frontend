@@ -5,6 +5,11 @@ import { IntentionType } from "@/types/intentionType";
 import { Chip, Paper, Popper } from "@mui/material";
 import React from "react";
 import DetailsScreen from "./DetailsScreen";
+import {
+  DecrementHoverDepthContext,
+  HoverDepthContext,
+  IncrementHoverDepthContext,
+} from "./context/HoverDepthContext";
 import { SelectedActorDispatchContext } from "./context/SelectedActorContext";
 import { SelectedIntentionDispatchContext } from "./context/SelectedIntentionContext";
 
@@ -37,8 +42,10 @@ export default function LinkHoverChip({
   const setSelectedIntention = React.useContext(
     SelectedIntentionDispatchContext
   );
+  const hoverDepth = React.useContext(HoverDepthContext);
+  const incrementHoverDepth = React.useContext(IncrementHoverDepthContext);
+  const decrementHoverDepth = React.useContext(DecrementHoverDepthContext);
   const [showOverlay, setShowOverlay] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [delayHandler, setDelayHandler] = React.useState<null | NodeJS.Timeout>(
     null
   );
@@ -50,21 +57,12 @@ export default function LinkHoverChip({
         color={color}
         size="small"
         onMouseEnter={(event) => {
-          setDelayHandler(
-            setTimeout(() => {
-              console.log(element);
-
-              console.log("hovering started");
-              setAnchorEl(event.currentTarget);
-              setShowOverlay(true);
-            }, 500)
-          );
+          clearTimeout(delayHandler as NodeJS.Timeout);
+          setDelayHandler(setTimeout(() => setShowOverlay(true), 500));
         }}
         onMouseLeave={(event) => {
           clearTimeout(delayHandler as NodeJS.Timeout);
-          console.log("hovering ended");
-          setAnchorEl(null);
-          setShowOverlay(false);
+          // setDelayHandler(setTimeout(() => setShowOverlay(false), 500));
         }}
         onClick={() => {
           console.log(element);
@@ -77,15 +75,17 @@ export default function LinkHoverChip({
         }}
       />
       <Popper
-        anchorEl={anchorEl}
-        sx={{ mt: 10, maxWidth: "50vw" }}
+        sx={{ mt: (hoverDepth?.current || 1) * 10, width: "50vw" }}
         open={showOverlay}
         onMouseEnter={(event) => {
-          console.log("hovering started");
+          clearTimeout(delayHandler as NodeJS.Timeout);
+          incrementHoverDepth();
+          console.log(hoverDepth);
           setShowOverlay(true);
         }}
         onMouseLeave={(event) => {
-          console.log("hovering ended");
+          clearTimeout(delayHandler as NodeJS.Timeout);
+          decrementHoverDepth();
           setShowOverlay(false);
         }}
       >

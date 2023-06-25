@@ -5,6 +5,7 @@ import DetailsScreen from "@/components/DetailsScreen";
 import IntentionsList from "@/components/IntentionsList";
 import ActorsProvider from "@/components/context/ActorsContext";
 import DependenciesProvider from "@/components/context/DependenciesContext";
+import HoverDepthProvider from "@/components/context/HoverDepthContext";
 import SelectedIntentionProvider from "@/components/context/SelectedIntentionContext";
 import { AppBar, Container, Toolbar } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -31,7 +32,9 @@ export default function Home() {
                   <IntentionsList />
                 </Grid>
                 <Grid xs={12} md={6}>
-                  <DetailsScreen />
+                  <HoverDepthProvider>
+                    <DetailsScreen />
+                  </HoverDepthProvider>
                 </Grid>
               </Grid>
             </Container>

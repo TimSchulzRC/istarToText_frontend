@@ -1,4 +1,3 @@
-import Actor from "@/types/Actor";
 import {
   combineDependenciesByDependee,
   combineDependenciesByDepender,
@@ -11,10 +10,7 @@ import DependencyText from "./DependencyText";
 import LinkHoverChip from "./LinkHoverChip";
 import { ActorsContext } from "./context/ActorsContext";
 import { DependenciesContext } from "./context/DependenciesContext";
-import {
-  SelectedActorContext,
-  SelectedActorDispatchContext,
-} from "./context/SelectedActorContext";
+import { SelectedActorContext } from "./context/SelectedActorContext";
 
 /**
  * A component that displays the dependencies of an intentional element (goal or task) and the dependencies on it by other actors. It uses the `DependenciesContext`, `ActorsContext`, and `SelectedActorContext` contexts to retrieve the dependencies and actors, and the `SelectedActorDispatchContext` context to update the selected actor. It also uses the `LinkHoverChip` and `DependencyText` components to display the dependencies and actors.
@@ -33,7 +29,6 @@ export default function DependenciesPhrase({
   const dependencies = useContext(DependenciesContext);
   const actors = useContext(ActorsContext);
   const selectedActor = useContext(SelectedActorContext);
-  const setSelectedActor = useContext(SelectedActorDispatchContext);
 
   const requiredDependencies = getRequiredDependencies(
     dependencyIDs,
@@ -129,15 +124,6 @@ export default function DependenciesPhrase({
       )}
     </>
   );
-
-  /**
-   * A function that updates the selected actor in the `SelectedActorDispatchContext` context with the actor that has the specified ID.
-   *
-   * @param actorId - The ID of the actor to set as the selected actor.
-   */
-  function updateSelectedActor(actorId: string) {
-    setSelectedActor(actors.get(actorId) as Actor);
-  }
 
   /**
    * A function that returns true if the element at the specified index is not the first or last element in a list of the specified count.
