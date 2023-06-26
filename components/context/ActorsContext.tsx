@@ -38,7 +38,6 @@ export default function ActorsProvider({
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.actors);
         data.actors.forEach((actor: Actor) =>
           actorsMap.set(actor.id, actor as Actor)
         );

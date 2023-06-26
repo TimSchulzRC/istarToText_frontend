@@ -1,6 +1,5 @@
 import Actor from "@/types/Actor";
-import React, { Dispatch, SetStateAction, useEffect } from "react";
-import { AddHistoryItemContext, HistoryContext } from "./HistoryContext";
+import React, { Dispatch, SetStateAction } from "react";
 
 /**
  * A context that provides the currently selected actor object.
@@ -29,17 +28,6 @@ export default function SelectedActorProvider({
   defaultActor: Actor;
 }) {
   const [selectedActor, setSelectedActor] = React.useState<Actor>(defaultActor);
-  const history = React.useContext(HistoryContext);
-  const addHistoryItem = React.useContext(AddHistoryItemContext);
-
-  useEffect(() => {
-    addHistoryItem(defaultActor);
-  }, []);
-
-  useEffect(() => {
-    addHistoryItem(selectedActor);
-    console.log("History: ", history);
-  }, [selectedActor]);
 
   return (
     <SelectedActorContext.Provider value={selectedActor}>

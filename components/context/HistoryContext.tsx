@@ -29,8 +29,10 @@ export default function HistoryProvider({
    * @param item - The item to add to the history.
    */
   function addHistoryItem(item: Intention | Actor) {
-    console.log("Adding history item: ", item);
+    if (history.length > 0 && history[history.length - 1] === item) return;
+    if (history.length > 0 && history[history.length - 2] === item) return;
     setHistory([...history, item]);
+    console.log("History: ", history);
   }
 
   /**
@@ -40,7 +42,8 @@ export default function HistoryProvider({
    */
   function popHistoryItem() {
     const newHistory = [...history];
-    const item = newHistory.pop();
+    newHistory.pop();
+    const item = newHistory[newHistory.length - 1];
     setHistory(newHistory);
     return item;
   }

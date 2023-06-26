@@ -2,6 +2,7 @@ import Actor from "@/types/Actor";
 import { ListItemButton, ListItemText } from "@mui/material";
 import React from "react";
 import { ActorsContext } from "./context/ActorsContext";
+import { AddHistoryItemContext } from "./context/HistoryContext";
 import {
   SelectedActorContext,
   SelectedActorDispatchContext,
@@ -17,15 +18,18 @@ export default function ActorListItem({ actor }: propTypes) {
   const actors = React.useContext(ActorsContext);
   const selectedActor = React.useContext(SelectedActorContext);
   const setSelectedActor = React.useContext(SelectedActorDispatchContext);
-  const setSelectedIntentionalElement = React.useContext(
+  const setSelectedIntention = React.useContext(
     SelectedIntentionDispatchContext
   );
+  const addHistoryItem = React.useContext(AddHistoryItemContext);
+
   /**
    * Handles the click event on the list item by setting the selected actor and clearing the selected intentional element.
    */
   const clickHandler = () => {
     setSelectedActor(actor);
-    setSelectedIntentionalElement(null);
+    addHistoryItem(actor);
+    setSelectedIntention(null);
   };
 
   let linksTo;

@@ -5,6 +5,7 @@ import { IntentionType } from "@/types/intentionType";
 import { Chip, Paper, Popper } from "@mui/material";
 import React from "react";
 import DetailsScreen from "./DetailsScreen";
+import { AddHistoryItemContext } from "./context/HistoryContext";
 import {
   DecrementHoverDepthContext,
   HoverDepthContext,
@@ -42,6 +43,7 @@ export default function LinkHoverChip({
   const setSelectedIntention = React.useContext(
     SelectedIntentionDispatchContext
   );
+  const addHistoryItem = React.useContext(AddHistoryItemContext);
   const hoverDepth = React.useContext(HoverDepthContext);
   const incrementHoverDepth = React.useContext(IncrementHoverDepthContext);
   const decrementHoverDepth = React.useContext(DecrementHoverDepthContext);
@@ -68,9 +70,11 @@ export default function LinkHoverChip({
           console.log(element);
           if (elementIsActor(element)) {
             setSelectedActor(element as Actor);
+            addHistoryItem(element as Actor);
           }
           if (elementIsIntention(element)) {
             setSelectedIntention(element as Intention);
+            addHistoryItem(element as Intention);
           }
         }}
       />

@@ -1,6 +1,7 @@
 import Intention from "@/types/Intention";
 import React, { Dispatch, SetStateAction, useEffect } from "react";
 import { AddHistoryItemContext } from "./HistoryContext";
+import { SelectedActorContext } from "./SelectedActorContext";
 
 /**
  * A context that provides the currently selected intention object.
@@ -29,10 +30,14 @@ export default function SelectedIntentionProvider({
 }) {
   const [selectedIntention, setSelectedIntention] =
     React.useState<Intention | null>(null);
+  const selectedActor = React.useContext(SelectedActorContext);
   const addHistoryItem = React.useContext(AddHistoryItemContext);
 
   useEffect(() => {
-    if (selectedIntention !== null) addHistoryItem(selectedIntention);
+    if (selectedIntention !== null) {
+      selectedIntention.actor = selectedActor;
+      addHistoryItem(selectedIntention);
+    }
   }, [selectedIntention]);
 
   return (

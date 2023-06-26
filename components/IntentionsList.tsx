@@ -19,6 +19,7 @@ import {
 import React, { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import ListCard from "./cards/ListCard";
+import { AddHistoryItemContext } from "./context/HistoryContext";
 import { SelectedActorContext } from "./context/SelectedActorContext";
 import {
   SelectedIntentionContext,
@@ -33,14 +34,19 @@ import {
 export default function IntentionsList() {
   const selectedActor = React.useContext(SelectedActorContext);
   const selectedIntentionalElement = React.useContext(SelectedIntentionContext);
-  const setSelectedIntentionalElement = React.useContext(
+  const setSelectedIntention = React.useContext(
     SelectedIntentionDispatchContext
   );
+  const addHistoryItem = React.useContext(AddHistoryItemContext);
   const qualities = getQualities();
+  const updateSelectedIntention = (i: Intention) => {
+    setSelectedIntention(i);
+    addHistoryItem(i);
+  };
   const onClickHandler = (element: Intention) => {
     selectedIntentionalElement === element
-      ? setSelectedIntentionalElement(null)
-      : setSelectedIntentionalElement(element);
+      ? setSelectedIntention(null)
+      : updateSelectedIntention(element);
   };
   const [open, setOpen] = React.useState(false);
   const handleClick = () => {

@@ -1,3 +1,4 @@
+import Actor from "./Actor";
 import ModelElement from "./ModelElement";
 import { QualityDirection } from "./Quality";
 import { IntentionType } from "./intentionType";
@@ -38,4 +39,8 @@ export default interface Intention extends ModelElement {
    * An array of strings representing the IDs of the dependencies associated with the intentional element.
    */
   dependencies: string[];
+  /**
+   * The actor the intentional element is associated with.
+   */
+  actor: Actor;
 }

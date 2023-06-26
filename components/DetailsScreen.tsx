@@ -1,9 +1,10 @@
 import Actor from "@/types/Actor";
 import Intention from "@/types/Intention";
 import { Card, CardContent, CardHeader, Typography } from "@mui/material";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import ActorDetails from "./ActorDetails";
 import IntentionDetails from "./IntentionDetails";
+import { AddHistoryItemContext } from "./context/HistoryContext";
 import { SelectedActorContext } from "./context/SelectedActorContext";
 import { SelectedIntentionContext } from "./context/SelectedIntentionContext";
 
@@ -23,6 +24,7 @@ export default function DetailsScreen({
 }) {
   const selectedActor = useContext(SelectedActorContext);
   const selectedIntention = useContext(SelectedIntentionContext);
+  const addHistoryItem = React.useContext(AddHistoryItemContext);
 
   return (
     <Card
