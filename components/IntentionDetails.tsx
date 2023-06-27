@@ -51,7 +51,8 @@ export default function IntentionDetails({
     <>
       <Typography component="div">
         <strong>{selectedIntention.name}</strong> is a{" "}
-        <strong>{selectedIntention.type}</strong>.
+        <strong>{selectedIntention.type}</strong> of{" "}
+        <strong>{selectedActor.name}</strong>.
         <br />
         {selectedIntention.children.length > 0 && (
           <>

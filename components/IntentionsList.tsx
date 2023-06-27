@@ -58,23 +58,48 @@ export default function IntentionsList() {
       setOpen(true);
     }
   }, [selectedIntentionalElement]);
-
+  console.log(qualities[0]);
   return (
     <ListCard title="Intensions">
-      {getAllButQualities().map((element) => (
-        <ListItemButton
-          onClick={() => onClickHandler(element)}
-          key={uuidv4()}
-          selected={element.id === selectedIntentionalElement?.id}
-        >
-          <ListItemIcon>
-            {element.type.toLowerCase() === "goal" && <Flag />}
-            {element.type.toLowerCase() === "task" && <Task />}
-            {element.type.toLowerCase() === "resource" && <Inventory />}
-          </ListItemIcon>
-          <ListItemText primary={element.name} secondary={element.type} />
-        </ListItemButton>
-      ))}
+      {getAllButQualities().map((element) => {
+        const qualities = getQualities().filter((q) =>
+          element.qualities.map((qRef) => qRef.id).includes(q.id)
+        );
+        let qualityText = "";
+        if (qualities.length === 1)
+          qualityText += "that desires the quality " + qualities[0].name + ")";
+        else if (qualities.length > 1) {
+          qualityText += "that desires the qualities ";
+          for (let i = 0; i < qualities.length; i++) {
+            if (i === qualities.length - 1)
+              qualityText += " and " + qualities[i].name;
+            else if (i === 0) qualityText += qualities[i].name;
+            else qualityText += ", " + qualities[i].name;
+          }
+        }
+
+        return (
+          <ListItemButton
+            onClick={() => onClickHandler(element)}
+            key={uuidv4()}
+            selected={element.id === selectedIntentionalElement?.id}
+          >
+            <ListItemIcon>
+              {element.type.toLowerCase() === "goal" && <Flag />}
+              {element.type.toLowerCase() === "task" && <Task />}
+              {element.type.toLowerCase() === "resource" && <Inventory />}
+            </ListItemIcon>
+            <ListItemText
+              primary={element.name}
+              secondary={
+                <>
+                  A <strong>{element.type}</strong> {qualityText}
+                </>
+              }
+            />
+          </ListItemButton>
+        );
+      })}
       <Divider />
       {qualities.length > 0 && (
         <>
@@ -87,18 +112,38 @@ export default function IntentionsList() {
           </ListItemButton>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              {qualities.map((element) => (
-                <ListItemButton
-                  onClick={() => onClickHandler(element)}
-                  key={uuidv4()}
-                  selected={element.id === selectedIntentionalElement?.id}
-                >
-                  <ListItemText
-                    primary={element.name}
-                    // secondary={element.type}
-                  />
-                </ListItemButton>
-              ))}
+              {qualities.map((element) => {
+                const qualities = getQualities().filter((q) =>
+                  element.qualities.map((qRef) => qRef.id).includes(q.id)
+                );
+                let qualityText = "";
+                if (qualities.length === 1)
+                  qualityText +=
+                    "is a desired quality of " + qualities[0].name + ")";
+                else if (qualities.length > 1) {
+                  qualityText += "(desires the qualities ";
+                  for (let i = 0; i < qualities.length; i++) {
+                    if (i === qualities.length - 1)
+                      qualityText += " and " + qualities[i].name;
+                    else if (i === 0) qualityText += qualities[i].name;
+                    else qualityText += ", " + qualities[i].name;
+                  }
+                }
+
+                console.log(qualities);
+                return (
+                  <ListItemButton
+                    onClick={() => onClickHandler(element)}
+                    key={uuidv4()}
+                    selected={element.id === selectedIntentionalElement?.id}
+                  >
+                    <ListItemText
+                      primary={element.name}
+                      secondary={qualityText}
+                    />
+                  </ListItemButton>
+                );
+              })}
             </List>
           </Collapse>
         </>

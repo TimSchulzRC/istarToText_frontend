@@ -1,5 +1,6 @@
 import Quality from "@/types/Quality";
 import { QualityType } from "@/types/qualityType";
+import { getChipColor } from "@/util/DisplayUtil";
 import { elementIsNotFirstOrLast } from "@/util/ElementListUtil";
 import { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -57,26 +58,49 @@ export default function QualityDetails({
     (e) => e.qualityType === QualityType.BREAK
   );
 
+  console.log("Outgoing: ", qualitiesOutgoing);
+  console.log("Incoming: ", qualitiesIncoming);
+
   return (
     <>
       {qualitiesCount > 0 && selectedIntention && (
         <>
-          {qualitiesQualifies.length > 0 && (
-            <>
-              <br />
-              {qualitiesQualifies.map((e, i) => (
-                <span key={uuidv4()}>
-                  <LinkHoverChip label={e.name} color="success" element={e} />{" "}
-                  {elementIsNotFirstOrLast(i, qualitiesQualifies.length) &&
-                    ", "}
-                </span>
-              ))}
-              {qualitiesQualifies.length === 1 ? "qualifies" : "qualify"} how
-              the operation or function of{" "}
-              <strong>{selectedIntention.name}</strong> should be achieved.
-              <br />
-            </>
-          )}
+          {qualitiesQualifies.length > 0 &&
+            (selectedIntention.type === "quality" ? (
+              <>
+                <br />
+                <strong>{selectedIntention.name}</strong> desires{" "}
+                {qualitiesQualifies.map((e, i) => (
+                  <span key={uuidv4()}>
+                    <LinkHoverChip
+                      label={e.name}
+                      color={getChipColor(e.type)}
+                      element={e}
+                    />{" "}
+                    {elementIsNotFirstOrLast(i, qualitiesQualifies.length) &&
+                      ", "}
+                  </span>
+                ))}{" "}
+                .
+                <br />
+              </>
+            ) : (
+              <>
+                <br />
+                {qualitiesQualifies.map((e, i) => (
+                  <span key={uuidv4()}>
+                    <LinkHoverChip label={e.name} color="success" element={e} />{" "}
+                    {elementIsNotFirstOrLast(i, qualitiesQualifies.length) &&
+                      ", "}
+                  </span>
+                ))}
+                {qualitiesQualifies.length === 1
+                  ? "is a desired quality"
+                  : "are desired qualities"}{" "}
+                of <strong>{selectedIntention.name}</strong>.
+                <br />
+              </>
+            ))}
           {qualitiesHelpOutgoing.length > 0 && (
             <QualitiesPhrase
               selectedIntention={selectedIntention}

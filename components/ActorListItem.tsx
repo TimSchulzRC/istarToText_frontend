@@ -35,8 +35,21 @@ export default function ActorListItem({ actor }: propTypes) {
   let linksTo;
   if (actor.linksTo.length !== 0) {
     linksTo = actor.linksTo
-      .map((e) => actors.get(e.id)?.name)
-      .reduce((acc, cur) => acc + ", " + cur);
+      .map((e) => ({
+        name: actors.get(e.id)?.name,
+        type: e.type,
+      }))
+      .reduce((acc, curr) => {
+        const name = curr.name;
+        const type =
+          curr.type === "participates in" ? "participate as" : curr.type;
+
+        if (acc === "") {
+          return type + " " + name;
+        } else {
+          return acc + ", " + type + " " + name;
+        }
+      }, "");
     console.log(linksTo);
     linksTo = " (" + linksTo + ")";
   }

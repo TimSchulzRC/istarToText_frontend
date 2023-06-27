@@ -67,11 +67,8 @@ function getQualityTypeDescriptionPlural(qualityType: QualityType) {
  * @returns A string describing the specified quality type in the incoming direction.
  */
 function getQualityTypeDescriptionIncoming(qualityType: QualityType) {
-  if (qualityType === QualityType.HELP) return " gets weak satisfaction from ";
-  if (qualityType === QualityType.HURT)
-    return " gets weak negative satisfaction from ";
-  if (qualityType === QualityType.MAKE)
-    return " gets sufficient satisfaction from ";
-  if (qualityType === QualityType.BREAK)
-    return " gets sufficient negative satisfaction from ";
+  if (qualityType === QualityType.HELP) return " is somewhat supported by ";
+  if (qualityType === QualityType.HURT) return " is weakened by ";
+  if (qualityType === QualityType.MAKE) return " is strongly supported by ";
+  if (qualityType === QualityType.BREAK) return " is contradicted by ";
 }
