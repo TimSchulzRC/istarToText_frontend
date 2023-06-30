@@ -1,6 +1,7 @@
 import Intention from "@/types/Intention";
 import Quality from "@/types/Quality";
 import { IntentionType } from "@/types/intentionType";
+import { getChipColor } from "@/util/DisplayUtil";
 import { elementIsLast, elementIsNotFirstOrLast } from "@/util/ElementListUtil";
 import { Typography } from "@mui/material";
 import { useContext } from "react";
@@ -47,6 +48,10 @@ export default function IntentionDetails({
     ...(selectedActor.elements.find((e) => q.id === e.id) as Intention),
   }));
 
+  const parent: Intention | undefined = selectedActor.elements.find(
+    (e) => e.id === selectedIntention.parent
+  );
+
   return (
     <>
       <Typography component="div">
@@ -54,6 +59,17 @@ export default function IntentionDetails({
         <strong>{selectedIntention.type}</strong> of{" "}
         <strong>{selectedActor.name}</strong>.
         <br />
+        {parent && (
+          <>
+            It is a sub-{selectedIntention.type} of{" "}
+            <LinkHoverChip
+              color={getChipColor(parent.type)}
+              label={parent.name}
+              element={parent}
+            />
+            .<br />
+          </>
+        )}
         {selectedIntention.children.length > 0 && (
           <>
             <br />
