@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/DependenciesPhrase.tsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/DependenciesPhrase.tsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {
+  combineDependenciesByDependee,
+  combineDependenciesByDepender,
+  getRequiredDependencies,
+  getRequiringDependencies,
+} from "@/util/DependencyUtil";
+import React, { useContext } from "react";
+import { v4 as uuidv4 } from "uuid";
+import DependencyText from "./DependencyText";
+import LinkHoverChip from "./LinkHoverChip";
+import { ActorsContext } from "./context/ActorsContext";
+import { DependenciesContext } from "./context/DependenciesContext";
+import { SelectedActorContext } from "./context/SelectedActorContext";
+
+/**
+ * A component that displays the dependencies of an intentional element (goal or task) and the dependencies on it by other actors. It uses the `DependenciesContext`, `ActorsContext`, and `SelectedActorContext` contexts to retrieve the dependencies and actors, and the `SelectedActorDispatchContext` context to update the selected actor. It also uses the `LinkHoverChip` and `DependencyText` components to display the dependencies and actors.
+ *
+ * @param dependencyIDs - The IDs of the dependencies of the intentional element.
+ * @param elementName - The name of the intentional element.
+ * @returns A JSX element that displays the dependencies of an intentional element (goal or task) and the dependencies on it by other actors.
+ */
+export default function DependenciesPhrase({
+  dependencyIDs,
+  elementName,
+}: {
+  dependencyIDs: string[];
+  elementName: string;
+}) {
+  const dependencies = useContext(DependenciesContext);
+  const actors = useContext(ActorsContext);
+  const selectedActor = useContext(SelectedActorContext);
+
+  const requiredDependencies = getRequiredDependencies(
+    dependencyIDs,
+    dependencies,
+    selectedActor
+  );
+  const combinedRequiredDependencies = combineDependenciesByDependee(
+    requiredDependencies,
+    actors
+  );
+  const requiringDependencies = getRequiringDependencies(
+    dependencyIDs,
+    dependencies,
+    selectedActor
+  );
+  const combinedRequiringDependencies = combineDependenciesByDepender(
+    requiringDependencies,
+    actors
+  );
+
+  const requiredCount = requiredDependencies.length;
+  const requiringCount = requiringDependencies.length;
+
+  return (
+    &lt;>
+      {requiredCount > 0 &amp;&amp; (
+        &lt;>
+          &lt;br />
+          &lt;strong>{elementName}&lt;/strong> has{" "}
+          &lt;strong>{numberText(requiredCount)}&lt;/strong>{" "}
+          {requiredCount === 1 ? "dependency" : "dependencies"}.
+          &lt;br />
+          &lt;strong>{elementName}&lt;/strong> depends on{" "}
+          {combinedRequiredDependencies.map((da, i) => (
+            &lt;span key={uuidv4()}>
+              {elementIsNotFirstOrLast(
+                i,
+                combinedRequiredDependencies.length
+              ) &amp;&amp; ", on "}
+              {elementIsLast(i, combinedRequiredDependencies.length) &amp;&amp;
+                " and on "}
+              &lt;LinkHoverChip
+                label={da.actorName}
+                element={actors.get(da.id)}
+                color="primary"
+              />{" "}
+            &lt;/span>
+          ))}
+          . &lt;br />
+          {combinedRequiredDependencies.map((da, i) => (
+            &lt;React.Fragment key={uuidv4()}>
+              &lt;LinkHoverChip
+                label={da.actorName}
+                element={actors.get(da.id)}
+                color="primary"
+              />{" "}
+              has to:
+              {da.dependencies.map((d, i) => (
+                &lt;DependencyText dependency={d} showPrefix key={uuidv4()} />
+              ))}
+            &lt;/React.Fragment>
+          ))}
+          &lt;br />
+        &lt;/>
+      )}
+      {requiringCount > 0 &amp;&amp; (
+        &lt;>
+          &lt;br />
+          There {requiringCount > 1 ? "are" : "is"}{" "}
+          &lt;strong>{numberText(requiringCount)}&lt;/strong>{" "}
+          {requiringCount === 1 ? "dependency" : "dependencies"} where other
+          actors depend on &lt;strong>{elementName}&lt;/strong> to achieve a goal,
+          complete a task, ensure a quality or provide a resource.
+          &lt;br />
+          {combinedRequiringDependencies.map((da, i) => (
+            &lt;React.Fragment key={uuidv4()}>
+              &lt;br />
+              &lt;span key={uuidv4()}>
+                &lt;LinkHoverChip
+                  label={da.actorName}
+                  element={actors.get(da.id)}
+                  color="primary"
+                />{" "}
+                depends on:
+                {da.dependencies.map((d, i) => (
+                  &lt;DependencyText dependency={d} key={uuidv4()} />
+                ))}
+              &lt;/span>
+            &lt;/React.Fragment>
+          ))}
+          &lt;br />
+        &lt;/>
+      )}
+    &lt;/>
+  );
+
+  /**
+   * A function that returns true if the element at the specified index is not the first or last element in a list of the specified count.
+   *
+   * @param index - The index of the element to check.
+   * @param count - The total number of elements in the list.
+   * @returns True if the element at the specified index is not the first or last element in a list of the specified count, false otherwise.
+   */
+  function elementIsNotFirstOrLast(index: number, count: number) {
+    return count > 1 &amp;&amp; index > 0 &amp;&amp; index &lt; count - 2;
+  }
+
+  /**
+   * A function that returns true if the element at the specified index is the last element in a list of the specified count.
+   *
+   * @param index - The index of the element to check.
+   * @param count - The total number of elements in the list.
+   * @returns True if the element at the specified index is the last element in a list of the specified count, false otherwise.
+   */
+  function elementIsLast(index: number, count: number) {
+    return index > 0 &amp;&amp; index === count - 1;
+  }
+
+  /**
+   * A function that returns the text representation of a number as a word, for numbers 1 to 3, or as the number itself for other numbers.
+   *
+   * @param n - The number to convert to text.
+   * @returns The text representation of the number as a word, for numbers 1 to 3, or as the number itself for other numbers.
+   */
+  function numberText(n: number) {
+    if (n === 1) return "one";
+    if (n === 2) return "two";
+    if (n === 3) return "three";
+    return n;
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Interfaces</h3><ul><li><a href="Actor.html">Actor</a></li><li><a href="Dependency.html">Dependency</a></li><li><a href="Intention.html">Intention</a></li><li><a href="ModelElement.html">ModelElement</a></li><li><a href="Quality.html">Quality</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ActorType">ActorType</a></li><li><a href="global.html#ActorsContext">ActorsContext</a></li><li><a href="global.html#ConnectionType">ConnectionType</a></li><li><a href="global.html#DependenciesContext">DependenciesContext</a></li><li><a href="global.html#ExpandMore">ExpandMore</a></li><li><a href="global.html#IntentionType">IntentionType</a></li><li><a href="global.html#QualityType">QualityType</a></li><li><a href="global.html#SelectedActorContext">SelectedActorContext</a></li><li><a href="global.html#SelectedActorDispatchContext">SelectedActorDispatchContext</a></li><li><a href="global.html#SelectedIntentionContext">SelectedIntentionContext</a></li><li><a href="global.html#SelectedIntentionDispatchContext">SelectedIntentionDispatchContext</a></li><li><a href="global.html#capitalizeFirstLetter">capitalizeFirstLetter</a></li><li><a href="global.html#combineDependenciesByDependee">combineDependenciesByDependee</a></li><li><a href="global.html#combineDependenciesByDepender">combineDependenciesByDepender</a></li><li><a href="global.html#elementIsActor">elementIsActor</a></li><li><a href="global.html#elementIsIntention">elementIsIntention</a></li><li><a href="global.html#elementIsLast">elementIsLast</a></li><li><a href="global.html#elementIsNotFirstOrLast">elementIsNotFirstOrLast</a></li><li><a href="global.html#getActorTypeDescription">getActorTypeDescription</a></li><li><a href="global.html#getChipColor">getChipColor</a></li><li><a href="global.html#getConnectionTypeDescription">getConnectionTypeDescription</a></li><li><a href="global.html#getIntentionTypeDescription">getIntentionTypeDescription</a></li><li><a href="global.html#getQualityTypeDescription">getQualityTypeDescription</a></li><li><a href="global.html#getQualityTypeDescriptionIncoming">getQualityTypeDescriptionIncoming</a></li><li><a href="global.html#getQualityTypeDescriptionPlural">getQualityTypeDescriptionPlural</a></li><li><a href="global.html#getRequiredDependencies">getRequiredDependencies</a></li><li><a href="global.html#getRequiringDependencies">getRequiringDependencies</a></li><li><a href="global.html#numberToText">numberToText</a></li><li><a href="global.html#splitElementsByType">splitElementsByType</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Jul 04 2023 12:30:47 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

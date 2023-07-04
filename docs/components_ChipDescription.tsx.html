@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/ChipDescription.tsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/ChipDescription.tsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { Chip, Divider, Popover, Stack, Typography } from "@mui/material";
+import React from "react";
+
+/**
+ * A component that displays the details of an actor, including its name, type, description, links to other actors, intentions, and dependencies.
+ *
+ * @param actor - The actor object to display details for.
+ */
+export default function ChipDescription() {
+  const [anchorEl, setAnchorEl] = React.useState&lt;HTMLDivElement | null>(null);
+  const [popoverContent, setPopoverContent] = React.useState&lt;string>("");
+
+  const handleClick = (event: React.MouseEvent&lt;HTMLDivElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+
+  return (
+    &lt;>
+      &lt;Stack direction="row" spacing={1}>
+        &lt;Typography variant="h5">Legende:&lt;/Typography>
+        &lt;Chip
+          label="Actor"
+          color="primary"
+          onClick={(e) => {
+            setPopoverContent(
+              "Actors are active entities like persons, groups or systems. Their objective is to accomplish their own goals or contribute to the achievement of other goals. To provide a more detailed description, actors can be further characterized as agents or roles."
+            );
+            handleClick(e);
+          }}
+        />
+        &lt;Chip
+          label="Agent"
+          color="primary"
+          onClick={(e) => {
+            setPopoverContent(
+              "Agents are specific actors within the system that can perform actions or make decisions. They have concrete manifestations, like humans, organizations or departments. Examples: Inventory Management System, Mike White"
+            );
+            handleClick(e);
+          }}
+        />
+        &lt;Chip
+          label="Role"
+          color="primary"
+          onClick={(e) => {
+            setPopoverContent(
+              "Roles describe particular functions or responsibilities that actors can assume. They can be seen as jobs, that group actors together. Examples: Customer, Delivery Driver"
+            );
+            handleClick(e);
+          }}
+        />
+        &lt;Divider orientation="vertical" flexItem />
+        &lt;Chip
+          label="Goal"
+          color="warning"
+          onClick={(e) => {
+            setPopoverContent(
+              "Goals are the desired outcomes actors want to achieve within the system. They have well-defined criteria of achievement. Examples: Get Delivery, Organize Inventory"
+            );
+            handleClick(e);
+          }}
+        />
+        &lt;Chip
+          label="Task"
+          color="secondary"
+          onClick={(e) => {
+            setPopoverContent(
+              "Tasks are specific actions or activities performed by actors. They usually have the purpose of achieving some goal. Examples: Place Order, Process Payment"
+            );
+            handleClick(e);
+          }}
+        />
+        &lt;Chip
+          label="Quality"
+          color="success"
+          onClick={(e) => {
+            setPopoverContent(
+              "Qualities refer to characteristics that actors aim to achieve to a certain extent. They can be defined precisely or vague. Examples: Profit, Fast Delivery"
+            );
+            handleClick(e);
+          }}
+        />
+        &lt;Chip
+          label="Ressource"
+          onClick={(e) => {
+            setPopoverContent(
+              "Resources are physical or informational entities that actors need in order to perform a task. Examples: Customer Database, Wallet"
+            );
+            handleClick(e);
+          }}
+        />
+      &lt;/Stack>
+      &lt;Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+      >
+        &lt;Typography sx={{ p: 2, width: 300 }}>{popoverContent}&lt;/Typography>
+      &lt;/Popover>
+    &lt;/>
+  );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Interfaces</h3><ul><li><a href="Actor.html">Actor</a></li><li><a href="Dependency.html">Dependency</a></li><li><a href="Intention.html">Intention</a></li><li><a href="ModelElement.html">ModelElement</a></li><li><a href="Quality.html">Quality</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ActorType">ActorType</a></li><li><a href="global.html#ActorsContext">ActorsContext</a></li><li><a href="global.html#ConnectionType">ConnectionType</a></li><li><a href="global.html#DependenciesContext">DependenciesContext</a></li><li><a href="global.html#ExpandMore">ExpandMore</a></li><li><a href="global.html#IntentionType">IntentionType</a></li><li><a href="global.html#QualityType">QualityType</a></li><li><a href="global.html#SelectedActorContext">SelectedActorContext</a></li><li><a href="global.html#SelectedActorDispatchContext">SelectedActorDispatchContext</a></li><li><a href="global.html#SelectedIntentionContext">SelectedIntentionContext</a></li><li><a href="global.html#SelectedIntentionDispatchContext">SelectedIntentionDispatchContext</a></li><li><a href="global.html#capitalizeFirstLetter">capitalizeFirstLetter</a></li><li><a href="global.html#combineDependenciesByDependee">combineDependenciesByDependee</a></li><li><a href="global.html#combineDependenciesByDepender">combineDependenciesByDepender</a></li><li><a href="global.html#elementIsActor">elementIsActor</a></li><li><a href="global.html#elementIsIntention">elementIsIntention</a></li><li><a href="global.html#elementIsLast">elementIsLast</a></li><li><a href="global.html#elementIsNotFirstOrLast">elementIsNotFirstOrLast</a></li><li><a href="global.html#getActorTypeDescription">getActorTypeDescription</a></li><li><a href="global.html#getChipColor">getChipColor</a></li><li><a href="global.html#getConnectionTypeDescription">getConnectionTypeDescription</a></li><li><a href="global.html#getIntentionTypeDescription">getIntentionTypeDescription</a></li><li><a href="global.html#getQualityTypeDescription">getQualityTypeDescription</a></li><li><a href="global.html#getQualityTypeDescriptionIncoming">getQualityTypeDescriptionIncoming</a></li><li><a href="global.html#getQualityTypeDescriptionPlural">getQualityTypeDescriptionPlural</a></li><li><a href="global.html#getRequiredDependencies">getRequiredDependencies</a></li><li><a href="global.html#getRequiringDependencies">getRequiringDependencies</a></li><li><a href="global.html#numberToText">numberToText</a></li><li><a href="global.html#splitElementsByType">splitElementsByType</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Jul 04 2023 12:30:47 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

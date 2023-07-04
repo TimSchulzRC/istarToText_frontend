@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/IntentionsPhrase.tsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/IntentionsPhrase.tsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Actor from "@/types/Actor";
+import { IntentionType } from "@/types/intentionType";
+import IeListTextPhrase from "./IeListTextPhrase";
+
+/**
+ * A component that displays a phrase summarizing the intentional elements of a specified actor, including goals, tasks, resources, and qualities.
+ *
+ * @param actor - The actor whose intentional elements to summarize.
+ * @returns A JSX element that displays a phrase summarizing the intentional elements of a specified actor, including goals, tasks, resources, and qualities.
+ */
+export default function IntentionsPhrase({ actor }: { actor: Actor }) {
+  const { goalElements, taskElements, resourceElements, qualityElements } =
+    splitElementsByType(actor.elements);
+  const goalCount = goalElements.length;
+  const taskCount = taskElements.length;
+  const resourceCount = resourceElements.length;
+  const qualityCount = qualityElements.length;
+
+  return (
+    &lt;>
+      &lt;br />
+      &lt;strong>{actor.name}&lt;/strong> has the{" "}
+      {goalCount > 0 &amp;&amp; (
+        &lt;IeListTextPhrase
+          elements={goalElements}
+          type={IntentionType.GOAL}
+          typePlural="Goals"
+        />
+      )}
+      {taskCount > 0 &amp;&amp; (
+        &lt;>
+          {goalCount > 0 &amp;&amp; " and "}
+          &lt;IeListTextPhrase
+            elements={taskElements}
+            type={IntentionType.TASK}
+            typePlural="Tasks"
+          />
+        &lt;/>
+      )}
+      {/* {"."} */}
+      {resourceCount > 0 &amp;&amp; (
+        &lt;>
+          &lt;br />
+          &lt;strong>{actor.name}&lt;/strong> needs the{" "}
+          &lt;IeListTextPhrase
+            elements={resourceElements}
+            type={IntentionType.RESOURCE}
+            typePlural="Resources"
+          />
+        &lt;/>
+      )}
+      {qualityCount > 0 &amp;&amp; (
+        &lt;>
+          &lt;br />
+          &lt;strong>{actor.name}&lt;/strong> also wants to ensure{" "}
+          &lt;IeListTextPhrase
+            elements={qualityElements}
+            type={IntentionType.QUALITY}
+            typePlural="Qualities"
+          />
+        &lt;/>
+      )}
+      &lt;br />
+    &lt;/>
+  );
+}
+
+/**
+ * A function that splits an array of intentional elements into separate arrays by type.
+ *
+ * @param elements - The array of intentional elements to split.
+ * @returns An object containing separate arrays of intentional elements by type.
+ */
+function splitElementsByType(elements: any[]) {
+  const goalElements = elements.filter(
+    (element) => element.type === IntentionType.GOAL
+  );
+  const taskElements = elements.filter(
+    (element) => element.type === IntentionType.TASK
+  );
+  const resourceElements = elements.filter(
+    (element) => element.type === IntentionType.RESOURCE
+  );
+  const qualityElements = elements.filter(
+    (element) => element.type === IntentionType.QUALITY
+  );
+  return {
+    goalElements,
+    taskElements,
+    resourceElements,
+    qualityElements,
+  };
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Interfaces</h3><ul><li><a href="Actor.html">Actor</a></li><li><a href="Dependency.html">Dependency</a></li><li><a href="Intention.html">Intention</a></li><li><a href="ModelElement.html">ModelElement</a></li><li><a href="Quality.html">Quality</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ActorType">ActorType</a></li><li><a href="global.html#ActorsContext">ActorsContext</a></li><li><a href="global.html#ConnectionType">ConnectionType</a></li><li><a href="global.html#DependenciesContext">DependenciesContext</a></li><li><a href="global.html#ExpandMore">ExpandMore</a></li><li><a href="global.html#IntentionType">IntentionType</a></li><li><a href="global.html#QualityType">QualityType</a></li><li><a href="global.html#SelectedActorContext">SelectedActorContext</a></li><li><a href="global.html#SelectedActorDispatchContext">SelectedActorDispatchContext</a></li><li><a href="global.html#SelectedIntentionContext">SelectedIntentionContext</a></li><li><a href="global.html#SelectedIntentionDispatchContext">SelectedIntentionDispatchContext</a></li><li><a href="global.html#capitalizeFirstLetter">capitalizeFirstLetter</a></li><li><a href="global.html#combineDependenciesByDependee">combineDependenciesByDependee</a></li><li><a href="global.html#combineDependenciesByDepender">combineDependenciesByDepender</a></li><li><a href="global.html#elementIsActor">elementIsActor</a></li><li><a href="global.html#elementIsIntention">elementIsIntention</a></li><li><a href="global.html#elementIsLast">elementIsLast</a></li><li><a href="global.html#elementIsNotFirstOrLast">elementIsNotFirstOrLast</a></li><li><a href="global.html#getActorTypeDescription">getActorTypeDescription</a></li><li><a href="global.html#getChipColor">getChipColor</a></li><li><a href="global.html#getConnectionTypeDescription">getConnectionTypeDescription</a></li><li><a href="global.html#getIntentionTypeDescription">getIntentionTypeDescription</a></li><li><a href="global.html#getQualityTypeDescription">getQualityTypeDescription</a></li><li><a href="global.html#getQualityTypeDescriptionIncoming">getQualityTypeDescriptionIncoming</a></li><li><a href="global.html#getQualityTypeDescriptionPlural">getQualityTypeDescriptionPlural</a></li><li><a href="global.html#getRequiredDependencies">getRequiredDependencies</a></li><li><a href="global.html#getRequiringDependencies">getRequiringDependencies</a></li><li><a href="global.html#numberToText">numberToText</a></li><li><a href="global.html#splitElementsByType">splitElementsByType</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Jul 04 2023 12:30:47 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/QualityDetails.tsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/QualityDetails.tsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Quality from "@/types/Quality";
+import { QualityType } from "@/types/qualityType";
+import { getChipColor } from "@/util/DisplayUtil";
+import { elementIsNotFirstOrLast } from "@/util/ElementListUtil";
+import { useContext } from "react";
+import { v4 as uuidv4 } from "uuid";
+import LinkHoverChip from "./LinkHoverChip";
+import QualitiesPhrase from "./QualitiesPhrase";
+import { SelectedIntentionContext } from "./context/SelectedIntentionContext";
+
+/**
+ * A component that displays the details of a list of qualities, including the type and direction of the qualities, and how they relate to a selected intentional element.
+ *
+ * @param qualities - The list of qualities to display.
+ * @returns A JSX element that displays the details of a list of qualities, including the type and direction of the qualities, and how they relate to a selected intentional element.
+ */
+export default function QualityDetails({
+  qualities,
+}: {
+  qualities: Quality[];
+}) {
+  const selectedIntention = useContext(SelectedIntentionContext);
+  const qualitiesCount = qualities.length;
+  const qualitiesQualifies = qualities.filter(
+    (e) => e.qualityType === QualityType.QUALIFY
+  );
+  const qualitiesOutgoing: Quality[] = qualities.filter(
+    (e) => e.direction === "outgoing"
+  );
+
+  const qualitiesIncoming: Quality[] = qualities.filter(
+    (e) => e.direction === "incoming"
+  );
+
+  const qualitiesHelpOutgoing = qualitiesOutgoing.filter(
+    (e) => e.qualityType === QualityType.HELP
+  );
+  const qualitiesMakeOutgoing = qualitiesOutgoing.filter(
+    (e) => e.qualityType === QualityType.MAKE
+  );
+  const qualitiesHurtOutgoing = qualitiesOutgoing.filter(
+    (e) => e.qualityType === QualityType.HURT
+  );
+  const qualitiesBreaksOutgoing = qualitiesOutgoing.filter(
+    (e) => e.qualityType === QualityType.BREAK
+  );
+
+  const qualitiesHelpIncoming = qualitiesIncoming.filter(
+    (e) => e.qualityType === QualityType.HELP
+  );
+  const qualitiesMakeIncoming = qualitiesIncoming.filter(
+    (e) => e.qualityType === QualityType.MAKE
+  );
+  const qualitiesHurtIncoming = qualitiesIncoming.filter(
+    (e) => e.qualityType === QualityType.HURT
+  );
+  const qualitiesBreaksIncoming = qualitiesIncoming.filter(
+    (e) => e.qualityType === QualityType.BREAK
+  );
+
+  console.log("Outgoing: ", qualitiesOutgoing);
+  console.log("Incoming: ", qualitiesIncoming);
+
+  return (
+    &lt;>
+      {qualitiesCount > 0 &amp;&amp; selectedIntention &amp;&amp; (
+        &lt;>
+          {qualitiesQualifies.length > 0 &amp;&amp;
+            (selectedIntention.type === "quality" ? (
+              &lt;>
+                &lt;br />
+                &lt;strong>{selectedIntention.name}&lt;/strong> desires{" "}
+                {qualitiesQualifies.map((e, i) => (
+                  &lt;span key={uuidv4()}>
+                    &lt;LinkHoverChip
+                      label={e.name}
+                      color={getChipColor(e.type)}
+                      element={e}
+                    />{" "}
+                    {elementIsNotFirstOrLast(i, qualitiesQualifies.length) &amp;&amp;
+                      ", "}
+                  &lt;/span>
+                ))}{" "}
+                .
+                &lt;br />
+              &lt;/>
+            ) : (
+              &lt;>
+                &lt;br />
+                {qualitiesQualifies.map((e, i) => (
+                  &lt;span key={uuidv4()}>
+                    &lt;LinkHoverChip label={e.name} color="success" element={e} />{" "}
+                    {elementIsNotFirstOrLast(i, qualitiesQualifies.length) &amp;&amp;
+                      ", "}
+                  &lt;/span>
+                ))}
+                {qualitiesQualifies.length === 1
+                  ? "is a desired quality"
+                  : "are desired qualities"}{" "}
+                of &lt;strong>{selectedIntention.name}&lt;/strong>.
+                &lt;br />
+              &lt;/>
+            ))}
+          {qualitiesHelpOutgoing.length > 0 &amp;&amp; (
+            &lt;QualitiesPhrase
+              selectedIntention={selectedIntention}
+              qualities={qualitiesHelpOutgoing}
+              qualityType={QualityType.HELP}
+              qualityDirection="outgoing"
+            />
+          )}
+          {qualitiesMakeOutgoing.length > 0 &amp;&amp; (
+            &lt;QualitiesPhrase
+              selectedIntention={selectedIntention}
+              qualities={qualitiesMakeOutgoing}
+              qualityType={QualityType.MAKE}
+              qualityDirection="outgoing"
+            />
+          )}
+          {qualitiesHurtOutgoing.length > 0 &amp;&amp; (
+            &lt;QualitiesPhrase
+              selectedIntention={selectedIntention}
+              qualities={qualitiesHurtOutgoing}
+              qualityType={QualityType.HURT}
+              qualityDirection="outgoing"
+            />
+          )}
+          {qualitiesBreaksOutgoing.length > 0 &amp;&amp; (
+            &lt;QualitiesPhrase
+              selectedIntention={selectedIntention}
+              qualities={qualitiesBreaksOutgoing}
+              qualityType={QualityType.BREAK}
+              qualityDirection="outgoing"
+            />
+          )}
+          {qualitiesHelpIncoming.length > 0 &amp;&amp; (
+            &lt;QualitiesPhrase
+              selectedIntention={selectedIntention}
+              qualities={qualitiesHelpIncoming}
+              qualityType={QualityType.HELP}
+              qualityDirection="incoming"
+            />
+          )}
+          {qualitiesMakeIncoming.length > 0 &amp;&amp; (
+            &lt;QualitiesPhrase
+              selectedIntention={selectedIntention}
+              qualities={qualitiesMakeIncoming}
+              qualityType={QualityType.MAKE}
+              qualityDirection="incoming"
+            />
+          )}
+          {qualitiesHurtIncoming.length > 0 &amp;&amp; (
+            &lt;QualitiesPhrase
+              selectedIntention={selectedIntention}
+              qualities={qualitiesHurtIncoming}
+              qualityType={QualityType.HURT}
+              qualityDirection="incoming"
+            />
+          )}
+          {qualitiesBreaksIncoming.length > 0 &amp;&amp; (
+            &lt;QualitiesPhrase
+              selectedIntention={selectedIntention}
+              qualities={qualitiesBreaksIncoming}
+              qualityType={QualityType.BREAK}
+              qualityDirection="incoming"
+            />
+          )}
+        &lt;/>
+      )}
+    &lt;/>
+  );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Interfaces</h3><ul><li><a href="Actor.html">Actor</a></li><li><a href="Dependency.html">Dependency</a></li><li><a href="Intention.html">Intention</a></li><li><a href="ModelElement.html">ModelElement</a></li><li><a href="Quality.html">Quality</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ActorType">ActorType</a></li><li><a href="global.html#ActorsContext">ActorsContext</a></li><li><a href="global.html#ConnectionType">ConnectionType</a></li><li><a href="global.html#DependenciesContext">DependenciesContext</a></li><li><a href="global.html#ExpandMore">ExpandMore</a></li><li><a href="global.html#IntentionType">IntentionType</a></li><li><a href="global.html#QualityType">QualityType</a></li><li><a href="global.html#SelectedActorContext">SelectedActorContext</a></li><li><a href="global.html#SelectedActorDispatchContext">SelectedActorDispatchContext</a></li><li><a href="global.html#SelectedIntentionContext">SelectedIntentionContext</a></li><li><a href="global.html#SelectedIntentionDispatchContext">SelectedIntentionDispatchContext</a></li><li><a href="global.html#capitalizeFirstLetter">capitalizeFirstLetter</a></li><li><a href="global.html#combineDependenciesByDependee">combineDependenciesByDependee</a></li><li><a href="global.html#combineDependenciesByDepender">combineDependenciesByDepender</a></li><li><a href="global.html#elementIsActor">elementIsActor</a></li><li><a href="global.html#elementIsIntention">elementIsIntention</a></li><li><a href="global.html#elementIsLast">elementIsLast</a></li><li><a href="global.html#elementIsNotFirstOrLast">elementIsNotFirstOrLast</a></li><li><a href="global.html#getActorTypeDescription">getActorTypeDescription</a></li><li><a href="global.html#getChipColor">getChipColor</a></li><li><a href="global.html#getConnectionTypeDescription">getConnectionTypeDescription</a></li><li><a href="global.html#getIntentionTypeDescription">getIntentionTypeDescription</a></li><li><a href="global.html#getQualityTypeDescription">getQualityTypeDescription</a></li><li><a href="global.html#getQualityTypeDescriptionIncoming">getQualityTypeDescriptionIncoming</a></li><li><a href="global.html#getQualityTypeDescriptionPlural">getQualityTypeDescriptionPlural</a></li><li><a href="global.html#getRequiredDependencies">getRequiredDependencies</a></li><li><a href="global.html#getRequiringDependencies">getRequiringDependencies</a></li><li><a href="global.html#numberToText">numberToText</a></li><li><a href="global.html#splitElementsByType">splitElementsByType</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Jul 04 2023 12:30:47 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

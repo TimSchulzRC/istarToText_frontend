@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: util/DependencyUtil.ts</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: util/DependencyUtil.ts</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Actor from "@/types/Actor";
+import Dependency from "@/types/Dependency";
+import { IntentionType } from "@/types/intentionType";
+
+/**
+ * A function that combines dependencies by depender and returns an array of objects representing the combined dependencies.
+ *
+ * @param dependencies - An array of dependencies to be combined.
+ * @param actors - A map of actors in the system.
+ * @returns An array of objects representing the combined dependencies.
+ */
+export function combineDependenciesByDepender(
+  dependencies: Dependency[],
+  actors: Map&lt;string, Actor>
+) {
+  const combinedDependencies: Map&lt;
+    string,
+    {
+      id: string;
+      actorName: string;
+      dependencies: { name: string; type: IntentionType }[];
+    }
+  > = new Map();
+  dependencies.forEach((d) => {
+    if (!combinedDependencies.get(d.depender)) {
+      combinedDependencies.set(d.depender, {
+        id: d.depender,
+        actorName: actors.get(d.depender)?.name || "",
+        dependencies: [{ name: d.name, type: d.type }],
+      });
+    } else {
+      combinedDependencies.get(d.depender)?.dependencies.push({
+        name: d.name,
+        type: d.type,
+      });
+    }
+  });
+
+  return Array.from(combinedDependencies.values());
+}
+
+/**
+ * A function that returns an array of required dependencies for the specified actor, given an array of dependency IDs and a map of dependencies.
+ *
+ * @param dependencyIDs - An array of dependency IDs.
+ * @param dependencies - A map of dependencies.
+ * @param actor - The actor for which to retrieve the required dependencies.
+ * @returns An array of required dependencies for the specified actor.
+ */
+export function getRequiredDependencies(
+  dependencyIDs: string[],
+  dependencies: Map&lt;string, Dependency>,
+  actor: Actor
+) {
+  return dependencyIDs
+    .filter((e) => dependencies.get(e)?.dependee !== actor.id)
+    .map((e) => dependencies.get(e)) as Dependency[];
+}
+
+/**
+ * A function that returns an array of requiring dependencies for the specified actor, given an array of dependency IDs and a map of dependencies.
+ *
+ * @param dependencyIDs - An array of dependency IDs.
+ * @param dependencies - A map of dependencies.
+ * @param actor - The actor for which to retrieve the requiring dependencies.
+ * @returns An array of requiring dependencies for the specified actor.
+ */
+export function getRequiringDependencies(
+  dependencyIDs: string[],
+  dependencies: Map&lt;string, Dependency>,
+  actor: Actor
+) {
+  return dependencyIDs
+    .filter((e) => dependencies.get(e)?.dependee === actor.id)
+    .map((e) => dependencies.get(e)) as Dependency[];
+}
+
+/**
+ * A function that combines dependencies by dependee and returns an array of objects representing the combined dependencies.
+ *
+ * @param dependencies - An array of dependencies to be combined.
+ * @param actors - A map of actors in the system.
+ * @returns An array of objects representing the combined dependencies.
+ */
+export function combineDependenciesByDependee(
+  dependencies: Dependency[],
+  actors: Map&lt;string, Actor>
+) {
+  const combinedDependencies: Map&lt;
+    string,
+    {
+      id: string;
+      actorName: string;
+      dependencies: { name: string; type: IntentionType }[];
+    }
+  > = new Map();
+  dependencies?.forEach((d) => {
+    if (!d?.dependee) return;
+    if (!combinedDependencies.get(d.dependee)) {
+      combinedDependencies.set(d.dependee, {
+        id: d.dependee,
+        actorName: actors.get(d.dependee)?.name || "",
+        dependencies: [{ name: d.name, type: d.type }],
+      });
+    } else {
+      combinedDependencies.get(d.dependee)?.dependencies.push({
+        name: d.name,
+        type: d.type,
+      });
+    }
+  });
+
+  return Array.from(combinedDependencies.values());
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Interfaces</h3><ul><li><a href="Actor.html">Actor</a></li><li><a href="Dependency.html">Dependency</a></li><li><a href="Intention.html">Intention</a></li><li><a href="ModelElement.html">ModelElement</a></li><li><a href="Quality.html">Quality</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ActorType">ActorType</a></li><li><a href="global.html#ActorsContext">ActorsContext</a></li><li><a href="global.html#ConnectionType">ConnectionType</a></li><li><a href="global.html#DependenciesContext">DependenciesContext</a></li><li><a href="global.html#ExpandMore">ExpandMore</a></li><li><a href="global.html#IntentionType">IntentionType</a></li><li><a href="global.html#QualityType">QualityType</a></li><li><a href="global.html#SelectedActorContext">SelectedActorContext</a></li><li><a href="global.html#SelectedActorDispatchContext">SelectedActorDispatchContext</a></li><li><a href="global.html#SelectedIntentionContext">SelectedIntentionContext</a></li><li><a href="global.html#SelectedIntentionDispatchContext">SelectedIntentionDispatchContext</a></li><li><a href="global.html#capitalizeFirstLetter">capitalizeFirstLetter</a></li><li><a href="global.html#combineDependenciesByDependee">combineDependenciesByDependee</a></li><li><a href="global.html#combineDependenciesByDepender">combineDependenciesByDepender</a></li><li><a href="global.html#elementIsActor">elementIsActor</a></li><li><a href="global.html#elementIsIntention">elementIsIntention</a></li><li><a href="global.html#elementIsLast">elementIsLast</a></li><li><a href="global.html#elementIsNotFirstOrLast">elementIsNotFirstOrLast</a></li><li><a href="global.html#getActorTypeDescription">getActorTypeDescription</a></li><li><a href="global.html#getChipColor">getChipColor</a></li><li><a href="global.html#getConnectionTypeDescription">getConnectionTypeDescription</a></li><li><a href="global.html#getIntentionTypeDescription">getIntentionTypeDescription</a></li><li><a href="global.html#getQualityTypeDescription">getQualityTypeDescription</a></li><li><a href="global.html#getQualityTypeDescriptionIncoming">getQualityTypeDescriptionIncoming</a></li><li><a href="global.html#getQualityTypeDescriptionPlural">getQualityTypeDescriptionPlural</a></li><li><a href="global.html#getRequiredDependencies">getRequiredDependencies</a></li><li><a href="global.html#getRequiringDependencies">getRequiringDependencies</a></li><li><a href="global.html#numberToText">numberToText</a></li><li><a href="global.html#splitElementsByType">splitElementsByType</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Jul 04 2023 12:30:47 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

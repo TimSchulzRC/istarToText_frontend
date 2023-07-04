@@ -41,6 +41,9 @@ export default function IntentionDetails({
   const selectedElementTasks = children.filter(
     (e) => e.type === IntentionType.TASK
   );
+  const selectedElementResources = children.filter(
+    (e) => e.type === IntentionType.RESOURCE
+  );
   const selectedElementTasksCount = selectedElementTasks.length;
   const qualities: Quality[] = selectedIntention.qualities.map((q) => ({
     qualityType: q.type,
@@ -90,11 +93,10 @@ export default function IntentionDetails({
                     {elementIsLast(i, selectedElementSubGoalsCount) &&
                       selectedIntention.childrenLinkType}{" "}
                     <LinkHoverChip label={e.name} element={e} color="warning" />
-                    {!elementIsLast(i, selectedElementSubGoalsCount) &&
-                      selectedElementSubGoalsCount > 1 &&
-                      selectedIntention.childrenLinkType}
                   </span>
                 ))}{" "}
+                .
+                <br />
               </>
             )}
             {selectedElementTasksCount > 0 && (
@@ -114,6 +116,29 @@ export default function IntentionDetails({
                       element={e}
                       color="secondary"
                     />
+                    {!elementIsLast(i, selectedElementSubGoalsCount) &&
+                      selectedElementSubGoalsCount > 1 &&
+                      selectedIntention.childrenLinkType}
+                  </span>
+                ))}{" "}
+                .
+                <br />
+              </>
+            )}
+            {selectedElementResources.length > 0 && (
+              <>
+                {selectedElementSubGoalsCount > 0 &&
+                  selectedElementTasksCount === 0 &&
+                  selectedIntention.childrenLinkType}{" "}
+                obtain{" "}
+                {selectedElementResources.map((e, i) => (
+                  <span key={uuidv4()}>
+                    {elementIsNotFirstOrLast(i, selectedElementTasksCount) &&
+                      ", "}{" "}
+                    {elementIsLast(i, selectedElementTasksCount) &&
+                      selectedElementTasksCount > 1 &&
+                      selectedIntention.childrenLinkType}{" "}
+                    <LinkHoverChip label={e.name} element={e} />
                     {!elementIsLast(i, selectedElementSubGoalsCount) &&
                       selectedElementSubGoalsCount > 1 &&
                       selectedIntention.childrenLinkType}

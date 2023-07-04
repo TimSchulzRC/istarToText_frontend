@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/IntentionsList.tsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/IntentionsList.tsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Intention from "@/types/Intention";
+import {
+  ExpandLess,
+  ExpandMore,
+  Flag,
+  GppGood,
+  Inventory,
+  Task,
+} from "@mui/icons-material";
+import {
+  Collapse,
+  Divider,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
+import React, { useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
+import ListCard from "./cards/ListCard";
+import { AddHistoryItemContext } from "./context/HistoryContext";
+import { SelectedActorContext } from "./context/SelectedActorContext";
+import {
+  SelectedIntentionContext,
+  SelectedIntentionDispatchContext,
+} from "./context/SelectedIntentionContext";
+
+/**
+ * A component that displays a list of intentional elements for the selected actor, including goals, tasks, and resources.
+ *
+ * @returns A JSX element that displays a list of intentional elements for the selected actor, including goals, tasks, and resources.
+ */
+export default function IntentionsList() {
+  const selectedActor = React.useContext(SelectedActorContext);
+  const selectedIntentionalElement = React.useContext(SelectedIntentionContext);
+  const setSelectedIntention = React.useContext(
+    SelectedIntentionDispatchContext
+  );
+  const addHistoryItem = React.useContext(AddHistoryItemContext);
+  const qualities = getQualities();
+  const updateSelectedIntention = (i: Intention) => {
+    setSelectedIntention(i);
+    addHistoryItem(i);
+  };
+  const onClickHandler = (element: Intention) => {
+    selectedIntentionalElement === element
+      ? setSelectedIntention(null)
+      : updateSelectedIntention(element);
+  };
+  const [open, setOpen] = React.useState(false);
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
+  useEffect(() => {
+    if (selectedIntentionalElement?.type.toLowerCase() === "quality") {
+      setOpen(true);
+    }
+  }, [selectedIntentionalElement]);
+  console.log(qualities[0]);
+  return (
+    &lt;ListCard title="Intensions">
+      {getAllButQualities().map((element) => {
+        const qualities = getQualities().filter((q) =>
+          element.qualities.map((qRef) => qRef.id).includes(q.id)
+        );
+        let qualityText = "";
+        if (qualities.length === 1)
+          qualityText += "that desires the quality " + qualities[0].name + ")";
+        else if (qualities.length > 1) {
+          qualityText += "that desires the qualities ";
+          for (let i = 0; i &lt; qualities.length; i++) {
+            if (i === qualities.length - 1)
+              qualityText += " and " + qualities[i].name;
+            else if (i === 0) qualityText += qualities[i].name;
+            else qualityText += ", " + qualities[i].name;
+          }
+        }
+
+        return (
+          &lt;ListItemButton
+            onClick={() => onClickHandler(element)}
+            key={uuidv4()}
+            selected={element.id === selectedIntentionalElement?.id}
+          >
+            &lt;ListItemIcon>
+              {element.type.toLowerCase() === "goal" &amp;&amp; &lt;Flag />}
+              {element.type.toLowerCase() === "task" &amp;&amp; &lt;Task />}
+              {element.type.toLowerCase() === "resource" &amp;&amp; &lt;Inventory />}
+            &lt;/ListItemIcon>
+            &lt;ListItemText
+              primary={element.name}
+              secondary={
+                &lt;>
+                  A &lt;strong>{element.type}&lt;/strong> {qualityText}
+                &lt;/>
+              }
+            />
+          &lt;/ListItemButton>
+        );
+      })}
+      &lt;Divider />
+      {qualities.length > 0 &amp;&amp; (
+        &lt;>
+          &lt;ListItemButton onClick={handleClick}>
+            &lt;ListItemIcon>
+              &lt;GppGood />
+            &lt;/ListItemIcon>
+            &lt;ListItemText primary="Qualities" />
+            {open ? &lt;ExpandLess /> : &lt;ExpandMore />}
+          &lt;/ListItemButton>
+          &lt;Collapse in={open} timeout="auto" unmountOnExit>
+            &lt;List component="div" disablePadding>
+              {qualities.map((element) => {
+                const qualities = getQualities().filter((q) =>
+                  element.qualities.map((qRef) => qRef.id).includes(q.id)
+                );
+                let qualityText = "";
+                if (qualities.length === 1)
+                  qualityText +=
+                    "is a desired quality of " + qualities[0].name + ")";
+                else if (qualities.length > 1) {
+                  qualityText += "(desires the qualities ";
+                  for (let i = 0; i &lt; qualities.length; i++) {
+                    if (i === qualities.length - 1)
+                      qualityText += " and " + qualities[i].name;
+                    else if (i === 0) qualityText += qualities[i].name;
+                    else qualityText += ", " + qualities[i].name;
+                  }
+                }
+
+                console.log(qualities);
+                return (
+                  &lt;ListItemButton
+                    onClick={() => onClickHandler(element)}
+                    key={uuidv4()}
+                    selected={element.id === selectedIntentionalElement?.id}
+                  >
+                    &lt;ListItemText
+                      primary={element.name}
+                      secondary={qualityText}
+                    />
+                  &lt;/ListItemButton>
+                );
+              })}
+            &lt;/List>
+          &lt;/Collapse>
+        &lt;/>
+      )}
+      {selectedActor.elements.length === 0 &amp;&amp; (
+        &lt;ListItem>
+          &lt;ListItemText primary="This actor has not intentions" />
+        &lt;/ListItem>
+      )}
+    &lt;/ListCard>
+  );
+
+  /**
+   * Returns an array of all the qualities for the selected actor.
+   *
+   * @returns An array of all the qualities for the selected actor.
+   */
+  function getQualities() {
+    return selectedActor.elements.filter(
+      (element) => element.type.toLowerCase() === "quality"
+    );
+  }
+
+  /**
+   * Returns an array of all the intentional elements for the selected actor, except for qualities.
+   *
+   * @returns An array of all the intentional elements for the selected actor, except for qualities.
+   */
+  function getAllButQualities() {
+    return selectedActor.elements.filter(
+      (element) => element.type.toLowerCase() !== "quality"
+    );
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Interfaces</h3><ul><li><a href="Actor.html">Actor</a></li><li><a href="Dependency.html">Dependency</a></li><li><a href="Intention.html">Intention</a></li><li><a href="ModelElement.html">ModelElement</a></li><li><a href="Quality.html">Quality</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ActorType">ActorType</a></li><li><a href="global.html#ActorsContext">ActorsContext</a></li><li><a href="global.html#ConnectionType">ConnectionType</a></li><li><a href="global.html#DependenciesContext">DependenciesContext</a></li><li><a href="global.html#ExpandMore">ExpandMore</a></li><li><a href="global.html#IntentionType">IntentionType</a></li><li><a href="global.html#QualityType">QualityType</a></li><li><a href="global.html#SelectedActorContext">SelectedActorContext</a></li><li><a href="global.html#SelectedActorDispatchContext">SelectedActorDispatchContext</a></li><li><a href="global.html#SelectedIntentionContext">SelectedIntentionContext</a></li><li><a href="global.html#SelectedIntentionDispatchContext">SelectedIntentionDispatchContext</a></li><li><a href="global.html#capitalizeFirstLetter">capitalizeFirstLetter</a></li><li><a href="global.html#combineDependenciesByDependee">combineDependenciesByDependee</a></li><li><a href="global.html#combineDependenciesByDepender">combineDependenciesByDepender</a></li><li><a href="global.html#elementIsActor">elementIsActor</a></li><li><a href="global.html#elementIsIntention">elementIsIntention</a></li><li><a href="global.html#elementIsLast">elementIsLast</a></li><li><a href="global.html#elementIsNotFirstOrLast">elementIsNotFirstOrLast</a></li><li><a href="global.html#getActorTypeDescription">getActorTypeDescription</a></li><li><a href="global.html#getChipColor">getChipColor</a></li><li><a href="global.html#getConnectionTypeDescription">getConnectionTypeDescription</a></li><li><a href="global.html#getIntentionTypeDescription">getIntentionTypeDescription</a></li><li><a href="global.html#getQualityTypeDescription">getQualityTypeDescription</a></li><li><a href="global.html#getQualityTypeDescriptionIncoming">getQualityTypeDescriptionIncoming</a></li><li><a href="global.html#getQualityTypeDescriptionPlural">getQualityTypeDescriptionPlural</a></li><li><a href="global.html#getRequiredDependencies">getRequiredDependencies</a></li><li><a href="global.html#getRequiringDependencies">getRequiringDependencies</a></li><li><a href="global.html#numberToText">numberToText</a></li><li><a href="global.html#splitElementsByType">splitElementsByType</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Jul 04 2023 12:30:47 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

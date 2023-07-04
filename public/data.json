@@ -1,165 +1,245 @@
 {
   "actors": [
     {
-      "id": "a-1",
-      "name": "PC Product Provider",
+      "id": "fd1bd6a5-f4d4-4ce0-99c2-1ff2e139d94d",
+      "name": "Student",
       "type": "role",
       "description": null,
       "linksTo": [],
       "dependencies": [
-        "d-1",
-        "d-2",
-        "d-3",
-        "d-4",
-        "d-5",
-        "d-6",
-        "d-7",
-        "d-8",
-        "d-9"
+        "7a8a1453-8fc6-4d99-bc83-9a15e56f66a7",
+        "e2048a35-2a01-4053-b4d3-941c2a31e5b3",
+        "a42412fc-79eb-4053-a1a4-d4a102d65c16"
       ],
       "elements": [
         {
-          "id": "e-1-1",
-          "name": "Sell PC Products for Profit",
-          "type": "task",
-          "parent": null,
-          "qualities": [
-            {
-              "id": "e-1-3",
-              "type": "qualifies",
-              "direction": "both"
-            }
-          ],
-          "dependencies": [],
-          "childrenLinkType": "and",
-          "children": [
-            "e-1-2",
-            "e-1-4"
-          ]
-        },
-        {
-          "id": "e-1-2",
-          "name": "Sell PC Products",
+          "id": "7367ac0b-282c-4e21-9deb-6f75146644e1",
+          "name": "Travel Organized",
           "type": "goal",
-          "parent": "e-1-1",
-          "qualities": [],
-          "dependencies": [
-            "d-1",
-            "d-8"
-          ],
-          "childrenLinkType": null,
-          "children": []
-        },
-        {
-          "id": "e-1-3",
-          "name": "Profit",
-          "type": "quality",
           "parent": null,
-          "qualities": [
-            {
-              "id": "e-1-1",
-              "type": "qualifies",
-              "direction": "both"
-            },
-            {
-              "id": "e-1-7",
-              "type": "make",
-              "direction": "incoming"
-            }
-          ],
+          "qualities": [],
           "dependencies": [],
-          "childrenLinkType": null,
-          "children": []
-        },
-        {
-          "id": "e-1-4",
-          "name": "Product PC Products",
-          "type": "task",
-          "parent": "e-1-1",
-          "qualities": [
-            {
-              "id": "e-1-6",
-              "type": "qualifies",
-              "direction": "both"
-            }
-          ],
-          "dependencies": [
-            "d-7"
-          ],
           "childrenLinkType": "and",
           "children": [
-            "e-1-5"
+            "6a2b1d49-d295-463d-a594-308d3177e2cd",
+            "0aa42a7b-20da-421d-8ea5-5d445b54a2bd"
           ]
         },
         {
-          "id": "e-1-5",
-          "name": "Open Online Sales Channel for Licensed/ Copyrighted Content",
+          "id": "6a2b1d49-d295-463d-a594-308d3177e2cd",
+          "name": "Authorization Obtained",
+          "type": "goal",
+          "parent": "7367ac0b-282c-4e21-9deb-6f75146644e1",
+          "qualities": [],
+          "dependencies": [],
+          "childrenLinkType": "and",
+          "children": [
+            "f3da87da-480e-4c9e-8e44-6ea5b9024208",
+            "d1d718b0-9abb-43f0-ab0a-7ec2f2e0e858"
+          ]
+        },
+        {
+          "id": "0aa42a7b-20da-421d-8ea5-5d445b54a2bd",
+          "name": "Trip Booked",
+          "type": "goal",
+          "parent": "7367ac0b-282c-4e21-9deb-6f75146644e1",
+          "qualities": [],
+          "dependencies": [],
+          "childrenLinkType": "or",
+          "children": [
+            "d0375f46-2ba7-4833-b557-37394007a770",
+            "a48d109c-6335-45fd-a97a-96d1782b42a5"
+          ]
+        },
+        {
+          "id": "f3da87da-480e-4c9e-8e44-6ea5b9024208",
+          "name": "Request Prepared",
+          "type": "goal",
+          "parent": "6a2b1d49-d295-463d-a594-308d3177e2cd",
+          "qualities": [],
+          "dependencies": [],
+          "childrenLinkType": "or",
+          "children": [
+            "051149a0-0a56-4b61-8831-df062020d19f",
+            "ca13275f-7c18-4d8b-b588-8dc1c8c27ee4"
+          ]
+        },
+        {
+          "id": "d1d718b0-9abb-43f0-ab0a-7ec2f2e0e858",
+          "name": "Authorization Signed",
+          "type": "goal",
+          "parent": "6a2b1d49-d295-463d-a594-308d3177e2cd",
+          "qualities": [],
+          "dependencies": [],
+          "childrenLinkType": "or",
+          "children": [
+            "7ee44022-1b6b-49fd-972a-fb05cd5ed78d",
+            "a5bbd6f9-c24e-4b27-99b5-780031aa6781"
+          ]
+        },
+        {
+          "id": "051149a0-0a56-4b61-8831-df062020d19f",
+          "name": "Fill in paper form",
           "type": "task",
-          "parent": "e-1-4",
+          "parent": "f3da87da-480e-4c9e-8e44-6ea5b9024208",
           "qualities": [
             {
-              "id": "e-1-9",
-              "type": "make",
-              "direction": "outgoing"
+              "id": "cb15b27b-c98b-498b-9ac8-8d1437b89aa2",
+              "type": "hurt",
+              "direction": "incoming"
+            }
+          ],
+          "dependencies": [],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "ca13275f-7c18-4d8b-b588-8dc1c8c27ee4",
+          "name": "Fill in online form",
+          "type": "task",
+          "parent": "f3da87da-480e-4c9e-8e44-6ea5b9024208",
+          "qualities": [
+            {
+              "id": "cb15b27b-c98b-498b-9ac8-8d1437b89aa2",
+              "type": "help",
+              "direction": "incoming"
             }
           ],
           "dependencies": [
-            "d-2"
+            "7a8a1453-8fc6-4d99-bc83-9a15e56f66a7"
           ],
           "childrenLinkType": null,
           "children": []
         },
         {
-          "id": "e-1-6",
-          "name": "Compatability with Existing PC Products",
+          "id": "cb15b27b-c98b-498b-9ac8-8d1437b89aa2",
+          "name": "No erros",
           "type": "quality",
           "parent": null,
           "qualities": [
             {
-              "id": "e-1-4",
-              "type": "qualifies",
+              "id": "051149a0-0a56-4b61-8831-df062020d19f",
+              "type": "hurt",
+              "direction": "outgoing"
+            },
+            {
+              "id": "ca13275f-7c18-4d8b-b588-8dc1c8c27ee4",
+              "type": "help",
+              "direction": "outgoing"
+            },
+            {
+              "id": "f3da87da-480e-4c9e-8e44-6ea5b9024208",
+              "type": "qualification",
+              "direction": "both"
+            }
+          ],
+          "dependencies": [],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "7ee44022-1b6b-49fd-972a-fb05cd5ed78d",
+          "name": "Supervisor authorizes",
+          "type": "task",
+          "parent": "d1d718b0-9abb-43f0-ab0a-7ec2f2e0e858",
+          "qualities": [
+            {
+              "id": "0c431013-95de-47c4-97f1-b109502a9dca",
+              "type": "help",
+              "direction": "incoming"
+            }
+          ],
+          "dependencies": [],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "a5bbd6f9-c24e-4b27-99b5-780031aa6781",
+          "name": "Head-of-dept authorizes",
+          "type": "task",
+          "parent": "d1d718b0-9abb-43f0-ab0a-7ec2f2e0e858",
+          "qualities": [
+            {
+              "id": "0c431013-95de-47c4-97f1-b109502a9dca",
+              "type": "break",
+              "direction": "incoming"
+            }
+          ],
+          "dependencies": [],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "d0375f46-2ba7-4833-b557-37394007a770",
+          "name": "Trip parts booked",
+          "type": "goal",
+          "parent": "0aa42a7b-20da-421d-8ea5-5d445b54a2bd",
+          "qualities": [],
+          "dependencies": [],
+          "childrenLinkType": "and",
+          "children": [
+            "bae215d3-a8a6-4f25-9094-b97f2c01aa95",
+            "5b9a6b10-ad38-4289-b108-adaa47573bb6"
+          ]
+        },
+        {
+          "id": "a48d109c-6335-45fd-a97a-96d1782b42a5",
+          "name": "Bundle booked",
+          "type": "goal",
+          "parent": "0aa42a7b-20da-421d-8ea5-5d445b54a2bd",
+          "qualities": [],
+          "dependencies": [],
+          "childrenLinkType": "or",
+          "children": [
+            "e0800fbd-851c-4dc9-9b6d-f3da4c354df1"
+          ]
+        },
+        {
+          "id": "e0800fbd-851c-4dc9-9b6d-f3da4c354df1",
+          "name": "Book bundle",
+          "type": "task",
+          "parent": "a48d109c-6335-45fd-a97a-96d1782b42a5",
+          "qualities": [
+            {
+              "id": "5e0cd852-6208-4a00-9a8d-cd789263fc02",
+              "type": "make",
+              "direction": "incoming"
+            }
+          ],
+          "dependencies": [
+            "e2048a35-2a01-4053-b4d3-941c2a31e5b3"
+          ],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "0c431013-95de-47c4-97f1-b109502a9dca",
+          "name": "Quick Booking",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
+            {
+              "id": "7ee44022-1b6b-49fd-972a-fb05cd5ed78d",
+              "type": "help",
+              "direction": "outgoing"
+            },
+            {
+              "id": "a5bbd6f9-c24e-4b27-99b5-780031aa6781",
+              "type": "break",
+              "direction": "outgoing"
+            },
+            {
+              "id": "ffedcaa7-74a3-4b91-ac5c-cdba404c7a80",
+              "type": "help",
+              "direction": "outgoing"
+            },
+            {
+              "id": "d0375f46-2ba7-4833-b557-37394007a770",
+              "type": "qualification",
               "direction": "both"
             },
             {
-              "id": "e-1-10",
-              "type": "help",
-              "direction": "outgoing"
-            }
-          ],
-          "dependencies": [
-            "d-5"
-          ],
-          "childrenLinkType": null,
-          "children": []
-        },
-        {
-          "id": "e-1-7",
-          "name": "High Sales [PC Products]",
-          "type": "quality",
-          "parent": null,
-          "qualities": [
-            {
-              "id": "e-1-3",
-              "type": "make",
-              "direction": "outgoing"
-            },
-            {
-              "id": "e-1-8",
-              "type": "help",
-              "direction": "incoming"
-            },
-            {
-              "id": "e-1-9",
-              "type": "help",
-              "direction": "incoming"
-            },
-            {
-              "id": "e-1-10",
-              "type": "help",
-              "direction": "incoming"
-            },
-            {
-              "id": "e-1-1",
+              "id": "70fa8188-504d-43ee-83e1-cc4dd0854f10",
               "type": "help",
               "direction": "incoming"
             }
@@ -169,70 +249,140 @@
           "children": []
         },
         {
-          "id": "e-1-8",
-          "name": "PC Users Abide by [Licensing Regulations]",
-          "type": "quality",
-          "parent": null,
+          "id": "bae215d3-a8a6-4f25-9094-b97f2c01aa95",
+          "name": "Tickets booked",
+          "type": "goal",
+          "parent": "d0375f46-2ba7-4833-b557-37394007a770",
+          "qualities": [],
+          "dependencies": [],
+          "childrenLinkType": "or",
+          "children": [
+            "cd8ea9d4-d2d2-43f6-9e26-36e7a90ebca7",
+            "ffedcaa7-74a3-4b91-ac5c-cdba404c7a80"
+          ]
+        },
+        {
+          "id": "5b9a6b10-ad38-4289-b108-adaa47573bb6",
+          "name": "Accommodation booked",
+          "type": "goal",
+          "parent": "d0375f46-2ba7-4833-b557-37394007a770",
+          "qualities": [],
+          "dependencies": [],
+          "childrenLinkType": "or",
+          "children": [
+            "6119b21e-63e7-484a-82a5-2bc93346de9a",
+            "16794977-bbe9-4846-965b-8535bb00ebde"
+          ]
+        },
+        {
+          "id": "cd8ea9d4-d2d2-43f6-9e26-36e7a90ebca7",
+          "name": "Agency buys tickets",
+          "type": "task",
+          "parent": "bae215d3-a8a6-4f25-9094-b97f2c01aa95",
           "qualities": [
             {
-              "id": "e-1-7",
+              "id": "5e0cd852-6208-4a00-9a8d-cd789263fc02",
               "type": "help",
-              "direction": "outgoing"
+              "direction": "incoming"
             }
           ],
           "dependencies": [
-            "d-9"
+            "a42412fc-79eb-4053-a1a4-d4a102d65c16"
           ],
           "childrenLinkType": null,
           "children": []
         },
         {
-          "id": "e-1-9",
-          "name": "Destribute to License/ Copyright Holders [PC Products]",
-          "type": "quality",
-          "parent": null,
+          "id": "ffedcaa7-74a3-4b91-ac5c-cdba404c7a80",
+          "name": "Self-book tickets",
+          "type": "task",
+          "parent": "bae215d3-a8a6-4f25-9094-b97f2c01aa95",
           "qualities": [
             {
-              "id": "e-1-7",
+              "id": "0c431013-95de-47c4-97f1-b109502a9dca",
               "type": "help",
-              "direction": "outgoing"
+              "direction": "incoming"
             },
             {
-              "id": "e-1-5",
-              "type": "make",
+              "id": "5e0cd852-6208-4a00-9a8d-cd789263fc02",
+              "type": "hurt",
               "direction": "incoming"
             }
           ],
-          "dependencies": [
-            "d-3"
-          ],
+          "dependencies": [],
+          "childrenLinkType": "and",
+          "children": [
+            "59654e7a-9661-4139-9b0b-a1efa6d35c90",
+            "6c5a546a-bd3a-46f6-bc44-15905046dd48"
+          ]
+        },
+        {
+          "id": "59654e7a-9661-4139-9b0b-a1efa6d35c90",
+          "name": "Buy Tickets",
+          "type": "task",
+          "parent": "ffedcaa7-74a3-4b91-ac5c-cdba404c7a80",
+          "qualities": [],
+          "dependencies": [],
           "childrenLinkType": null,
           "children": []
         },
         {
-          "id": "e-1-10",
-          "name": "Desirable to PC Users [PC Products]",
+          "id": "6c5a546a-bd3a-46f6-bc44-15905046dd48",
+          "name": "Pay for tickets",
+          "type": "task",
+          "parent": "ffedcaa7-74a3-4b91-ac5c-cdba404c7a80",
+          "qualities": [],
+          "dependencies": [],
+          "childrenLinkType": "and",
+          "children": [
+            "61292c51-a64f-4ff3-b5e5-18c87cbd5621"
+          ]
+        },
+        {
+          "id": "70fa8188-504d-43ee-83e1-cc4dd0854f10",
+          "name": "Comfort",
           "type": "quality",
           "parent": null,
           "qualities": [
             {
-              "id": "e-1-7",
+              "id": "5e0cd852-6208-4a00-9a8d-cd789263fc02",
               "type": "help",
               "direction": "outgoing"
             },
             {
-              "id": "e-1-6",
+              "id": "0c431013-95de-47c4-97f1-b109502a9dca",
               "type": "help",
-              "direction": "incoming"
-            },
+              "direction": "outgoing"
+            }
+          ],
+          "dependencies": [],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "5e0cd852-6208-4a00-9a8d-cd789263fc02",
+          "name": "Minimal own payments",
+          "type": "quality",
+          "parent": null,
+          "qualities": [
             {
-              "id": "e-1-12",
-              "type": "help",
-              "direction": "incoming"
-            },
-            {
-              "id": "e-1-13",
+              "id": "e0800fbd-851c-4dc9-9b6d-f3da4c354df1",
               "type": "make",
+              "direction": "outgoing"
+            },
+            {
+              "id": "cd8ea9d4-d2d2-43f6-9e26-36e7a90ebca7",
+              "type": "help",
+              "direction": "outgoing"
+            },
+            {
+              "id": "ffedcaa7-74a3-4b91-ac5c-cdba404c7a80",
+              "type": "hurt",
+              "direction": "outgoing"
+            },
+            {
+              "id": "70fa8188-504d-43ee-83e1-cc4dd0854f10",
+              "type": "help",
               "direction": "incoming"
             }
           ],
@@ -241,649 +391,213 @@
           "children": []
         },
         {
-          "id": "e-1-11",
-          "name": "Affordable [PC Products]",
-          "type": "quality",
-          "parent": null,
-          "qualities": [
-            {
-              "id": "e-1-7",
-              "type": "help",
-              "direction": "outgoing"
-            }
-          ],
+          "id": "6119b21e-63e7-484a-82a5-2bc93346de9a",
+          "name": "Conference hotel booked",
+          "type": "goal",
+          "parent": "5b9a6b10-ad38-4289-b108-adaa47573bb6",
+          "qualities": [],
           "dependencies": [],
           "childrenLinkType": null,
           "children": []
         },
         {
-          "id": "e-1-12",
-          "name": "Security [PC]",
-          "type": "quality",
-          "parent": null,
-          "qualities": [
-            {
-              "id": "e-1-10",
-              "type": "help",
-              "direction": "outgoing"
-            }
-          ],
-          "dependencies": [
-            "d-4"
-          ],
+          "id": "16794977-bbe9-4846-965b-8535bb00ebde",
+          "name": "Budget hotel booked",
+          "type": "goal",
+          "parent": "5b9a6b10-ad38-4289-b108-adaa47573bb6",
+          "qualities": [],
+          "dependencies": [],
+          "childrenLinkType": "or",
+          "children": [
+            "9bcdcf99-4f52-4458-bf49-ffc3ce80fbd1",
+            "1a764b35-6e0d-4c7d-946f-9d48757be097"
+          ]
+        },
+        {
+          "id": "9bcdcf99-4f52-4458-bf49-ffc3ce80fbd1",
+          "name": "Buy through booking.com",
+          "type": "task",
+          "parent": "16794977-bbe9-4846-965b-8535bb00ebde",
+          "qualities": [],
+          "dependencies": [],
           "childrenLinkType": null,
           "children": []
         },
         {
-          "id": "e-1-13",
-          "name": "Freedom [Use of PC Products by PC User]",
-          "type": "quality",
+          "id": "1a764b35-6e0d-4c7d-946f-9d48757be097",
+          "name": "Buy through hotel website",
+          "type": "task",
+          "parent": "16794977-bbe9-4846-965b-8535bb00ebde",
+          "qualities": [],
+          "dependencies": [],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "61292c51-a64f-4ff3-b5e5-18c87cbd5621",
+          "name": "Credit card",
+          "type": "resource",
           "parent": null,
-          "qualities": [
-            {
-              "id": "e-1-10",
-              "type": "make",
-              "direction": "outgoing"
-            }
-          ],
-          "dependencies": [
-            "d-6"
-          ],
+          "qualities": [],
+          "dependencies": [],
           "childrenLinkType": null,
           "children": []
         }
       ]
     },
     {
-      "id": "a-2",
-      "name": "PC User",
-      "type": "role",
+      "id": "267432a6-a32b-4ca3-ba92-b6a7c6cbb433",
+      "name": "Univ Trip Management IS",
+      "type": "agent",
       "description": null,
       "linksTo": [
         {
-          "id": "a-5",
-          "type": "is a"
-        }
-      ],
-      "dependencies": [
-        "d-4",
-        "d-5",
-        "d-6",
-        "d-7",
-        "d-8",
-        "d-9"
-      ],
-      "elements": [
-        {
-          "id": "e-2-1",
-          "name": "Affordable [PC Products]",
-          "type": "quality",
-          "parent": null,
-          "qualities": [
-            
-            {
-              "id": "e-2-3",
-              "type": "hurt",
-              "direction": "incoming"
-            }
-          ],
-          "dependencies": [],
-          "childrenLinkType": null,
-          "children": []
-        },
-        {
-          "id": "e-2-2",
-          "name": "PC Products Be Obtained",
-          "type": "goal",
-          "parent": null,
-          "qualities": [],
-          "dependencies": [],
-          "childrenLinkType": "and",
-          "children": [
-            "e-2-3"
-          ]
-        },
-        {
-          "id": "e-2-3",
-          "name": "Purchase PC Products",
-          "type": "task",
-          "parent": "",
-          "qualities": [
-            {
-              "id": "e-2-1",
-              "type": "hurt",
-              "direction": "outgoing"
-            },
-            {
-              "id": "e-2-4",
-              "type": "make",
-              "direction": "outgoing"
-            },
-            {
-              "id": "e-2-6",
-              "type": "qualifies",
-              "direction": "both"
-            }
-          ],
-          "dependencies": [
-            "d-7",
-            "d-8"
-          ],
-          "childrenLinkType": null,
-          "children": []
-        },
-        {
-          "id": "e-2-4",
-          "name": "Abide by [Licensing Regulations]",
-          "type": "quality",
-          "parent": null,
-          "qualities": [
-          {
-            "id": "e-2-3",
-            "type": "make",
-            "direction": "incoming"
-          }],
-          "dependencies": [
-            "d-9"
-          ],
-          "childrenLinkType": null,
-          "children": []
-        },
-        {
-          "id": "e-2-5",
-          "name": "Freedom [Use of PC Products]",
-          "type": "quality",
-          "parent": null,
-          "qualities": [
-            {
-              "id": "e-2-6",
-              "type": "help",
-              "direction": "outgoing"
-            }
-          ],
-          "dependencies": [
-            "d-6"
-          ],
-          "childrenLinkType": null,
-          "children": []
-        },
-        {
-          "id": "e-2-6",
-          "name": "Desirable [PC Products]",
-          "type": "quality",
-          "parent": null,
-          "qualities": [
-            {
-              "id": "e-2-3",
-              "type": "qualifies"
-            },
-            {
-              "id": "e-2-5",
-              "type": "help",
-              "direction": "incoming"
-            },
-            {
-              "id": "e-2-7",
-              "type": "help",
-              "direction": "incoming"
-            },
-            {
-              "id": "e-2-8",
-              "type": "help",
-              "direction": "incoming"
-            }
-          ],
-          "dependencies": [],
-          "childrenLinkType": null,
-          "children": []
-        },
-        {
-          "id": "e-2-7",
-          "name": "Compatability [with Existing PC Products]",
-          "type": "quality",
-          "parent": null,
-          "qualities": [
-            {
-              "id": "e-2-6",
-              "type": "help",
-              "direction": "outgoing"
-            }
-          ],
-          "dependencies": [
-            "d-5"
-          ],
-          "childrenLinkType": null,
-          "children": []
-        },
-        {
-          "id": "e-2-8",
-          "name": "Security [PC]",
-          "type": "quality",
-          "parent": null,
-          "qualities": [
-            {
-              "id": "e-2-6",
-              "type": "help",
-              "direction": "outgoing"
-            }
-          ],
-          "dependencies": [
-            "d-4"
-          ],
-          "childrenLinkType": null,
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "a-3",
-      "name": "License / Copyright Holder",
-      "type": "role",
-      "description": null,
-      "linksTo": [],
-      "dependencies": [
-        "d-1",
-        "d-2",
-        "d-3",
-        "d-10",
-        "d-11",
-        "d-12"
-      ],
-      "elements": [
-        {
-          "id": "e-3-1",
-          "name": "Profit from Licensed/ Copyrighted Content",
-          "type": "task",
-          "parent": null,
-          "qualities": [
-            {
-              "id": "e-3-3",
-              "type": "qualifies",
-              "direction": "both"
-            }
-          ],
-          "dependencies": [],
-          "childrenLinkType": "and",
-          "children": [
-            "e-3-2",
-            "e-3-4"
-          ]
-        },
-        {
-          "id": "e-3-2",
-          "name": "Licensed / Copyrighted Content Be Produced",
-          "type": "goal",
-          "parent": "e-3-1",
-          "qualities": [],
-          "dependencies": [],
-          "childrenLinkType": null,
-          "children": []
-        },
-        {
-          "id": "e-3-3",
-          "name": "Profit",
-          "type": "quality",
-          "parent": null,
-          "qualities": [
-            {
-              "id": "e-3-1",
-              "type": "qualifies",
-              "direction": "both"
-            },
-            {
-              "id": "e-3-5",
-              "type": "help",
-              "direction": "incoming"
-            },
-            {
-              "id": "e-3-6",
-              "type": "help",
-              "direction": "incoming"
-            },
-            {
-              "id": "e-3-7",
-              "type": "help",
-              "direction": "incoming"
-            },
-            {
-              "id": "e-3-8",
-              "type": "help",
-              "direction": "incoming"
-            }
-          ],
-          "dependencies": [],
-          "childrenLinkType": null,
-          "children": []
-        },
-        {
-          "id": "e-3-4",
-          "name": "Licensed / Copyrighted Content Be Sold",
-          "type": "goal",
-          "parent": "e-3-1",
-          "qualities": [],
-          "dependencies": [
-            "d-12"
-          ],
-          "childrenLinkType": "and",
-          "children": [
-            "e-3-6",
-            "e-3-7"
-          ]
-        },
-        {
-          "id": "e-3-5",
-          "name": "Legality",
-          "type": "quality",
-          "parent": null,
-          "qualities": [
-            {
-              "id": "e-3-3",
-              "type": "help",
-              "direction": "outgoing"
-            }
-          ],
-          "dependencies": [
-            "d-10"
-          ],
-          "childrenLinkType": null,
-          "children": []
-        },
-        {
-          "id": "e-3-6",
-          "name": "Sell Licensed / Copyrighted Content Offline",
-          "type": "task",
-          "parent": "e-3-4",
-          "qualities": [
-            {
-              "id": "e-3-3",
-              "type": "help",
-              "direction": "outgoing"
-            },
-            {
-              "id": "e-3-4",
-              "type": "help",
-              "direction": "outgoing"
-            }
-          ],
-          "dependencies": [
-            "d-11"
-          ],
-          "childrenLinkType": null,
-          "children": []
-        },
-        {
-          "id": "e-3-7",
-          "name": "Sell Licensed / Copyrighted Content Online",
-          "type": "task",
-          "parent": "e-3-4",
-          "qualities": [
-            {
-              "id": "e-3-3",
-              "type": "help",
-              "direction": "outgoing"
-            }
-          ],
-          "dependencies": [],
-          "childrenLinkType": "and",
-          "children": [
-            "e-3-9"
-          ]
-        },
-        {
-          "id": "e-3-8",
-          "name": "Protection [Licensed/ Copyrighted Content]",
-          "type": "quality",
-          "parent": null,
-          "qualities": [
-            {
-              "id": "e-3-3",
-              "type": "help",
-              "direction": "outgoing"
-            }
-          ],
-          "dependencies": [
-            "d-3"
-          ],
-          "childrenLinkType": null,
-          "children": []
-        },
-        {
-          "id": "e-3-9",
-          "name": "Online Sales Channel for Licensed/ Copyrighted Content Be Opened",
-          "type": "goal",
-          "parent": "e-3-7",
-          "qualities": [],
-          "dependencies": [
-            "d-1",
-            "d-2"
-          ],
-          "childrenLinkType": null,
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "a-4",
-      "name": "Content User",
-      "type": "role",
-      "description": null,
-      "linksTo": [
-        {
-          "id": "a-5",
-          "type": "is a"
-        }
-      ],
-      "dependencies": [
-        "d-10",
-        "d-11",
-        "d-12"
-      ],
-      "elements": [
-        {
-          "id": "e-4-1",
-          "name": "Obtain Licensed/ Copyrighted Content",
-          "type": "goal",
-          "parent": null,
-          "qualities": [],
-          "dependencies": [],
-          "childrenLinkType": "and",
-          "children": [
-            "e-4-4"
-          ]
-        },
-        {
-          "id": "e-4-2",
-          "name": "Legality",
-          "type": "quality",
-          "parent": null,
-          "qualities": [
-            {
-              "id": "e-4-4",
-              "type": "make",
-              "direction": "incoming"
-            }
-          ],
-          "dependencies": [
-            "d-10"
-          ],
-          "childrenLinkType": null,
-          "children": []
-        },
-        {
-          "id": "e-4-3",
-          "name": "Affordable [Licensed/ Copyrighted Content]",
-          "type": "quality",
-          "parent": null,
-          "qualities": [
-            {
-              "id": "e-4-4",
-              "type": "hurt",
-              "direction": "incoming"
-            }
-          ],
-          "dependencies": [],
-          "childrenLinkType": null,
-          "children": []
-        },
-        {
-          "id": "e-4-4",
-          "name": "Purchase Licensed/ Copyrighted Content from License/ Copyright Holder",
-          "type": "task",
-          "parent": "e-4-1",
-          "qualities": [
-            {
-              "id": "e-4-2",
-              "type": "make",
-              "direction": "outgoing"
-            },
-            {
-              "id": "e-4-3",
-              "type": "hurt",
-              "direction": "outgoing"
-            }
-          ],
-          "dependencies": [
-            "d-11",
-            "d-12"
-          ],
-          "childrenLinkType": null,
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "a-5",
-      "name": "User",
-      "type": "role",
-      "description": null,
-      "linksTo": [],
-      "dependencies": [
-      ],
-      "elements": []
-    },
-    {
-      "id": "a-6",
-      "name": "Benjamin Johnson",
-      "type": "role",
-      "description": null,
-      "linksTo": [
-        {
-          "id": "a-2",
+          "id": "a259f6e2-f292-42a0-89fc-4d86499a64bd",
           "type": "participates in"
         }
       ],
       "dependencies": [
+        "7a8a1453-8fc6-4d99-bc83-9a15e56f66a7"
       ],
+      "elements": [
+        {
+          "id": "6b63c343-4ba5-4b1d-bbdd-5ab33d1a3fdd",
+          "name": "Proccess Form",
+          "type": "task",
+          "parent": null,
+          "qualities": [],
+          "dependencies": [
+            "7a8a1453-8fc6-4d99-bc83-9a15e56f66a7"
+          ],
+          "childrenLinkType": "and",
+          "children": [
+            "b6f0502c-abd0-468e-8e8d-247f84242e7e",
+            "49ba9dea-90b8-45f5-811c-869c9941daca",
+            "39f722c2-7e86-4c51-b8db-fe1dad81499b"
+          ]
+        },
+        {
+          "id": "b6f0502c-abd0-468e-8e8d-247f84242e7e",
+          "name": "Validate Details",
+          "type": "task",
+          "parent": "6b63c343-4ba5-4b1d-bbdd-5ab33d1a3fdd",
+          "qualities": [],
+          "dependencies": [],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "49ba9dea-90b8-45f5-811c-869c9941daca",
+          "name": "Request Autorization",
+          "type": "task",
+          "parent": "6b63c343-4ba5-4b1d-bbdd-5ab33d1a3fdd",
+          "qualities": [],
+          "dependencies": [],
+          "childrenLinkType": null,
+          "children": []
+        },
+        {
+          "id": "39f722c2-7e86-4c51-b8db-fe1dad81499b",
+          "name": "Notify Applicant",
+          "type": "task",
+          "parent": "6b63c343-4ba5-4b1d-bbdd-5ab33d1a3fdd",
+          "qualities": [],
+          "dependencies": [],
+          "childrenLinkType": null,
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "cd69909d-2bdf-4e96-b8c3-e6b7a54cff05",
+      "name": "Travel Agency",
+      "type": "actor",
+      "description": null,
+      "linksTo": [],
+      "dependencies": [
+        "e2048a35-2a01-4053-b4d3-941c2a31e5b3",
+        "a42412fc-79eb-4053-a1a4-d4a102d65c16"
+      ],
+      "elements": [
+        {
+          "id": "0819dd9a-3b49-4b43-a595-23f9cad5079c",
+          "name": "Book Bundle Via Expedia",
+          "type": "task",
+          "parent": null,
+          "qualities": [],
+          "dependencies": [
+            "e2048a35-2a01-4053-b4d3-941c2a31e5b3"
+          ],
+          "childrenLinkType": null,
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "28b8a587-dd2f-47e8-9597-1c231561a57f",
+      "name": "Phd Student",
+      "type": "role",
+      "description": null,
+      "linksTo": [
+        {
+          "id": "fd1bd6a5-f4d4-4ce0-99c2-1ff2e139d94d",
+          "type": "is a"
+        }
+      ],
+      "dependencies": [],
       "elements": []
-    }],
+    },
+    {
+      "id": "e078e7f2-ca6c-49b2-b6ab-1f030f867092",
+      "name": "Mike White",
+      "type": "agent",
+      "description": null,
+      "linksTo": [
+        {
+          "id": "28b8a587-dd2f-47e8-9597-1c231561a57f",
+          "type": "participates in"
+        }
+      ],
+      "dependencies": [],
+      "elements": []
+    },
+    {
+      "id": "a259f6e2-f292-42a0-89fc-4d86499a64bd",
+      "name": "Univ. of Wonder-Land",
+      "type": "agent",
+      "description": null,
+      "linksTo": [],
+      "dependencies": [],
+      "elements": []
+    }
+  ],
   "dependencies": [
     {
-      "id": "d-1",
-      "type": "resource",
-      "name": "Payment",
-      "depender": "a-1",
-      "dependerElement": "e-1-2",
-      "dependee": "a-3",
-      "dependeeElement": "e-3-9"
+      "id": "7a8a1453-8fc6-4d99-bc83-9a15e56f66a7",
+      "type": "goal",
+      "name": "Online Form Processed",
+      "depender": "fd1bd6a5-f4d4-4ce0-99c2-1ff2e139d94d",
+      "dependerElement": "ca13275f-7c18-4d8b-b588-8dc1c8c27ee4",
+      "dependee": "267432a6-a32b-4ca3-ba92-b6a7c6cbb433",
+      "dependeeElement": "6b63c343-4ba5-4b1d-bbdd-5ab33d1a3fdd"
     },
     {
-      "id": "d-2",
-      "type": "resource",
-      "name": "Online Sales Channel for Licensed/ Copyrighted Content",
-      "depender": "a-3",
-      "dependerElement": "e-3-9",
-      "dependee": "a-1",
-      "dependeeElement": "e-1-5"
+      "id": "e2048a35-2a01-4053-b4d3-941c2a31e5b3",
+      "type": "goal",
+      "name": "Trip bundle booked",
+      "depender": "fd1bd6a5-f4d4-4ce0-99c2-1ff2e139d94d",
+      "dependerElement": "e0800fbd-851c-4dc9-9b6d-f3da4c354df1",
+      "dependee": "cd69909d-2bdf-4e96-b8c3-e6b7a54cff05",
+      "dependeeElement": "0819dd9a-3b49-4b43-a595-23f9cad5079c"
     },
     {
-      "id": "d-3",
-      "type": "quality",
-      "name": "Destribute to License/ Copyright Holders [PC Products]",
-      "depender": "a-3",
-      "dependerElement": "e-3-8",
-      "dependee": "a-1",
-      "dependeeElement": "e-1-9"
-    },
-    {
-      "id": "d-4",
-      "type": "quality",
-      "name": "Security [PC]",
-      "depender": "a-2",
-      "dependerElement": "e-2-8",
-      "dependee": "a-1",
-      "dependeeElement": "e-1-12"
-    },
-    {
-      "id": "d-5",
-      "type": "quality",
-      "name": "Compatability [with Existing PC Products]",
-      "depender": "a-2",
-      "dependerElement": "e-2-7",
-      "dependee": "a-1",
-      "dependeeElement": "e-1-6"
-    },
-    {
-      "id": "d-6",
-      "type": "quality",
-      "name": "Freedom [Use of PC Products]",
-      "depender": "a-2",
-      "dependerElement": "e-2-5",
-      "dependee": "a-1",
-      "dependeeElement": "e-1-13"
-    },
-    {
-      "id": "d-7",
-      "type": "resource",
-      "name": "PC Products",
-      "depender": "a-2",
-      "dependerElement": "e-2-3",
-      "dependee": "a-1",
-      "dependeeElement": "e-1-4"
-    },
-    {
-      "id": "d-8",
-      "type": "resource",
-      "name": "Payment",
-      "depender": "a-1",
-      "dependerElement": "e-1-2",
-      "dependee": "a-2",
-      "dependeeElement": "e-2-3"
-    },
-    {
-      "id": "d-9",
-      "type": "resource",
-      "name": "PC Users Abide by [Licensing Regulations]",
-      "depender": "a-1",
-      "dependerElement": "e-1-8",
-      "dependee": "a-2",
-      "dependeeElement": "e-2-4"
-    },
-    {
-      "id": "d-10",
-      "type": "quality",
-      "name": "Legality",
-      "depender": "a-3",
-      "dependerElement": "e-3-5",
-      "dependee": "a-4",
-      "dependeeElement": "e-4-2"
-    },
-    {
-      "id": "d-11",
-      "type": "resource",
-      "name": "Payment",
-      "depender": "a-3",
-      "dependerElement": "e-3-6",
-      "dependee": "a-4",
-      "dependeeElement": "e-4-4"
-    },
-    {
-      "id": "d-12",
-      "type": "resource",
-      "name": "Licensed / Copyrighted Content",
-      "depender": "a-4",
-      "dependerElement": "e-4-3",
-      "dependee": "a-3",
-      "dependeeElement": "e-3-4"
+      "id": "a42412fc-79eb-4053-a1a4-d4a102d65c16",
+      "type": "task",
+      "name": "Buy flight tickets",
+      "depender": "fd1bd6a5-f4d4-4ce0-99c2-1ff2e139d94d",
+      "dependerElement": "cd8ea9d4-d2d2-43f6-9e26-36e7a90ebca7",
+      "dependee": "cd69909d-2bdf-4e96-b8c3-e6b7a54cff05",
+      "dependeeElement": null
     }
   ]
 }

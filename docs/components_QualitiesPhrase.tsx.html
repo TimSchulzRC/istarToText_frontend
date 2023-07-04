@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/QualitiesPhrase.tsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/QualitiesPhrase.tsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Intention from "@/types/Intention";
+import Quality, { QualityDirection } from "@/types/Quality";
+import { QualityType, getQualityTypeDescription } from "@/types/qualityType";
+import { getChipColor } from "@/util/DisplayUtil";
+import { elementIsNotFirstOrLast } from "@/util/ElementListUtil";
+import { v4 as uuidv4 } from "uuid";
+import LinkHoverChip from "./LinkHoverChip";
+
+/**
+ * A component that displays a phrase summarizing the qualities of a specified intentional element, including the type and direction of the qualities.
+ *
+ * @param selectedIntention - The intentional element whose qualities to summarize.
+ * @param qualities - The list of qualities to summarize.
+ * @param qualityType - The type of the qualities to summarize.
+ * @param qualityDirection - The direction of the qualities to summarize.
+ * @returns A JSX element that displays a phrase summarizing the qualities of a specified intentional element, including the type and direction of the qualities.
+ */
+export default function QualitiesPhrase({
+  selectedIntention,
+  qualities,
+  qualityType,
+  qualityDirection,
+}: {
+  selectedIntention: Intention;
+  qualities: Quality[];
+  qualityType: QualityType;
+  qualityDirection: QualityDirection;
+}) {
+  return (
+    &lt;>
+      &lt;br />
+      &lt;strong>{selectedIntention.name}&lt;/strong>{" "}
+      {getQualityTypeDescription(
+        qualityType,
+        qualities.length > 1,
+        qualityDirection
+      )}
+      {qualities.map((e, i) => (
+        &lt;span key={uuidv4()}>
+          &lt;LinkHoverChip
+            label={e.name}
+            color={getChipColor(e.type)}
+            element={e}
+          />
+          {elementIsNotFirstOrLast(i, qualities.length) &amp;&amp; ", "}
+          {elementIsNotFirstOrLast(i, qualities.length) &amp;&amp;
+            i === qualities.length - 2 &amp;&amp;
+            ", "}
+        &lt;/span>
+      ))}
+      .
+      &lt;br />
+    &lt;/>
+  );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Interfaces</h3><ul><li><a href="Actor.html">Actor</a></li><li><a href="Dependency.html">Dependency</a></li><li><a href="Intention.html">Intention</a></li><li><a href="ModelElement.html">ModelElement</a></li><li><a href="Quality.html">Quality</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ActorType">ActorType</a></li><li><a href="global.html#ActorsContext">ActorsContext</a></li><li><a href="global.html#ConnectionType">ConnectionType</a></li><li><a href="global.html#DependenciesContext">DependenciesContext</a></li><li><a href="global.html#ExpandMore">ExpandMore</a></li><li><a href="global.html#IntentionType">IntentionType</a></li><li><a href="global.html#QualityType">QualityType</a></li><li><a href="global.html#SelectedActorContext">SelectedActorContext</a></li><li><a href="global.html#SelectedActorDispatchContext">SelectedActorDispatchContext</a></li><li><a href="global.html#SelectedIntentionContext">SelectedIntentionContext</a></li><li><a href="global.html#SelectedIntentionDispatchContext">SelectedIntentionDispatchContext</a></li><li><a href="global.html#capitalizeFirstLetter">capitalizeFirstLetter</a></li><li><a href="global.html#combineDependenciesByDependee">combineDependenciesByDependee</a></li><li><a href="global.html#combineDependenciesByDepender">combineDependenciesByDepender</a></li><li><a href="global.html#elementIsActor">elementIsActor</a></li><li><a href="global.html#elementIsIntention">elementIsIntention</a></li><li><a href="global.html#elementIsLast">elementIsLast</a></li><li><a href="global.html#elementIsNotFirstOrLast">elementIsNotFirstOrLast</a></li><li><a href="global.html#getActorTypeDescription">getActorTypeDescription</a></li><li><a href="global.html#getChipColor">getChipColor</a></li><li><a href="global.html#getConnectionTypeDescription">getConnectionTypeDescription</a></li><li><a href="global.html#getIntentionTypeDescription">getIntentionTypeDescription</a></li><li><a href="global.html#getQualityTypeDescription">getQualityTypeDescription</a></li><li><a href="global.html#getQualityTypeDescriptionIncoming">getQualityTypeDescriptionIncoming</a></li><li><a href="global.html#getQualityTypeDescriptionPlural">getQualityTypeDescriptionPlural</a></li><li><a href="global.html#getRequiredDependencies">getRequiredDependencies</a></li><li><a href="global.html#getRequiringDependencies">getRequiringDependencies</a></li><li><a href="global.html#numberToText">numberToText</a></li><li><a href="global.html#splitElementsByType">splitElementsByType</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Jul 04 2023 12:30:47 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

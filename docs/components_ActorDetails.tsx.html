@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/ActorDetails.tsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/ActorDetails.tsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Actor from "@/types/Actor";
+import { Typography } from "@mui/material";
+import { useContext } from "react";
+import { v4 as uuidv4 } from "uuid";
+import DependenciesPhrase from "./DependenciesPhrase";
+import IntentionsPhrase from "./IntentionsPhrase";
+import LinkHoverChip from "./LinkHoverChip";
+import { ActorsContext } from "./context/ActorsContext";
+
+/**
+ * A component that displays the details of an actor, including its name, type, description, links to other actors, intentions, and dependencies.
+ *
+ * @param actor - The actor object to display details for.
+ */
+export default function ActorDetails({ actor }: { actor: Actor }) {
+  const actors = useContext(ActorsContext);
+
+  const ieCount = actor.elements.length;
+
+  return (
+    &lt;>
+      &lt;Typography>{actor.description}&lt;/Typography>
+      &lt;Typography component="div">
+        &lt;strong>{actor.name} &lt;/strong>is {actor.type === "actor" ? "an" : "a"}{" "}
+        &lt;strong>{actor.type}&lt;/strong>. &lt;br />
+        {actor.linksTo.length > 0 &amp;&amp; (
+          &lt;>
+            &lt;br />
+            {actor.linksTo.map((e, i) => (
+              &lt;span key={uuidv4()}>
+                {actor.name} {e.type}{" "}
+                &lt;LinkHoverChip
+                  color="primary"
+                  label={actors.get(e.id)?.name}
+                  element={actors.get(e.id)}
+                />
+                .
+              &lt;/span>
+            ))}
+            &lt;br />
+          &lt;/>
+        )}
+        {ieCount > 0 &amp;&amp; &lt;IntentionsPhrase actor={actor} />}
+        &lt;DependenciesPhrase
+          dependencyIDs={actor.dependencies}
+          elementName={actor.name}
+        />
+      &lt;/Typography>
+    &lt;/>
+  );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Interfaces</h3><ul><li><a href="Actor.html">Actor</a></li><li><a href="Dependency.html">Dependency</a></li><li><a href="Intention.html">Intention</a></li><li><a href="ModelElement.html">ModelElement</a></li><li><a href="Quality.html">Quality</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ActorType">ActorType</a></li><li><a href="global.html#ActorsContext">ActorsContext</a></li><li><a href="global.html#ConnectionType">ConnectionType</a></li><li><a href="global.html#DependenciesContext">DependenciesContext</a></li><li><a href="global.html#ExpandMore">ExpandMore</a></li><li><a href="global.html#IntentionType">IntentionType</a></li><li><a href="global.html#QualityType">QualityType</a></li><li><a href="global.html#SelectedActorContext">SelectedActorContext</a></li><li><a href="global.html#SelectedActorDispatchContext">SelectedActorDispatchContext</a></li><li><a href="global.html#SelectedIntentionContext">SelectedIntentionContext</a></li><li><a href="global.html#SelectedIntentionDispatchContext">SelectedIntentionDispatchContext</a></li><li><a href="global.html#capitalizeFirstLetter">capitalizeFirstLetter</a></li><li><a href="global.html#combineDependenciesByDependee">combineDependenciesByDependee</a></li><li><a href="global.html#combineDependenciesByDepender">combineDependenciesByDepender</a></li><li><a href="global.html#elementIsActor">elementIsActor</a></li><li><a href="global.html#elementIsIntention">elementIsIntention</a></li><li><a href="global.html#elementIsLast">elementIsLast</a></li><li><a href="global.html#elementIsNotFirstOrLast">elementIsNotFirstOrLast</a></li><li><a href="global.html#getActorTypeDescription">getActorTypeDescription</a></li><li><a href="global.html#getChipColor">getChipColor</a></li><li><a href="global.html#getConnectionTypeDescription">getConnectionTypeDescription</a></li><li><a href="global.html#getIntentionTypeDescription">getIntentionTypeDescription</a></li><li><a href="global.html#getQualityTypeDescription">getQualityTypeDescription</a></li><li><a href="global.html#getQualityTypeDescriptionIncoming">getQualityTypeDescriptionIncoming</a></li><li><a href="global.html#getQualityTypeDescriptionPlural">getQualityTypeDescriptionPlural</a></li><li><a href="global.html#getRequiredDependencies">getRequiredDependencies</a></li><li><a href="global.html#getRequiringDependencies">getRequiringDependencies</a></li><li><a href="global.html#numberToText">numberToText</a></li><li><a href="global.html#splitElementsByType">splitElementsByType</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Jul 04 2023 12:30:47 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
